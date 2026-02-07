@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permly - Smart Notification Manager for Android</title>
+    <meta name="description" content="Take control of your notifications with Permly. Create custom profiles to silence specific apps while keeping important notifications.">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            padding: 60px 0;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 28px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .logo svg {
+            width: 72px;
+            height: 72px;
+            fill: #6650a4;
+        }
+        h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3em;
+            margin-bottom: 40px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .btn-primary {
+            background: white;
+            color: #6650a4;
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        .features {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-top: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .features h2 {
+            text-align: center;
+            color: #6650a4;
+            margin-bottom: 40px;
+            font-size: 2em;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feature {
+            padding: 20px;
+        }
+        .feature h3 {
+            color: #6650a4;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature p {
+            color: #666;
+        }
+        .privacy-banner {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .privacy-banner h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        .privacy-banner p {
+            color: #1b5e20;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255,255,255,0.8);
+        }
+        footer a {
+            color: white;
+        }
+        .links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2em; }
+            .tagline { font-size: 1.1em; }
+            .features { padding: 40px 20px; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                </svg>
+            </div>
+            <h1>Permly</h1>
+            <p class="tagline">Your Focus Guardian</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    Get on Google Play
+                </a>
+                <a href="support.html" class="btn btn-secondary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+                    </svg>
+                    Support & FAQ
+                </a>
+            </div>
+        </header>
+
+        <section class="features">
+            <h2>Take Control of Your Notifications</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>Custom Profiles</h3>
+                    <p>Create notification profiles for different situations - work, gaming, sleep, or anything you need. Free tier includes 3 profiles, Pro offers unlimited.</p>
+                </div>
+                <div class="feature">
+                    <h3>Selective Muting</h3>
+                    <p>Choose exactly which apps to silence in each profile. Keep important notifications while blocking distractions.</p>
+                </div>
+                <div class="feature">
+                    <h3>Quick Settings Tile</h3>
+                    <p>Toggle profiles directly from your notification shade without opening the app.</p>
+                </div>
+                <div class="feature">
+                    <h3>Statistics</h3>
+                    <p>Track how many notifications each profile has blocked and see which apps distract you most.</p>
+                </div>
+                <div class="feature">
+                    <h3>No Root Required</h3>
+                    <p>Works on any Android 8.0+ device using official Android APIs. Simple setup, powerful results.</p>
+                </div>
+                <div class="feature">
+                    <h3>Privacy First</h3>
+                    <p>Free tier with core features, optional Pro upgrade. No ads, no tracking, no data collection. Just a tool that respects your privacy.</p>
+                </div>
+            </div>
+
+            <div class="privacy-banner">
+                <h3>Privacy First</h3>
+                <p>Permly never reads your notification content - only the app name. All data stays on your device. No accounts, no cloud, no tracking.</p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+            </div>
+            <p>&copy; 2026 Permly. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

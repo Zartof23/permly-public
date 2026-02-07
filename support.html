@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permly Support</title>
+    <meta name="description" content="Get help with Permly - FAQs, troubleshooting, and contact information">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #333;
+            background: #fafafa;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 40px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6650a4 0%, #7c68b0 100%);
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo svg {
+            width: 48px;
+            height: 48px;
+            fill: white;
+        }
+        h1 {
+            color: #6650a4;
+            margin: 0 0 10px;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        h2 {
+            color: #6650a4;
+            border-bottom: 2px solid #e8e0f0;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .contact-card svg {
+            width: 48px;
+            height: 48px;
+            fill: #6650a4;
+            margin-bottom: 16px;
+        }
+        .contact-card h3 {
+            margin: 0 0 8px;
+            color: #6650a4;
+        }
+        .contact-card p {
+            margin: 0 0 16px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .contact-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #6650a4;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .contact-card a:hover {
+            background: #553d8f;
+        }
+        .faq {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .faq h3 {
+            margin: 0 0 12px;
+            color: #6650a4;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .faq h3::before {
+            content: "▶";
+            font-size: 0.8em;
+            transition: transform 0.2s;
+        }
+        .faq.open h3::before {
+            transform: rotate(90deg);
+        }
+        .faq-answer {
+            display: none;
+            padding-top: 8px;
+            color: #555;
+        }
+        .faq.open .faq-answer {
+            display: block;
+        }
+        .faq-answer ul {
+            padding-left: 24px;
+        }
+        .faq-answer li {
+            margin: 8px 0;
+        }
+        .important {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .data-deletion {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+        }
+        .data-deletion h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        a {
+            color: #6650a4;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            header {
+                padding: 20px 0;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqs = document.querySelectorAll('.faq h3');
+            faqs.forEach(faq => {
+                faq.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+            </svg>
+        </div>
+        <h1>Permly Support</h1>
+        <p class="subtitle">We're here to help you take control of your notifications</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Contact Us</h2>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <h3>Email Support</h3>
+                    <p>Get help via email</p>
+                    <a href="mailto:zartofapp@gmail.com">zartofapp@gmail.com</a>
+                </div>
+
+                <div class="contact-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <h3>GitHub Issues</h3>
+                    <p>Report bugs or request features</p>
+                    <a href="https://github.com/Zartof23/permly-public/issues" target="_blank">Open an Issue</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <h3>How do I grant notification access permission?</h3>
+                <div class="faq-answer">
+                    <p>To use Permly, you need to grant Notification Access permission:</p>
+                    <ol>
+                        <li>Open the Permly app</li>
+                        <li>Tap "Grant Permission" on the welcome screen</li>
+                        <li>Find "Permly" in the list and toggle it on</li>
+                        <li>Confirm when prompted</li>
+                    </ol>
+                    <p>Alternatively, go to: Settings → Apps → Special app access → Notification access → Permly</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>Why aren't notifications being blocked?</h3>
+                <div class="faq-answer">
+                    <p>If notifications aren't being blocked, check:</p>
+                    <ul>
+                        <li><strong>Permission granted:</strong> Ensure Notification Access is enabled in Android Settings</li>
+                        <li><strong>Profile is active:</strong> Make sure the profile is toggled ON (green)</li>
+                        <li><strong>App is added to profile:</strong> Verify the app you want to mute is added to the active profile</li>
+                        <li><strong>Service is running:</strong> Try toggling the profile off and on again</li>
+                        <li><strong>Device restart:</strong> Some devices require a restart after granting permission</li>
+                    </ul>
+                    <p>If issues persist, please contact support with your device model and Android version.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>Can I schedule profiles to activate automatically?</h3>
+                <div class="faq-answer">
+                    <p>Profile scheduling is a planned feature for Permly Pro. Currently, you need to manually toggle profiles on/off. You can use the Quick Settings tile for faster access.</p>
+                    <p>Subscribe to updates to be notified when scheduling is available!</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>What's the difference between Free and Pro?</h3>
+                <div class="faq-answer">
+                    <table style="width: 100%; margin: 16px 0;">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Free</th>
+                                <th>Pro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Profiles</td>
+                                <td>Up to 3</td>
+                                <td>Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td>Apps per profile</td>
+                                <td>Unlimited</td>
+                                <td>Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td>Statistics</td>
+                                <td>Last 7 days</td>
+                                <td>Full history</td>
+                            </tr>
+                            <tr>
+                                <td>Quick Settings</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
+                                <td>Support</td>
+                                <td>Community</td>
+                                <td>Priority</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>How do I cancel my Pro subscription?</h3>
+                <div class="faq-answer">
+                    <p>To cancel your Permly Pro subscription:</p>
+                    <ol>
+                        <li>Open the Google Play Store app</li>
+                        <li>Tap your profile icon → Payments & subscriptions → Subscriptions</li>
+                        <li>Find "Permly Pro" and tap it</li>
+                        <li>Tap "Cancel subscription" and follow the prompts</li>
+                    </ol>
+                    <p>You'll retain Pro access until the end of your current billing period. No refunds for partial periods.</p>
+                    <p>For refund inquiries, see our <a href="terms-of-service.html#refund-policy">Refund Policy</a>.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>Does Permly read my notifications?</h3>
+                <div class="faq-answer">
+                    <p><strong>No.</strong> Permly only reads the <em>package name</em> (app identifier) of incoming notifications to determine whether to block them. We never read notification content, messages, or any personal data.</p>
+                    <p>All data stays on your device. Nothing is sent to servers or shared with third parties.</p>
+                    <p>Read our <a href="privacy-policy.html">Privacy Policy</a> for details.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>Which Android versions are supported?</h3>
+                <div class="faq-answer">
+                    <p>Permly requires <strong>Android 8.0 (Oreo) or later</strong>. This is because the Notification Listener API functionality we rely on was introduced in API level 26.</p>
+                    <p>We test on Android versions 8.0 through 15 (latest).</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>Why does my battery drain faster?</h3>
+                <div class="faq-answer">
+                    <p>Permly is designed to be lightweight and should have minimal battery impact. The notification service runs efficiently in the background.</p>
+                    <p>If you notice unusual battery drain:</p>
+                    <ul>
+                        <li>Check if battery optimization is enabled for Permly (Settings → Apps → Permly → Battery)</li>
+                        <li>Ensure you're running the latest version</li>
+                        <li>Try restarting your device</li>
+                        <li>Contact support if the issue persists</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>Can I use Permly on multiple devices?</h3>
+                <div class="faq-answer">
+                    <p>Yes! If you have Permly Pro, your subscription is tied to your Google Play account and works on all your Android devices.</p>
+                    <p>However, profiles are stored locally and don't sync between devices. Profile sync is a planned future feature.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3>How do I use the Quick Settings tile?</h3>
+                <div class="faq-answer">
+                    <p>The Quick Settings tile lets you toggle profiles without opening the app:</p>
+                    <ol>
+                        <li>Swipe down from the top of your screen to open Quick Settings</li>
+                        <li>Tap the edit/pencil icon</li>
+                        <li>Find "Permly" and drag it to your active tiles</li>
+                        <li>Tap "Done"</li>
+                    </ol>
+                    <p>Now you can tap the Permly tile to quickly enable/disable your last active profile.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Troubleshooting</h2>
+
+            <div class="important">
+                <strong>Common Issues and Fixes</strong>
+            </div>
+
+            <h3>Notifications still appearing</h3>
+            <ul>
+                <li>Verify Notification Access permission is granted</li>
+                <li>Ensure the profile is active (toggle shows green)</li>
+                <li>Check that the app is added to the active profile</li>
+                <li>Try disabling and re-enabling Notification Access</li>
+                <li>Restart your device</li>
+            </ul>
+
+            <h3>App crashes or freezes</h3>
+            <ul>
+                <li>Update to the latest version from Google Play</li>
+                <li>Clear app cache (Settings → Apps → Permly → Storage → Clear Cache)</li>
+                <li>If issues persist, try clearing data (this will reset your profiles)</li>
+                <li>Report the issue to us with your device model</li>
+            </ul>
+
+            <h3>Can't create more profiles</h3>
+            <ul>
+                <li>Free tier is limited to 3 profiles</li>
+                <li>Upgrade to Permly Pro for unlimited profiles</li>
+                <li>Or delete an existing profile to make room</li>
+            </ul>
+
+            <h3>Statistics not updating</h3>
+            <ul>
+                <li>Statistics are optional - ensure they're enabled in Settings</li>
+                <li>Statistics only track blocks while a profile is active</li>
+                <li>Try toggling statistics off and on in Settings</li>
+            </ul>
+        </section>
+
+        <section>
+            <div class="data-deletion">
+                <h3>Data Deletion Instructions</h3>
+                <p>All Permly data is stored locally on your device. To delete your data:</p>
+                <ol>
+                    <li><strong>Delete specific profiles:</strong> Open Permly → tap a profile → Delete button</li>
+                    <li><strong>Clear all app data:</strong> Settings → Apps → Permly → Storage → Clear Data</li>
+                    <li><strong>Complete removal:</strong> Uninstall the app (Settings → Apps → Permly → Uninstall)</li>
+                </ol>
+                <p>Since we don't collect or store data on our servers, there's nothing to request deletion of remotely. All data is deleted when you uninstall the app.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Still Need Help?</h2>
+            <p>If your question wasn't answered here, please reach out:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:zartofapp@gmail.com">zartofapp@gmail.com</a></li>
+                <li><strong>GitHub Issues:</strong> <a href="https://github.com/Zartof23/permly-public/issues">Report a bug or request a feature</a></li>
+            </ul>
+            <p>When contacting support, please include:</p>
+            <ul>
+                <li>Device model and manufacturer</li>
+                <li>Android version</li>
+                <li>Permly version (found in Settings → About)</li>
+                <li>Detailed description of the issue</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Permly. All rights reserved.</p>
+        <p>
+            <a href="index.html">Home</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms-of-service.html">Terms of Service</a>
+        </p>
+    </footer>
+</body>
+</html>
