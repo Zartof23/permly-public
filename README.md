@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<!-- Logo will be added soon -->
+![Permly Logo](assets/logo.png)
 
 **Take control of your notifications. Only what matters, when it matters.**
 
