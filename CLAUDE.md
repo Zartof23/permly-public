@@ -33,7 +33,7 @@ This is a **GitHub Pages website** that provides:
 ## 📁 File Structure
 
 ```
-permly-website/
+permly-public/
 ├── README.md                  # Repository overview
 ├── CLAUDE.md                  # This file - AI context
 ├── index.html                 # Landing page
@@ -41,6 +41,10 @@ permly-website/
 ├── terms-of-service.html      # Terms of Service (required for IAP)
 ├── support.html               # Support page with FAQs
 └── assets/                    # Images, logos, etc.
+    ├── icon.png
+    ├── screenshots/
+    │   ├── phone/
+    │   └── tablet/
     └── logo.png
 ```
 
@@ -145,7 +149,7 @@ When updating content, remember:
 ### Contact Points
 - **Email**: zartofapp@gmail.com
 - **GitHub Issues**: For bug reports and feature requests
-- **Support Page**: https://Zartof23.github.io/permly-website/support.html
+- **Support Page**: https://Zartof23.github.io/permly-public/support.html
 
 ### Response Guidelines
 - Email support: Respond within 48 hours
@@ -161,7 +165,7 @@ This repository uses **GitHub Pages** for hosting.
 ### How to Deploy
 1. Push changes to `main` branch
 2. GitHub Pages auto-deploys
-3. Site available at: `https://Zartof23.github.io/permly-website/`
+3. Site available at: `https://Zartof23.github.io/permly-public/`
 
 ### Custom Domain (Optional)
 If you set up a custom domain:
@@ -192,15 +196,15 @@ Before committing changes:
 This website fulfills Play Store requirements:
 
 ✅ **Privacy Policy** (Required)
-- URL: `https://Zartof23.github.io/permly-website/privacy-policy.html`
+- URL: `https://Zartof23.github.io/permly-public/privacy-policy.html`
 - Add this URL to Play Console → App content → Privacy Policy
 
 ✅ **Terms of Service** (Required for IAP)
-- URL: `https://Zartof23.github.io/permly-website/terms-of-service.html`
+- URL: `https://Zartof23.github.io/permly-public/terms-of-service.html`
 - Reference in app and Play Store listing
 
 ✅ **Support/Contact** (Recommended)
-- URL: `https://Zartof23.github.io/permly-website/support.html`
+- URL: `https://Zartof23.github.io/permly-public/support.html`
 - Email: zartofapp@gmail.com
 
 ✅ **Data Deletion Instructions** (Required for data collection)
@@ -236,8 +240,8 @@ This website fulfills Play Store requirements:
 Once deployed, these URLs must be added to:
 
 ### Google Play Console
-- **Privacy Policy**: `https://Zartof23.github.io/permly-website/privacy-policy.html`
-- **Website**: `https://Zartof23.github.io/permly-website/`
+- **Privacy Policy**: `https://Zartof23.github.io/permly-public/privacy-policy.html`
+- **Website**: `https://Zartof23.github.io/permly-public/`
 - **Support Email**: zartofapp@gmail.com
 
 ### In-App Links (if needed)
