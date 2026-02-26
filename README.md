@@ -42,6 +42,7 @@ Think of Permly as your personal attention guardian - protecting your focus by l
 ### Pro Tier
 - 🚀 **Unlimited profiles**
 - 📊 **Full statistics history**
+- 📅 **Profile scheduling** (auto-activate at set times)
 - 🎯 **Priority support**
 - 🔮 **All future features included**
 
@@ -162,7 +163,6 @@ Need help? We've got you covered:
 ## 📝 Roadmap
 
 Upcoming features (Pro tier):
-- 📅 Profile scheduling (auto-activate at set times)
 - 💾 Backup & restore
 - 🔄 Profile sync across devices
 - 🎨 Widget for home screen

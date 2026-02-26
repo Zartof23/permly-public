@@ -96,10 +96,10 @@ permly-public/
 - **Tagline**: "Your Focus Guardian"
 
 ### Color Palette
-- **Primary**: Deep Indigo (#6650a4)
-- **Secondary**: Light Purple (#7c68b0)
-- **Accent**: Brand Emerald (success states)
-- **Background**: Light gray (#fafafa)
+- **Primary**: Indigo (#4F46E5 / indigo-600)
+- **Primary hover**: Dark Indigo (#4338CA / indigo-700)
+- **Accent**: Brand Emerald (#10B981, success states)
+- **Background**: Soft gradient — Blue-50 (#EEF2FF) → Indigo-50 (#E0E7FF) → Purple-50 (#FAF5FF)
 
 ### Typography
 - **Headings**: Inter or system sans-serif
@@ -337,24 +337,6 @@ content: add FAQ about profile scheduling
 2. Update README.md
 3. Update this CLAUDE.md file
 4. Commit with message: `content: update contact email`
-
----
-
-## ✅ Deployment Checklist
-
-Before going live with GitHub Pages:
-
-- [x] Replace all `yourusername` placeholders with actual GitHub username (Zartof23)
-- [ ] Update all Play Store links with actual app ID
-- [ ] Add actual logo image to `assets/logo.png`
-- [ ] Test all pages on mobile devices
-- [ ] Test all internal and external links
-- [ ] Verify email links work (mailto:)
-- [ ] Check spelling and grammar
-- [ ] Enable GitHub Pages in repository settings
-- [ ] Test live site after deployment
-- [ ] Add Privacy Policy URL to Google Play Console
-- [ ] Add website URL to Play Store listing
 
 ---
 
