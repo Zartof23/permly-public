@@ -1,12 +1,12 @@
-# Permly - Your Focus Guardian
+# Permly — Notification Manager for Android
 
 <div align="center">
 
 ![Permly Logo](assets/logo.png)
 
-**Take control of your notifications. Only what matters, when it matters.**
+**Block app notifications selectively. No ads, no data collection, no tracking.**
 
-[![Google Play](https://img.shields.io/badge/Google_Play-Coming_Soon-3DDC84?style=for-the-badge&logo=google-play&logoColor=white)](#)
+[![Google Play](https://img.shields.io/badge/Google_Play-Download_Now-3DDC84?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.permly)
 [![License](https://img.shields.io/badge/License-Proprietary-blue?style=for-the-badge)](LICENSE)
 [![Support](https://img.shields.io/badge/Support-Contact_Us-6650a4?style=for-the-badge)](https://zartof23.github.io/permly-public/support.html)
 
@@ -16,182 +16,148 @@
 
 ---
 
-## 📱 About Permly
+## About Permly
 
-Permly is an Android notification manager that lets you create custom profiles to selectively mute notifications from specific apps. Unlike "Do Not Disturb" modes that block everything, Permly gives you granular control over which apps can notify you in different situations.
+Permly is an Android notification manager that lets you create custom profiles to selectively mute notifications from specific apps. Unlike Android's built-in Do Not Disturb — which silences everything or nothing — Permly gives you precise control over which apps can notify you in different situations.
 
-### Your Focus Guardian
+**Your Focus Guardian**: protecting your attention by letting through only what matters, while quietly filtering out everything else.
 
-Think of Permly as your personal attention guardian - protecting your focus by letting through only what matters while quietly filtering out distractions.
-
-**Selective, Not Silent** - Work mode? Silence social apps. Family time? Mute everything except calls from loved ones. You're in control.
+**Selective, Not Silent** — Work mode? Silence social apps. Family time? Mute everything except calls from loved ones. You decide, app by app.
 
 ---
 
-## ✨ Features
+## Features
 
 ### Free Tier
-- ✅ Create up to 3 custom profiles
-- ✅ Unlimited apps per profile
-- ✅ One-tap profile activation
-- ✅ Quick Settings tile for fast access
-- ✅ Statistics (last 7 days)
-- ✅ Beautiful Material You design
-- ✅ Privacy-first (never reads notification content)
+- Create up to 3 custom notification profiles
+- Unlimited apps per profile
+- One-tap profile activation
+- Quick Settings tile for instant access
+- 7-day distraction statistics
+- Material You design
+- Privacy-first: never reads notification content
 
-### Pro Tier
-- 🚀 **Unlimited profiles**
-- 📊 **Full statistics history**
-- 📅 **Profile scheduling** (auto-activate at set times)
-- 🎯 **Priority support**
-- 🔮 **All future features included**
-
-**Pricing**: $1.99/month, $14.99/year, or $29.99 lifetime
+### Pro Tier — $1.99/month · $14.99/year · $29.99 lifetime
+- Unlimited profiles
+- Full statistics history
+- Automatic profile scheduling (activate at set times)
+- Priority support
+- All future features included
 
 ---
 
-## 🔒 Privacy First
+## Why Permly Instead of Do Not Disturb?
 
-Your privacy is our priority:
-
-- **Never reads notification content** - We only see which app sent a notification, not what it says
-- **All data stays on your device** - No cloud storage, no servers, no transmission
-- **No tracking or analytics** - We don't collect any personal data
-- **No ads** - Clean, distraction-free experience
-
-Read our full [Privacy Policy](https://zartof23.github.io/permly-public/privacy-policy.html)
+| Feature | Permly | Android DND |
+|---------|--------|-------------|
+| Mute specific apps only | Yes | No |
+| Multiple saved profiles | Yes | No |
+| Per-profile app selection | Yes | No |
+| Automatic scheduling | Yes (Pro) | Limited |
+| Distraction statistics | Yes | No |
+| Quick Settings tile | Yes | Yes |
+| No ads | Always | N/A |
 
 ---
 
-## 📥 Download
+## Privacy First
+
+Your privacy is a constraint, not a feature:
+
+- **Never reads notification content** — only the package name (app identifier) is accessed, never message text or content
+- **All data stays on your device** — no cloud storage, no servers, no network transmission
+- **No analytics or tracking** — zero personal data collected
+- **No ads** — in any tier, ever
+- **Minimum permissions** — only what is strictly required to function
+
+Read the full [Privacy Policy](https://zartof23.github.io/permly-public/privacy-policy.html).
+
+---
+
+## Download
 
 <a href="https://play.google.com/store/apps/details?id=com.permly">
-  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="80">
+  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Permly on Google Play" height="80">
 </a>
 
-**Requirements**: Android 8.0 (Oreo) or later
+**Requirements**: Android 8.0 (Oreo) or later — no root required
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
-### Work Mode
-Mute social media, games, and personal apps during work hours. Stay focused on what matters.
+**Work Mode** — Mute social media, games, and personal apps during work hours. Stay focused without missing Slack or email.
 
-### Sleep Mode
-Block all distractions at night except emergency contacts and critical apps.
+**Sleep Mode** — Block all distractions at night except emergency contacts and critical apps.
 
-### Focus Sessions
-Create a distraction-free environment for deep work, studying, or creative tasks.
+**Focus Sessions** — Distraction-free environment for deep work, studying, or creative tasks.
 
-### Custom Scenarios
-Gaming, driving, meetings, family time - create profiles for any situation.
+**Privacy Mode** — Mute sensitive apps (dating, banking, health) in shared or public environments.
+
+**Custom Scenarios** — Gaming, driving, meetings, family time — create a profile for any situation.
 
 ---
 
-## 📖 How It Works
+## How It Works
 
-1. **Create Profiles** - Set up profiles for different situations (Work, Sleep, Focus, etc.)
-2. **Select Apps** - Choose which apps to mute in each profile
-3. **Activate** - Toggle profiles on/off with one tap
-4. **Stay Focused** - Let Permly guard your attention
-
----
-
-## 🆘 Support
-
-Need help? We've got you covered:
-
-- 📧 **Email**: [zartofapp@gmail.com](mailto:zartofapp@gmail.com)
-- 🌐 **Support Page**: [Visit Support](https://zartof23.github.io/permly-public/support.html)
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/Zartof23/permly-public/issues)
+1. **Create Profiles** — Set up profiles for different situations (Work, Sleep, Focus, etc.)
+2. **Select Apps** — Choose which apps to mute in each profile
+3. **Activate** — Toggle profiles on/off with one tap or via Quick Settings
+4. **Let Permly Guard Your Focus** — It runs silently in the background
 
 ---
 
-## 📜 Legal
+## Support
+
+- **Email**: [zartofapp@gmail.com](mailto:zartofapp@gmail.com)
+- **Support Page**: [Visit Support & FAQ](https://zartof23.github.io/permly-public/support.html)
+- **Bug Reports**: [GitHub Issues](https://github.com/Zartof23/permly-public/issues)
+
+---
+
+## Legal
 
 - [Privacy Policy](https://zartof23.github.io/permly-public/privacy-policy.html)
 - [Terms of Service](https://zartof23.github.io/permly-public/terms-of-service.html)
 
 ---
 
-## 🤝 Connect
-
-- **Developer**: zartofapp@gmail.com
-- **Website**: [permly-website.github.io](https://zartof23.github.io/permly-public/)
-
----
-
-## ⚠️ Important Notes
+## Important Notes
 
 - Permly requires **Notification Access permission** to function
-- This permission is used **only** to filter notifications - we never read content
+- This permission is used **only** to filter notifications — notification content is never accessed
 - Be careful not to mute emergency apps or critical notifications
 - Notification behavior may vary by device and Android version
 
 ---
 
-## 📱 Screenshots
+## Technical Stack
 
-> Screenshots showcasing Permly's beautiful interface and features coming soon!
-
----
-
-## 💬 Testimonials
-
-> "Finally, a notification manager that actually works! I can focus on work without missing important messages."
-
-> "Love the profile system. One tap to switch from work mode to personal mode. Perfect!"
-
-> "Privacy-first approach is what sold me. No sketchy permissions or data collection."
+Built with Kotlin & Jetpack Compose, Material Design 3, and the Android Notification Listener Service.
 
 ---
 
-## 🌟 Why Permly?
+## Roadmap
 
-| Feature | Permly | Traditional DND |
-|---------|--------|----------------|
-| Selective filtering | ✅ | ❌ |
-| Multiple profiles | ✅ | ❌ |
-| Quick switching | ✅ | ⚠️ |
-| No root required | ✅ | ✅ |
-| Privacy-first | ✅ | ⚠️ |
-| Statistics | ✅ | ❌ |
+Upcoming Pro features:
+- Backup & restore profiles
+- Home screen widget
+- Whitelist mode (block all except selected apps)
+- Profile sync across devices
 
 ---
 
-## 📝 Roadmap
-
-Upcoming features (Pro tier):
-- 💾 Backup & restore
-- 🔄 Profile sync across devices
-- 🎨 Widget for home screen
-- 🔍 Whitelist mode (block all except selected apps)
-
----
-
-## ⚖️ License
+## License
 
 Permly is proprietary software. All rights reserved.
 
-This repository hosts the public-facing website and documentation. The app source code is not open source.
-
----
-
-## 🙏 Acknowledgments
-
-Built with:
-- Kotlin & Jetpack Compose
-- Material Design 3
-- Android Notification Listener Service
+This repository hosts the public-facing website and documentation. The app source code is not public.
 
 ---
 
 <div align="center">
 
-**Your Focus Guardian**
-
-Made with 💜 by the Permly team
+**Your Focus Guardian — Only what matters, when it matters.**
 
 [Download on Google Play](https://play.google.com/store/apps/details?id=com.permly) • [Privacy Policy](https://zartof23.github.io/permly-public/privacy-policy.html) • [Support](https://zartof23.github.io/permly-public/support.html)
 

@@ -3,8 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Permly - Smart Notification Manager for Android</title>
-    <meta name="description" content="Take control of your notifications with Permly. Create custom profiles to silence specific apps while keeping important notifications.">
+
+    <!-- Primary SEO -->
+    <title>Permly — Android Notification Manager | Block Apps Selectively, No Ads</title>
+    <meta name="description" content="Permly lets you mute specific app notifications with custom profiles — Work, Sleep, Focus, and more. No ads, no data collection, no tracking. Android 8.0+.">
+    <link rel="canonical" href="https://zartof23.github.io/permly-public/">
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zartof23.github.io/permly-public/">
+    <meta property="og:title" content="Permly — Notification Manager for Android">
+    <meta property="og:description" content="Block app notifications selectively. Custom profiles for Work, Sleep, Focus. No ads, no data collection, no tracking. Privacy-first.">
+    <meta property="og:image" content="https://zartof23.github.io/permly-public/assets/logo.png">
+    <meta property="og:site_name" content="Permly">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Permly — Notification Manager for Android">
+    <meta name="twitter:description" content="Block app notifications selectively. Custom profiles for Work, Sleep, Focus. No ads, no data collection.">
+    <meta name="twitter:image" content="https://zartof23.github.io/permly-public/assets/logo.png">
+
+    <!-- Structured Data: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Permly: Notification Manager",
+      "description": "Permly is a selective notification manager for Android. Create custom profiles to mute specific app notifications — Work, Sleep, Focus, and more. No ads, no data collection, no cloud.",
+      "url": "https://zartof23.github.io/permly-public/",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Android 8.0+",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Permly Pro — Monthly",
+          "price": "1.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Permly Pro — Lifetime",
+          "price": "29.99",
+          "priceCurrency": "USD"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "email": "zartofapp@gmail.com"
+      }
+    }
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -52,6 +107,11 @@
         .tagline {
             color: rgba(255,255,255,0.9);
             font-size: 1.3em;
+            margin-bottom: 16px;
+        }
+        .sub-tagline {
+            color: rgba(255,255,255,0.75);
+            font-size: 1em;
             margin-bottom: 40px;
         }
         .cta-buttons {
@@ -84,18 +144,24 @@
             color: white;
             border: 2px solid rgba(255,255,255,0.5);
         }
-        .features {
+        .card {
             background: white;
             border-radius: 24px;
             padding: 60px 40px;
             margin-top: 40px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.2);
         }
-        .features h2 {
+        .card h2 {
             text-align: center;
             color: #6650a4;
-            margin-bottom: 40px;
+            margin-bottom: 16px;
             font-size: 2em;
+        }
+        .card .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.05em;
         }
         .feature-grid {
             display: grid;
@@ -111,10 +177,44 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.05em;
         }
         .feature p {
             color: #666;
+            font-size: 0.95em;
         }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.95em;
+        }
+        .comparison-table th {
+            background: #6650a4;
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        .comparison-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+        .comparison-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        .comparison-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table tr:nth-child(even) td {
+            background: #fafafa;
+        }
+        .yes { color: #2e7d32; font-weight: 600; }
+        .no  { color: #c62828; font-weight: 600; }
+        .partial { color: #e65100; font-weight: 600; }
         .privacy-banner {
             background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             border-radius: 16px;
@@ -125,9 +225,76 @@
         .privacy-banner h3 {
             color: #2e7d32;
             margin-bottom: 10px;
+            font-size: 1.2em;
         }
         .privacy-banner p {
             color: #1b5e20;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .pricing-card {
+            border: 2px solid #e8e0f0;
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .pricing-card.featured {
+            border-color: #6650a4;
+            background: linear-gradient(135deg, #f3e8ff 0%, #e8e0f0 100%);
+        }
+        .pricing-card .plan-name {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #6650a4;
+            margin-bottom: 8px;
+        }
+        .pricing-card .plan-price {
+            font-size: 2em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .pricing-card .plan-period {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            padding: 0;
+            margin: 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .pricing-card ul li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .pricing-card ul li:last-child { border-bottom: none; }
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .use-case {
+            background: #f8f5ff;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .use-case h4 {
+            color: #6650a4;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        .use-case p {
+            color: #666;
+            font-size: 0.88em;
         }
         footer {
             text-align: center;
@@ -142,11 +309,12 @@
             gap: 30px;
             justify-content: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         @media (max-width: 600px) {
             h1 { font-size: 2em; }
             .tagline { font-size: 1.1em; }
-            .features { padding: 40px 20px; }
+            .card { padding: 40px 20px; }
             .btn { width: 100%; justify-content: center; }
         }
     </style>
@@ -155,21 +323,22 @@
     <div class="container">
         <header>
             <div class="logo">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
                 </svg>
             </div>
             <h1>Permly</h1>
             <p class="tagline">Your Focus Guardian</p>
+            <p class="sub-tagline">Selective notification manager for Android — no ads, no data collection</p>
             <div class="cta-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.permly" class="btn btn-primary">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <a href="https://play.google.com/store/apps/details?id=com.permly" class="btn btn-primary" aria-label="Download Permly on Google Play">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                     </svg>
-                    Get on Google Play
+                    Download on Google Play
                 </a>
-                <a href="support.html" class="btn btn-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <a href="support.html" class="btn btn-secondary" aria-label="Permly Support and FAQ">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
                     </svg>
                     Support & FAQ
@@ -177,42 +346,175 @@
             </div>
         </header>
 
-        <section class="features">
-            <h2>Take Control of Your Notifications</h2>
+        <!-- Features -->
+        <section class="card" aria-labelledby="features-heading">
+            <h2 id="features-heading">Selective Notification Blocking — Not All-or-Nothing</h2>
+            <p class="section-subtitle">Unlike Do Not Disturb, Permly lets you choose exactly which apps to silence in each situation.</p>
             <div class="feature-grid">
                 <div class="feature">
-                    <h3>Custom Profiles</h3>
-                    <p>Create notification profiles for different situations - work, gaming, sleep, or anything you need. Free tier includes 3 profiles, Pro offers unlimited.</p>
+                    <h3>Custom Notification Profiles</h3>
+                    <p>Create profiles for any situation — Work, Sleep, Focus, Meetings, Gaming. Each profile silences exactly the apps you choose. Free tier includes 3 profiles; Pro offers unlimited.</p>
                 </div>
                 <div class="feature">
-                    <h3>Selective Muting</h3>
-                    <p>Choose exactly which apps to silence in each profile. Keep important notifications while blocking distractions.</p>
+                    <h3>Selective App Muting</h3>
+                    <p>Silence specific apps per profile. Social media during work? Blocked. Dating apps around family? Gone. Calls from loved ones? Always through.</p>
                 </div>
                 <div class="feature">
                     <h3>Quick Settings Tile</h3>
-                    <p>Toggle profiles directly from your notification shade without opening the app.</p>
+                    <p>Toggle your active profile directly from the notification shade — no need to open the app.</p>
                 </div>
                 <div class="feature">
-                    <h3>Statistics</h3>
-                    <p>Track how many notifications each profile has blocked and see which apps distract you most. Free tier includes 7-day history; Pro unlocks your full history.</p>
+                    <h3>Distraction Statistics</h3>
+                    <p>Track how many notifications each profile has blocked and see which apps interrupt you most. Free: 7-day history. Pro: full history.</p>
                 </div>
                 <div class="feature">
-                    <h3>Profile Scheduling <em style="font-size:0.75em;color:#6650a4;font-style:normal;">Pro</em></h3>
-                    <p>Set start and end times for each profile so it activates automatically. Work mode every weekday, sleep mode every night — set it once and forget it.</p>
+                    <h3>Automatic Scheduling <em style="font-size:0.75em;color:#6650a4;font-style:normal;">Pro</em></h3>
+                    <p>Set start and end times for each profile. Work mode every weekday, sleep mode every night — set it once and forget it.</p>
                 </div>
                 <div class="feature">
                     <h3>No Root Required</h3>
-                    <p>Works on any Android 8.0+ device using official Android APIs. Simple setup, powerful results.</p>
+                    <p>Works on any Android 8.0+ device using official Android APIs. Simple setup, no ADB, no sideloading.</p>
                 </div>
                 <div class="feature">
-                    <h3>Privacy First</h3>
-                    <p>Free tier with core features, optional Pro upgrade. No ads, no tracking, no data collection. Just a tool that respects your privacy.</p>
+                    <h3>No Ads. No Data. Ever.</h3>
+                    <p>No ads in any tier. No analytics SDK. No crash reporters. No cloud servers. All data stays on your device. Your attention is not our product.</p>
                 </div>
             </div>
 
             <div class="privacy-banner">
-                <h3>Privacy First</h3>
-                <p>Permly never reads your notification content - only the app name. All data stays on your device. No accounts, no cloud, no tracking.</p>
+                <h3>Privacy First — Zero Compromise</h3>
+                <p>Permly never reads your notification content — only the app name. All data stays on your device. No accounts, no cloud, no tracking, no ads.</p>
+            </div>
+        </section>
+
+        <!-- vs Do Not Disturb -->
+        <section class="card" aria-labelledby="comparison-heading">
+            <h2 id="comparison-heading">Why Not Just Use Do Not Disturb?</h2>
+            <p class="section-subtitle">Android's built-in DND silences everything — or nothing. Permly gives you the middle ground.</p>
+            <table class="comparison-table" role="table" aria-label="Permly vs Do Not Disturb comparison">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Permly</th>
+                        <th>Android DND</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mute specific apps only</td>
+                        <td class="yes">✓ Yes</td>
+                        <td class="no">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple saved profiles</td>
+                        <td class="yes">✓ Yes</td>
+                        <td class="no">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Per-profile app selection</td>
+                        <td class="yes">✓ Yes</td>
+                        <td class="no">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Automatic scheduling</td>
+                        <td class="yes">✓ Pro</td>
+                        <td class="partial">⚠ Limited</td>
+                    </tr>
+                    <tr>
+                        <td>Distraction statistics</td>
+                        <td class="yes">✓ Yes</td>
+                        <td class="no">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Quick Settings tile</td>
+                        <td class="yes">✓ Yes</td>
+                        <td class="yes">✓ Yes</td>
+                    </tr>
+                    <tr>
+                        <td>No ads</td>
+                        <td class="yes">✓ Always</td>
+                        <td class="yes">✓ N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="card" aria-labelledby="usecases-heading">
+            <h2 id="usecases-heading">Built for Real Situations</h2>
+            <p class="section-subtitle">One app, infinite focus scenarios.</p>
+            <div class="use-cases">
+                <div class="use-case">
+                    <h4>Work Mode</h4>
+                    <p>Mute social media, games, and shopping apps during work hours. Keep Slack, email, and calls through.</p>
+                </div>
+                <div class="use-case">
+                    <h4>Sleep Mode</h4>
+                    <p>Block everything at night except emergency contacts and critical apps.</p>
+                </div>
+                <div class="use-case">
+                    <h4>Focus Sessions</h4>
+                    <p>Deep work, studying, or creative sessions without a single interruption.</p>
+                </div>
+                <div class="use-case">
+                    <h4>Family Time</h4>
+                    <p>Silence work apps and social media. Stay reachable only to who matters.</p>
+                </div>
+                <div class="use-case">
+                    <h4>Meetings</h4>
+                    <p>No embarrassing buzzes. No distractions. Just the meeting.</p>
+                </div>
+                <div class="use-case">
+                    <h4>Privacy Mode</h4>
+                    <p>Mute sensitive apps (dating, banking, health) in shared or public environments.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="card" aria-labelledby="pricing-heading">
+            <h2 id="pricing-heading">Simple, Honest Pricing</h2>
+            <p class="section-subtitle">No ads in any tier. No dark patterns. No pressure.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Free</div>
+                    <div class="plan-price">$0</div>
+                    <div class="plan-period">forever</div>
+                    <ul>
+                        <li>Up to 3 custom profiles</li>
+                        <li>Unlimited apps per profile</li>
+                        <li>One-tap activation</li>
+                        <li>Quick Settings tile</li>
+                        <li>7-day statistics</li>
+                        <li>No ads, no tracking</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="plan-name">Pro — Monthly</div>
+                    <div class="plan-price">$1.99</div>
+                    <div class="plan-period">per month, cancel anytime</div>
+                    <ul>
+                        <li>Unlimited profiles</li>
+                        <li>Full statistics history</li>
+                        <li>Automatic scheduling</li>
+                        <li>Priority support</li>
+                        <li>All future features</li>
+                        <li>No ads, no tracking</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="plan-name">Pro — Lifetime</div>
+                    <div class="plan-price">$29.99</div>
+                    <div class="plan-period">one-time, yours forever</div>
+                    <ul>
+                        <li>Unlimited profiles</li>
+                        <li>Full statistics history</li>
+                        <li>Automatic scheduling</li>
+                        <li>Priority support</li>
+                        <li>All future features</li>
+                        <li>No ads, no tracking</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
