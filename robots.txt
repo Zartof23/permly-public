@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zartof23.github.io/permly-public/sitemap.xml
+Sitemap: https://permly.app/sitemap.xml

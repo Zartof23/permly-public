@@ -5,12 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Permly Support & FAQ — Notification Manager for Android</title>
     <meta name="description" content="Get help with Permly. FAQs on notification blocking, profile setup, permissions, scheduling, and privacy. Contact support at zartofapp@gmail.com.">
-    <link rel="canonical" href="https://zartof23.github.io/permly-public/support.html">
+    <link rel="canonical" href="https://permly.app/support.html">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Permly">
+    <meta name="theme-color" content="#4F46E5">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zartof23.github.io/permly-public/support.html">
+    <meta property="og:url" content="https://permly.app/support.html">
     <meta property="og:title" content="Permly Support & FAQ">
     <meta property="og:description" content="Get help with Permly — Android notification manager. FAQs, troubleshooting, and contact information.">
     <meta property="og:site_name" content="Permly">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/icon.png">
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I grant notification access permission?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To use Permly, you need to grant Notification Access permission. Open the Permly app, tap 'Grant Permission' on the welcome screen, find 'Permly' in the list and toggle it on, then confirm when prompted. Alternatively, go to: Settings → Apps → Special app access → Notification access → Permly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why aren't notifications being blocked?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If notifications aren't being blocked, check: (1) Permission granted — ensure Notification Access is enabled in Android Settings. (2) Profile is active — make sure the profile is toggled ON. (3) App is added to profile — verify the app you want to mute is added to the active profile. (4) Service is running — try toggling the profile off and on again. (5) Device restart — some devices require a restart after granting permission."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I schedule profiles to activate automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Profile scheduling is a Pro feature that lets you set start and end times for each profile so it activates automatically — for example, enabling your Work profile every weekday from 9 AM to 5 PM. To set up a schedule, open a profile, tap the schedule section, and configure your days and times."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between Free and Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free tier includes up to 3 profiles, unlimited apps per profile, 7-day statistics, Quick Settings tile, and one-tap activation — no ads or tracking. Pro adds unlimited profiles, full statistics history, automatic profile scheduling, and priority support."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I cancel my Pro subscription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To cancel your Permly Pro subscription: open the Google Play Store app, tap your profile icon → Payments & subscriptions → Subscriptions, find 'Permly Pro' and tap it, then tap 'Cancel subscription' and follow the prompts. You'll retain Pro access until the end of your current billing period."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Permly read my notifications?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Permly only reads the package name (app identifier) of incoming notifications to determine whether to block them. We never read notification content, messages, or any personal data. All data stays on your device. Nothing is sent to servers or shared with third parties."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Android versions are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Permly requires Android 8.0 (Oreo) or later. This is because the Notification Listener API functionality we rely on was introduced in API level 26. We test on Android versions 8.0 through 15 (latest)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my battery drain faster?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Permly is designed to be lightweight and should have minimal battery impact. If you notice unusual battery drain, check if battery optimization is enabled for Permly (Settings → Apps → Permly → Battery), ensure you're running the latest version, try restarting your device, and contact support if the issue persists."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use Permly on multiple devices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! If you have Permly Pro, your subscription is tied to your Google Play account and works on all your Android devices. However, profiles are stored locally and don't sync between devices. Profile sync is a planned future feature."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I use the Quick Settings tile?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Quick Settings tile lets you toggle profiles without opening the app. Swipe down from the top of your screen to open Quick Settings, tap the edit/pencil icon, find 'Permly' and drag it to your active tiles, then tap 'Done'. Now you can tap the Permly tile to quickly enable/disable your last active profile."
+          }
+        }
+      ]
+    }
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -33,7 +131,7 @@
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #6650a4 0%, #7c68b0 100%);
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
             border-radius: 20px;
             margin: 0 auto 20px;
             display: flex;
@@ -46,17 +144,17 @@
             fill: white;
         }
         h1 {
-            color: #6650a4;
+            color: #4F46E5;
             margin: 0 0 10px;
             font-size: 2em;
         }
         .subtitle {
-            color: #666;
+            color: #6B7280;
             font-size: 1.1em;
         }
         h2 {
-            color: #6650a4;
-            border-bottom: 2px solid #e8e0f0;
+            color: #4F46E5;
+            border-bottom: 2px solid #E0E7FF;
             padding-bottom: 10px;
             margin-top: 40px;
         }
@@ -85,22 +183,22 @@
         .contact-card svg {
             width: 48px;
             height: 48px;
-            fill: #6650a4;
+            fill: #4F46E5;
             margin-bottom: 16px;
         }
         .contact-card h3 {
             margin: 0 0 8px;
-            color: #6650a4;
+            color: #4F46E5;
         }
         .contact-card p {
             margin: 0 0 16px;
-            color: #666;
+            color: #6B7280;
             font-size: 0.9em;
         }
         .contact-card a {
             display: inline-block;
             padding: 10px 20px;
-            background: #6650a4;
+            background: #4F46E5;
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -108,7 +206,7 @@
             transition: background 0.2s;
         }
         .contact-card a:hover {
-            background: #553d8f;
+            background: #4338CA;
         }
         .faq {
             background: white;
@@ -119,7 +217,7 @@
         }
         .faq h3 {
             margin: 0 0 12px;
-            color: #6650a4;
+            color: #4F46E5;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -170,11 +268,11 @@
             padding-top: 20px;
             border-top: 1px solid #e0e0e0;
             text-align: center;
-            color: #666;
+            color: #6B7280;
             font-size: 0.9em;
         }
         a {
-            color: #6650a4;
+            color: #4F46E5;
         }
         @media (max-width: 600px) {
             body {
@@ -229,7 +327,7 @@
                     </svg>
                     <h3>GitHub Issues</h3>
                     <p>Report bugs or request features</p>
-                    <a href="https://github.com/Zartof23/permly-public/issues" target="_blank">Open an Issue</a>
+                    <a href="https://github.com/Zartof23/permly-public/issues" target="_blank" rel="noopener">Open an Issue</a>
                 </div>
             </div>
         </section>
@@ -327,7 +425,7 @@
                     <p>To cancel your Permly Pro subscription:</p>
                     <ol>
                         <li>Open the Google Play Store app</li>
-                        <li>Tap your profile icon → Payments & subscriptions → Subscriptions</li>
+                        <li>Tap your profile icon → Payments &amp; subscriptions → Subscriptions</li>
                         <li>Find "Permly Pro" and tap it</li>
                         <li>Tap "Cancel subscription" and follow the prompts</li>
                     </ol>
@@ -447,7 +545,7 @@
             <p>If your question wasn't answered here, please reach out:</p>
             <ul>
                 <li><strong>Email:</strong> <a href="mailto:zartofapp@gmail.com">zartofapp@gmail.com</a></li>
-                <li><strong>GitHub Issues:</strong> <a href="https://github.com/Zartof23/permly-public/issues">Report a bug or request a feature</a></li>
+                <li><strong>GitHub Issues:</strong> <a href="https://github.com/Zartof23/permly-public/issues" rel="noopener">Report a bug or request a feature</a></li>
             </ul>
             <p>When contacting support, please include:</p>
             <ul>
