@@ -14,316 +14,446 @@
     <meta property="og:title" content="Permly Terms of Service">
     <meta property="og:description" content="Terms of Service for Permly, the Android notification manager. Subscription, refunds, and license terms.">
     <meta property="og:site_name" content="Permly">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
 
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            box-sizing: border-box;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --indigo: #4F46E5;
+            --indigo-light: #6366F1;
+            --violet: #7C3AED;
+            --dark: #0B0F1A;
+            --surface: #ffffff;
+            --surface-alt: #F7F8FF;
+            --border: #E5E7EB;
+            --border-indigo: #C7D2FE;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
         }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.7;
-            color: #333;
-            background: #fafafa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--surface-alt);
         }
-        header {
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid #e0e0e0;
-            margin-bottom: 40px;
+
+        /* ─── TOP NAV ─── */
+        .topnav {
+            position: sticky; top: 0; z-index: 200;
+            background: rgba(11,15,26,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-            border-radius: 20px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .topnav-inner {
+            max-width: 1100px; margin: 0 auto; padding: 0 24px;
+            height: 58px; display: flex; align-items: center; gap: 32px;
         }
-        .logo svg {
-            width: 48px;
-            height: 48px;
-            fill: white;
+        .topnav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; flex-shrink: 0; }
+        .topnav-logo-img {
+            width: 30px; height: 30px;
+            border-radius: 8px; object-fit: cover; display: block;
         }
-        h1 {
-            color: #4F46E5;
-            margin: 0 0 10px;
-            font-size: 2em;
+        .topnav-logo-name { font-size: 1rem; font-weight: 700; color: white; }
+        .topnav-links { display: flex; gap: 2px; flex: 1; }
+        .topnav-links a {
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 0.875rem; font-weight: 500;
+            padding: 6px 12px; border-radius: 8px;
+            transition: color 0.15s, background 0.15s;
         }
-        .updated {
-            color: #6B7280;
-            font-size: 0.9em;
+        .topnav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+        .topnav-links a.active { color: white; }
+        .topnav-cta {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 8px 18px; background: var(--indigo); color: white;
+            text-decoration: none; border-radius: 9px;
+            font-size: 0.875rem; font-weight: 600;
+            transition: background 0.15s, box-shadow 0.15s; flex-shrink: 0;
         }
-        h2 {
-            color: #4F46E5;
-            border-bottom: 2px solid #E0E7FF;
-            padding-bottom: 10px;
-            margin-top: 40px;
+        .topnav-cta:hover { background: var(--indigo-light); box-shadow: 0 4px 16px rgba(79,70,229,0.4); }
+        .topnav-github {
+            display: flex; align-items: center; justify-content: center;
+            width: 34px; height: 34px;
+            background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 8px; color: rgba(255,255,255,0.65);
+            text-decoration: none; flex-shrink: 0; transition: background 0.15s, color 0.15s;
         }
-        h3 {
-            color: #555;
-            margin-top: 30px;
+        .topnav-github:hover { background: rgba(255,255,255,0.14); color: white; }
+        .topnav-github svg { width: 17px; height: 17px; fill: currentColor; }
+        .topnav-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.14); flex-shrink: 0; align-self: center; }
+        .topnav-hamburger { display: none; background: none; border: none; color: white; cursor: pointer; padding: 8px; margin-left: auto; }
+        .topnav-hamburger svg { width: 22px; height: 22px; fill: white; }
+        @media (max-width: 700px) {
+            .topnav-links { display: none; }
+            .topnav-links.open {
+                display: flex; flex-direction: column;
+                position: fixed; top: 58px; left: 0; right: 0;
+                background: var(--dark); border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 12px 16px 20px; gap: 4px;
+            }
+            .topnav-cta { display: none; }
+            .topnav-hamburger { display: block; }
         }
-        .summary-box {
-            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
-            border-left: 4px solid #4F46E5;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 20px 0;
+
+        /* ─── PAGE HERO ─── */
+        .page-hero {
+            background: var(--dark);
+            position: relative; overflow: hidden;
         }
-        .summary-box strong {
-            color: #4F46E5;
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
         }
-        ul {
-            padding-left: 24px;
+        .page-hero::after {
+            content: '';
+            position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(251,146,60,0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
-        li {
-            margin: 8px 0;
+        .page-hero-inner {
+            position: relative; z-index: 1;
+            max-width: 780px; margin: 0 auto;
+            padding: 56px 24px 64px; text-align: center;
         }
-        .important {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            border-radius: 0 8px 8px 0;
-            margin: 20px 0;
+        .page-hero-icon {
+            width: 64px; height: 64px;
+            background: rgba(251,146,60,0.1);
+            border: 1px solid rgba(251,146,60,0.2);
+            border-radius: 16px;
+            margin: 0 auto 24px;
+            display: flex; align-items: center; justify-content: center;
         }
+        .page-hero-icon svg { width: 32px; height: 32px; fill: #FED7AA; }
+        .page-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800; letter-spacing: -0.025em;
+            background: linear-gradient(135deg, #ffffff 20%, #FED7AA 70%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 12px;
+        }
+        .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; }
+
+        /* ─── CONTENT ─── */
+        .content-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+        .content-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 40px 44px;
+            margin: 24px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .content-section h2 {
+            font-size: 1.15rem; font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        .content-section h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 24px 0 8px; }
+        .content-section p { color: var(--text-secondary); font-size: 0.925rem; margin-bottom: 12px; }
+        .content-section ul, .content-section ol { padding-left: 20px; color: var(--text-secondary); font-size: 0.925rem; }
+        .content-section li { margin: 7px 0; }
+        .content-section a { color: var(--indigo); }
+        .content-section strong { color: var(--text-primary); }
+
+        .callout {
+            border-radius: 12px; padding: 18px 20px; margin: 16px 0; font-size: 0.9rem;
+        }
+        .callout-indigo { background: linear-gradient(135deg, #EEF2FF, #E0E7FF); border: 1px solid var(--border-indigo); color: #3730A3; }
+        .callout-warning { background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; }
+        .callout strong { font-weight: 700; }
+
+        .updated-chip {
+            display: inline-block;
+            font-size: 0.78rem; font-weight: 600;
+            background: rgba(99,102,241,0.1);
+            color: var(--indigo);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 999px;
+            padding: 4px 12px;
+            margin-bottom: 20px;
+        }
+
+        /* ─── FOOTER ─── */
         footer {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            text-align: center;
-            color: #6B7280;
-            font-size: 0.9em;
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center; padding: 48px 24px 40px;
+            color: rgba(255,255,255,0.4); font-size: 0.875rem;
         }
-        a {
-            color: #4F46E5;
-        }
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-            header {
-                padding: 20px 0;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
+        .footer-brand { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .footer-brand-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .footer-brand-icon svg { width: 18px; height: 18px; fill: rgba(165,180,252,0.8); }
+        .footer-brand-name { font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.75); }
+        .footer-links { display: flex; gap: 32px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+        .footer-links a:hover { color: white; }
+
+        @media (max-width: 700px) {
+            .content-section { padding: 28px 20px; }
+            .page-hero-inner { padding: 44px 20px 52px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
-            </svg>
+
+    <!-- Top Nav -->
+    <nav class="topnav" aria-label="Main navigation">
+        <div class="topnav-inner">
+            <a href="index.html" class="topnav-logo" aria-label="Permly home">
+                <img src="assets/icon.png" alt="" class="topnav-logo-img" aria-hidden="true">
+                <span class="topnav-logo-name">Permly</span>
+            </a>
+            <div class="topnav-links" id="topnav-links">
+                <a href="index.html">Home</a>
+                <span class="topnav-sep" aria-hidden="true"></span>
+                <a href="support.html">Support</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms-of-service.html" class="active">Terms</a>
+            </div>
+            <a href="https://github.com/Zartof23/permly-public" target="_blank" rel="noopener" class="topnav-github" aria-label="GitHub repository">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.permly" class="topnav-cta" aria-label="Download on Google Play">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                Download
+            </a>
+            <button class="topnav-hamburger" aria-label="Toggle menu" onclick="document.getElementById('topnav-links').classList.toggle('open')">
+                <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
         </div>
-        <h1>Permly Terms of Service</h1>
-        <p class="updated">Last Updated: February 14, 2026</p>
-    </header>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div class="page-hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </div>
+            <h1>Terms of Service</h1>
+            <p>The rules that govern your use of Permly. Straightforward and fair.</p>
+        </div>
+    </div>
 
     <main>
-        <section>
-            <h2>1. Acceptance of Terms</h2>
-            <p>By downloading, installing, or using Permly ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
-        </section>
+        <div class="content-wrap">
 
-        <section>
-            <h2>2. Description of Service</h2>
-            <p>Permly is an Android notification management application that allows users to create custom profiles to selectively mute notifications from specific applications. The service is provided in two tiers:</p>
-            <ul>
-                <li><strong>Free Tier</strong>: Up to 3 profiles, 7-day statistics, all core features</li>
-                <li><strong>Pro Tier</strong>: Unlimited profiles, full statistics history, and priority support</li>
-            </ul>
-        </section>
+            <div class="content-section">
+                <div class="updated-chip">Last Updated: February 14, 2026</div>
 
-        <section>
-            <h2>3. Subscription Terms</h2>
+                <div class="callout callout-indigo">
+                    <strong>In Simple Terms:</strong> You can use Permly for free (3 profiles) or upgrade to Pro for unlimited profiles. Subscriptions are managed through Google Play and renew automatically unless you cancel. We don't collect your data, but we're not responsible if you accidentally mute something important. Be careful with your profile settings!
+                </div>
 
-            <h3>3.1 Pro Subscription</h3>
-            <p>Permly Pro is available as a subscription service through Google Play with the following options:</p>
-            <ul>
-                <li><strong>Monthly</strong>: $1.99/month, auto-renewing</li>
-                <li><strong>Yearly</strong>: $14.99/year, auto-renewing</li>
-                <li><strong>Lifetime</strong>: $29.99 one-time purchase</li>
-            </ul>
-
-            <h3>3.2 Payment and Renewal</h3>
-            <ul>
-                <li>Payment is charged to your Google Play account at confirmation of purchase</li>
-                <li>Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period</li>
-                <li>Your account will be charged for renewal within 24 hours prior to the end of the current period</li>
-                <li>You can manage your subscription and turn off auto-renewal in your Google Play account settings</li>
-            </ul>
-
-            <h3>3.3 Free Trial</h3>
-            <p>We may offer free trial periods for Pro subscriptions. You will not be charged until the trial period ends. If you cancel before the trial ends, you will not be charged.</p>
-
-            <h3>3.4 Cancellation</h3>
-            <p>You may cancel your subscription at any time through your Google Play account. Cancellation takes effect at the end of the current billing period. You will retain Pro access until the end of your paid period.</p>
-        </section>
-
-        <section id="refund-policy">
-            <h2>4. Refund Policy</h2>
-
-            <div class="important">
-                <strong>Important:</strong> All purchases are processed through Google Play and subject to Google's refund policies.
+                <h2>1. Acceptance of Terms</h2>
+                <p>By downloading, installing, or using Permly ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
             </div>
 
-            <h3>4.1 Google Play Refunds</h3>
-            <ul>
-                <li>Google Play typically offers refunds within 48 hours of purchase if you haven't used the app</li>
-                <li>To request a refund, visit <a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener">Google Play Help Center</a></li>
-                <li>Refund requests are handled directly by Google, not by Permly</li>
-            </ul>
-
-            <h3>4.2 Our Refund Commitment</h3>
-            <p>If you're unsatisfied with Permly Pro and Google has denied your refund request, contact us at <strong>zartofapp@gmail.com</strong> within 14 days of purchase. We will review your case and may issue a refund at our discretion.</p>
-        </section>
-
-        <section>
-            <h2>5. License and Restrictions</h2>
-
-            <h3>5.1 License Grant</h3>
-            <p>Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use Permly for your personal, non-commercial purposes.</p>
-
-            <h3>5.2 Restrictions</h3>
-            <p>You may NOT:</p>
-            <ul>
-                <li>Copy, modify, or create derivative works of the App</li>
-                <li>Reverse engineer, decompile, or disassemble the App</li>
-                <li>Remove any copyright or proprietary notices</li>
-                <li>Use the App for any illegal or unauthorized purpose</li>
-                <li>Share your Pro subscription with others</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>6. Privacy and Data</h2>
-            <p>Your use of Permly is also governed by our <a href="privacy-policy.html">Privacy Policy</a>. Key points:</p>
-            <ul>
-                <li>We do not collect, store, or transmit any personal data</li>
-                <li>All app data remains locally on your device</li>
-                <li>We never read notification content, only package names</li>
-                <li>No analytics, tracking, or third-party data sharing</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>7. Permissions</h2>
-            <p>Permly requires the following Android permissions:</p>
-            <ul>
-                <li><strong>Notification Access</strong>: Required to intercept and block notifications from muted apps</li>
-                <li><strong>Receive Boot Completed</strong>: Required to restart the notification service after device reboot</li>
-            </ul>
-            <p>These permissions are essential for the App to function and are used solely for the stated purposes.</p>
-        </section>
-
-        <section>
-            <h2>8. Disclaimer of Warranties</h2>
-            <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO:</p>
-            <ul>
-                <li>Warranties of merchantability or fitness for a particular purpose</li>
-                <li>Warranties that the App will be uninterrupted or error-free</li>
-                <li>Warranties regarding the accuracy or reliability of the App</li>
-            </ul>
-            <p>We do not guarantee that Permly will block 100% of notifications from muted apps. Notification behavior may vary across Android devices and versions.</p>
-        </section>
-
-        <section>
-            <h2>9. Limitation of Liability</h2>
-            <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR:</p>
-            <ul>
-                <li>Any indirect, incidental, special, or consequential damages</li>
-                <li>Loss of data, profits, or business opportunities</li>
-                <li>Damages arising from your use or inability to use the App</li>
-                <li>Important notifications that were unintentionally blocked</li>
-            </ul>
-            <p>Our total liability shall not exceed the amount you paid for the App in the 12 months preceding the claim.</p>
-        </section>
-
-        <section>
-            <h2>10. User Responsibilities</h2>
-            <p>You are responsible for:</p>
-            <ul>
-                <li>Configuring profiles appropriately to avoid blocking important notifications</li>
-                <li>Maintaining the security of your device</li>
-                <li>Ensuring your use complies with applicable laws</li>
-                <li>Understanding that muting emergency or critical notifications may have consequences</li>
-            </ul>
-
-            <div class="important">
-                <strong>Warning:</strong> Do not mute emergency services, medical apps, or critical alert apps (weather warnings, etc.) unless you fully understand the risks.
+            <div class="content-section">
+                <h2>2. Description of Service</h2>
+                <p>Permly is an Android notification management application that allows users to create custom profiles to selectively mute notifications from specific applications. The service is provided in two tiers:</p>
+                <ul>
+                    <li><strong>Free Tier</strong>: Up to 3 profiles, 7-day statistics, all core features</li>
+                    <li><strong>Pro Tier</strong>: Unlimited profiles, full statistics history, automatic scheduling, and priority support</li>
+                </ul>
             </div>
-        </section>
 
-        <section>
-            <h2>11. Changes to the App</h2>
-            <p>We reserve the right to:</p>
-            <ul>
-                <li>Modify or discontinue the App at any time</li>
-                <li>Add, remove, or modify features</li>
-                <li>Change pricing for Pro subscriptions (existing subscriptions honored at original price)</li>
-            </ul>
-            <p>We will make reasonable efforts to notify users of significant changes.</p>
-        </section>
+            <div class="content-section">
+                <h2>3. Subscription Terms</h2>
 
-        <section>
-            <h2>12. Termination</h2>
-            <p>We may terminate or suspend your access to the App immediately, without notice, if you violate these Terms. Upon termination:</p>
-            <ul>
-                <li>Your license to use the App ends immediately</li>
-                <li>You must stop using the App and delete it from your device</li>
-                <li>Active subscriptions will continue until the end of the billing period (no refunds for partial periods)</li>
-            </ul>
-        </section>
+                <h3>3.1 Pro Subscription</h3>
+                <p>Permly Pro is available as a subscription service through Google Play with the following options:</p>
+                <ul>
+                    <li><strong>Monthly</strong>: $1.99/month, auto-renewing</li>
+                    <li><strong>Yearly</strong>: $14.99/year, auto-renewing</li>
+                    <li><strong>Lifetime</strong>: $29.99 one-time purchase</li>
+                </ul>
 
-        <section>
-            <h2>13. Changes to Terms</h2>
-            <p>We may update these Terms from time to time. Changes will be posted here with an updated "Last Updated" date. Your continued use of the App after changes constitutes acceptance of the new Terms.</p>
-            <p>For material changes (like pricing or feature changes), we will provide at least 30 days notice through the App or email.</p>
-        </section>
+                <h3>3.2 Payment and Renewal</h3>
+                <ul>
+                    <li>Payment is charged to your Google Play account at confirmation of purchase</li>
+                    <li>Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period</li>
+                    <li>Your account will be charged for renewal within 24 hours prior to the end of the current period</li>
+                    <li>You can manage your subscription and turn off auto-renewal in your Google Play account settings</li>
+                </ul>
 
-        <section>
-            <h2>14. Governing Law</h2>
-            <p>These Terms are governed by and construed in accordance with the laws of your jurisdiction. Any disputes shall be resolved in accordance with applicable consumer protection laws.</p>
-        </section>
+                <h3>3.3 Free Trial</h3>
+                <p>We may offer free trial periods for Pro subscriptions. You will not be charged until the trial period ends. If you cancel before the trial ends, you will not be charged.</p>
 
-        <section>
-            <h2>15. Contact Information</h2>
-            <p>For questions about these Terms, please contact:</p>
-            <ul>
-                <li><strong>Email</strong>: zartofapp@gmail.com</li>
-                <li><strong>Support</strong>: <a href="support.html">Visit our support page</a></li>
-            </ul>
-        </section>
+                <h3>3.4 Cancellation</h3>
+                <p>You may cancel your subscription at any time through your Google Play account. Cancellation takes effect at the end of the current billing period. You will retain Pro access until the end of your paid period.</p>
+            </div>
 
-        <section>
-            <h2>16. Severability</h2>
-            <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
-        </section>
+            <div class="content-section" id="refund-policy">
+                <h2>4. Refund Policy</h2>
 
-        <div class="summary-box">
-            <h3>In Simple Terms</h3>
-            <p>You can use Permly for free (3 profiles) or upgrade to Pro for unlimited profiles. Subscriptions are managed through Google Play and renew automatically unless you cancel. We don't collect your data, but we're not responsible if you accidentally mute something important. Be careful with your profile settings!</p>
+                <div class="callout callout-warning">
+                    <strong>Important:</strong> All purchases are processed through Google Play and subject to Google's refund policies.
+                </div>
+
+                <h3>4.1 Google Play Refunds</h3>
+                <ul>
+                    <li>Google Play typically offers refunds within 48 hours of purchase if you haven't used the app</li>
+                    <li>To request a refund, visit <a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener">Google Play Help Center</a></li>
+                    <li>Refund requests are handled directly by Google, not by Permly</li>
+                </ul>
+
+                <h3>4.2 Our Refund Commitment</h3>
+                <p>If you're unsatisfied with Permly Pro and Google has denied your refund request, contact us at <strong>zartofapp@gmail.com</strong> within 14 days of purchase. We will review your case and may issue a refund at our discretion.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>5. License and Restrictions</h2>
+
+                <h3>5.1 License Grant</h3>
+                <p>Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use Permly for your personal, non-commercial purposes.</p>
+
+                <h3>5.2 Restrictions</h3>
+                <p>You may NOT:</p>
+                <ul>
+                    <li>Copy, modify, or create derivative works of the App</li>
+                    <li>Reverse engineer, decompile, or disassemble the App</li>
+                    <li>Remove any copyright or proprietary notices</li>
+                    <li>Use the App for any illegal or unauthorized purpose</li>
+                    <li>Share your Pro subscription with others</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>6. Privacy and Data</h2>
+                <p>Your use of Permly is also governed by our <a href="privacy-policy.html">Privacy Policy</a>. Key points:</p>
+                <ul>
+                    <li>We do not collect, store, or transmit any personal data</li>
+                    <li>All app data remains locally on your device</li>
+                    <li>We never read notification content, only package names</li>
+                    <li>No analytics, tracking, or third-party data sharing</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>7. Permissions</h2>
+                <p>Permly requires the following Android permissions:</p>
+                <ul>
+                    <li><strong>Notification Access</strong>: Required to intercept and block notifications from muted apps</li>
+                    <li><strong>Receive Boot Completed</strong>: Required to restart the notification service after device reboot</li>
+                </ul>
+                <p>These permissions are essential for the App to function and are used solely for the stated purposes.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>8. Disclaimer of Warranties</h2>
+                <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO:</p>
+                <ul>
+                    <li>Warranties of merchantability or fitness for a particular purpose</li>
+                    <li>Warranties that the App will be uninterrupted or error-free</li>
+                    <li>Warranties regarding the accuracy or reliability of the App</li>
+                </ul>
+                <p>We do not guarantee that Permly will block 100% of notifications from muted apps. Notification behavior may vary across Android devices and versions.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>9. Limitation of Liability</h2>
+                <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR:</p>
+                <ul>
+                    <li>Any indirect, incidental, special, or consequential damages</li>
+                    <li>Loss of data, profits, or business opportunities</li>
+                    <li>Damages arising from your use or inability to use the App</li>
+                    <li>Important notifications that were unintentionally blocked</li>
+                </ul>
+                <p>Our total liability shall not exceed the amount you paid for the App in the 12 months preceding the claim.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>10. User Responsibilities</h2>
+                <p>You are responsible for:</p>
+                <ul>
+                    <li>Configuring profiles appropriately to avoid blocking important notifications</li>
+                    <li>Maintaining the security of your device</li>
+                    <li>Ensuring your use complies with applicable laws</li>
+                    <li>Understanding that muting emergency or critical notifications may have consequences</li>
+                </ul>
+                <div class="callout callout-warning">
+                    <strong>Warning:</strong> Do not mute emergency services, medical apps, or critical alert apps (weather warnings, etc.) unless you fully understand the risks.
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>11. Changes to the App</h2>
+                <p>We reserve the right to:</p>
+                <ul>
+                    <li>Modify or discontinue the App at any time</li>
+                    <li>Add, remove, or modify features</li>
+                    <li>Change pricing for Pro subscriptions (existing subscriptions honored at original price)</li>
+                </ul>
+                <p>We will make reasonable efforts to notify users of significant changes.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>12. Termination</h2>
+                <p>We may terminate or suspend your access to the App immediately, without notice, if you violate these Terms. Upon termination:</p>
+                <ul>
+                    <li>Your license to use the App ends immediately</li>
+                    <li>You must stop using the App and delete it from your device</li>
+                    <li>Active subscriptions will continue until the end of the billing period (no refunds for partial periods)</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>13. Changes to Terms</h2>
+                <p>We may update these Terms from time to time. Changes will be posted here with an updated "Last Updated" date. Your continued use of the App after changes constitutes acceptance of the new Terms.</p>
+                <p>For material changes (like pricing or feature changes), we will provide at least 30 days notice through the App or email.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>14. Governing Law</h2>
+                <p>These Terms are governed by and construed in accordance with the laws of your jurisdiction. Any disputes shall be resolved in accordance with applicable consumer protection laws.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>15. Contact Information</h2>
+                <p>For questions about these Terms, please contact:</p>
+                <ul>
+                    <li><strong>Email</strong>: <a href="mailto:zartofapp@gmail.com">zartofapp@gmail.com</a></li>
+                    <li><strong>Support</strong>: <a href="support.html">Visit our support page</a></li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>16. Severability</h2>
+                <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
+            </div>
+
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Permly. All rights reserved.</p>
-        <p>
-            <a href="index.html">Home</a> |
-            <a href="privacy-policy.html">Privacy Policy</a> |
+        <div class="footer-brand">
+            <div class="footer-brand-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
+            </div>
+            <span class="footer-brand-name">Permly</span>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
             <a href="support.html">Support</a>
-        </p>
+        </div>
+        <p>&copy; 2026 Permly. All rights reserved.</p>
     </footer>
+
 </body>
 </html>

@@ -14,313 +14,414 @@
     <meta property="og:title" content="Permly Privacy Policy — No Data Collected, Ever">
     <meta property="og:description" content="Permly never reads notification content and collects zero personal data. All data stays on your device.">
     <meta property="og:site_name" content="Permly">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
 
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            box-sizing: border-box;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --indigo: #4F46E5;
+            --indigo-light: #6366F1;
+            --violet: #7C3AED;
+            --dark: #0B0F1A;
+            --surface: #ffffff;
+            --surface-alt: #F7F8FF;
+            --border: #E5E7EB;
+            --border-indigo: #C7D2FE;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
         }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.7;
-            color: #333;
-            background: #fafafa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--surface-alt);
         }
-        header {
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid #e0e0e0;
-            margin-bottom: 40px;
+
+        /* ─── TOP NAV ─── */
+        .topnav {
+            position: sticky; top: 0; z-index: 200;
+            background: rgba(11,15,26,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-            border-radius: 20px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .topnav-inner {
+            max-width: 1100px; margin: 0 auto; padding: 0 24px;
+            height: 58px; display: flex; align-items: center; gap: 32px;
         }
-        .logo svg {
-            width: 48px;
-            height: 48px;
-            fill: white;
+        .topnav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; flex-shrink: 0; }
+        .topnav-logo-img {
+            width: 30px; height: 30px;
+            border-radius: 8px; object-fit: cover; display: block;
         }
-        h1 {
-            color: #4F46E5;
-            margin: 0 0 10px;
-            font-size: 2em;
+        .topnav-logo-name { font-size: 1rem; font-weight: 700; color: white; }
+        .topnav-links { display: flex; gap: 2px; flex: 1; }
+        .topnav-links a {
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 0.875rem; font-weight: 500;
+            padding: 6px 12px; border-radius: 8px;
+            transition: color 0.15s, background 0.15s;
         }
-        .updated {
-            color: #6B7280;
-            font-size: 0.9em;
+        .topnav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+        .topnav-links a.active { color: white; }
+        .topnav-cta {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 8px 18px; background: var(--indigo); color: white;
+            text-decoration: none; border-radius: 9px;
+            font-size: 0.875rem; font-weight: 600;
+            transition: background 0.15s, box-shadow 0.15s; flex-shrink: 0;
         }
-        h2 {
-            color: #4F46E5;
-            border-bottom: 2px solid #E0E7FF;
-            padding-bottom: 10px;
-            margin-top: 40px;
+        .topnav-cta:hover { background: var(--indigo-light); box-shadow: 0 4px 16px rgba(79,70,229,0.4); }
+        .topnav-github {
+            display: flex; align-items: center; justify-content: center;
+            width: 34px; height: 34px;
+            background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 8px; color: rgba(255,255,255,0.65);
+            text-decoration: none; flex-shrink: 0; transition: background 0.15s, color 0.15s;
         }
-        h3 {
-            color: #555;
-            margin-top: 30px;
+        .topnav-github:hover { background: rgba(255,255,255,0.14); color: white; }
+        .topnav-github svg { width: 17px; height: 17px; fill: currentColor; }
+        .topnav-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.14); flex-shrink: 0; align-self: center; }
+        .topnav-hamburger { display: none; background: none; border: none; color: white; cursor: pointer; padding: 8px; margin-left: auto; }
+        .topnav-hamburger svg { width: 22px; height: 22px; fill: white; }
+        @media (max-width: 700px) {
+            .topnav-links { display: none; }
+            .topnav-links.open {
+                display: flex; flex-direction: column;
+                position: fixed; top: 58px; left: 0; right: 0;
+                background: var(--dark); border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 12px 16px 20px; gap: 4px;
+            }
+            .topnav-cta { display: none; }
+            .topnav-hamburger { display: block; }
         }
-        .summary-box {
-            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
-            border-left: 4px solid #4F46E5;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 20px 0;
+
+        /* ─── PAGE HERO ─── */
+        .page-hero {
+            background: var(--dark);
+            position: relative; overflow: hidden;
         }
-        .summary-box strong {
-            color: #4F46E5;
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 20px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        .page-hero::after {
+            content: '';
+            position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(52,211,153,0.12) 0%, transparent 70%);
+            pointer-events: none;
         }
-        th {
-            background: #4F46E5;
-            color: white;
-            padding: 12px 16px;
-            text-align: left;
+        .page-hero-inner {
+            position: relative; z-index: 1;
+            max-width: 780px; margin: 0 auto;
+            padding: 56px 24px 64px; text-align: center;
         }
-        td {
-            border-bottom: 1px solid #eee;
-            padding: 12px 16px;
+        .page-hero-icon {
+            width: 64px; height: 64px;
+            background: rgba(52,211,153,0.1);
+            border: 1px solid rgba(52,211,153,0.25);
+            border-radius: 16px;
+            margin: 0 auto 24px;
+            display: flex; align-items: center; justify-content: center;
         }
-        tr:last-child td {
-            border-bottom: none;
+        .page-hero-icon svg { width: 32px; height: 32px; fill: #6EE7B7; }
+        .page-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800; letter-spacing: -0.025em;
+            background: linear-gradient(135deg, #ffffff 20%, #6EE7B7 70%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 12px;
         }
-        ul {
-            padding-left: 24px;
+        .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto; }
+
+        /* ─── CONTENT ─── */
+        .content-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+        .content-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 40px 44px;
+            margin: 24px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
-        li {
-            margin: 8px 0;
+        .content-section h2 {
+            font-size: 1.15rem; font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
         }
-        .do-not {
-            color: #DC2626;
-            font-weight: 500;
+        .content-section h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 24px 0 8px; }
+        .content-section p { color: var(--text-secondary); font-size: 0.925rem; margin-bottom: 12px; }
+        .content-section ul, .content-section ol { padding-left: 20px; color: var(--text-secondary); font-size: 0.925rem; }
+        .content-section li { margin: 7px 0; }
+        .content-section a { color: var(--indigo); }
+        .content-section strong { color: var(--text-primary); }
+
+        .callout {
+            border-radius: 12px; padding: 18px 20px; margin: 16px 0; font-size: 0.9rem;
         }
-        .plain-language {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 40px;
+        .callout-indigo { background: linear-gradient(135deg, #EEF2FF, #E0E7FF); border: 1px solid var(--border-indigo); color: #3730A3; }
+        .callout-success { background: #F0FDF4; border: 1px solid #BBF7D0; color: #166534; }
+        .callout-warning { background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; }
+        .callout strong { font-weight: 700; }
+
+        .do-not { color: #DC2626; font-weight: 600; }
+
+        /* Permissions table */
+        .perm-table {
+            width: 100%; border-collapse: collapse;
+            font-size: 0.875rem; margin: 14px 0;
+            border-radius: 10px; overflow: hidden;
+            border: 1px solid var(--border);
         }
-        .plain-language h3 {
-            margin-top: 0;
-            color: #4F46E5;
+        .perm-table th {
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
+            color: white; padding: 11px 14px; text-align: left; font-weight: 600;
         }
+        .perm-table td { padding: 10px 14px; border-bottom: 1px solid #F3F4F6; color: var(--text-secondary); }
+        .perm-table tr:last-child td { border-bottom: none; }
+
+        /* Updated date chip */
+        .updated-chip {
+            display: inline-block;
+            font-size: 0.78rem; font-weight: 600;
+            background: rgba(99,102,241,0.1);
+            color: var(--indigo);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 999px;
+            padding: 4px 12px;
+            margin-bottom: 20px;
+        }
+
+        /* ─── FOOTER ─── */
         footer {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            text-align: center;
-            color: #6B7280;
-            font-size: 0.9em;
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center; padding: 48px 24px 40px;
+            color: rgba(255,255,255,0.4); font-size: 0.875rem;
         }
-        a {
-            color: #4F46E5;
-        }
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-            header {
-                padding: 20px 0;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
+        .footer-brand { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .footer-brand-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .footer-brand-icon svg { width: 18px; height: 18px; fill: rgba(165,180,252,0.8); }
+        .footer-brand-name { font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.75); }
+        .footer-links { display: flex; gap: 32px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+        .footer-links a:hover { color: white; }
+
+        @media (max-width: 700px) {
+            .content-section { padding: 28px 20px; }
+            .page-hero-inner { padding: 44px 20px 52px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
-            </svg>
+
+    <!-- Top Nav -->
+    <nav class="topnav" aria-label="Main navigation">
+        <div class="topnav-inner">
+            <a href="index.html" class="topnav-logo" aria-label="Permly home">
+                <img src="assets/icon.png" alt="" class="topnav-logo-img" aria-hidden="true">
+                <span class="topnav-logo-name">Permly</span>
+            </a>
+            <div class="topnav-links" id="topnav-links">
+                <a href="index.html">Home</a>
+                <span class="topnav-sep" aria-hidden="true"></span>
+                <a href="support.html">Support</a>
+                <a href="privacy-policy.html" class="active">Privacy</a>
+                <a href="terms-of-service.html">Terms</a>
+            </div>
+            <a href="https://github.com/Zartof23/permly-public" target="_blank" rel="noopener" class="topnav-github" aria-label="GitHub repository">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.permly" class="topnav-cta" aria-label="Download on Google Play">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                Download
+            </a>
+            <button class="topnav-hamburger" aria-label="Toggle menu" onclick="document.getElementById('topnav-links').classList.toggle('open')">
+                <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
         </div>
-        <h1>Permly Privacy Policy</h1>
-        <p class="updated">Last Updated: February 14, 2026</p>
-    </header>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div class="page-hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <h1>Privacy Policy</h1>
+            <p>We collect nothing. All your data stays on your device. Zero exceptions.</p>
+        </div>
+    </div>
 
     <main>
-        <section>
-            <h2>Introduction</h2>
-            <p>Permly ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how our Android application Permly handles information when you use our notification management service.</p>
-        </section>
+        <div class="content-wrap">
 
-        <div class="summary-box">
-            <strong>Summary:</strong> Permly does not collect, store, transmit, or share any personal data with third parties. All app data remains exclusively on your device.
-        </div>
+            <div class="content-section">
+                <div class="updated-chip">Last Updated: February 14, 2026</div>
 
-        <section>
-            <h2>Information We Access</h2>
+                <div class="callout callout-success">
+                    <strong>Summary:</strong> Permly does not collect, store, transmit, or share any personal data with third parties. All app data remains exclusively on your device.
+                </div>
 
-            <h3>Notification Access Permission</h3>
-            <p>Permly requires the Android Notification Access permission to function. This permission allows the app to:</p>
-            <ul>
-                <li><strong>Detect incoming notifications</strong> - We only read the package name (app identifier) of incoming notifications to determine if they should be blocked based on your profile settings.</li>
-                <li><strong>Cancel notifications</strong> - When a notification comes from an app you've muted in an active profile, Permly cancels that notification before it's displayed.</li>
-            </ul>
+                <h2>Introduction</h2>
+                <p>Permly ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how our Android application Permly handles information when you use our notification management service.</p>
+            </div>
 
-            <h3 class="do-not">What We DO NOT Access</h3>
-            <ul>
-                <li><strong>Notification content</strong> - We never read, store, or process the actual text, images, or data within your notifications.</li>
-                <li><strong>Personal messages</strong> - We cannot and do not read your messages, emails, or any communication content.</li>
-                <li><strong>Sensitive data</strong> - We do not access contacts, location, camera, microphone, files, or any other sensitive device data.</li>
-            </ul>
-        </section>
+            <div class="content-section">
+                <h2>Information We Access</h2>
 
-        <section>
-            <h2>Data Storage</h2>
-            <p>All data created by Permly is stored locally on your device:</p>
-            <ul>
-                <li><strong>Profiles</strong> - Your custom notification profiles (names, descriptions, colors)</li>
-                <li><strong>Muted Apps</strong> - The list of apps you've added to each profile</li>
-                <li><strong>Statistics</strong> - Counts of blocked notifications (optional feature)</li>
-                <li><strong>Preferences</strong> - Your app settings and onboarding status</li>
-            </ul>
-            <p>This data is stored in a local SQLite database and Android DataStore on your device. <strong>No data is ever transmitted to external servers.</strong></p>
-        </section>
+                <h3>Notification Access Permission</h3>
+                <p>Permly requires the Android Notification Access permission to function. This permission allows the app to:</p>
+                <ul>
+                    <li><strong>Detect incoming notifications</strong> — We only read the package name (app identifier) of incoming notifications to determine if they should be blocked based on your profile settings.</li>
+                    <li><strong>Cancel notifications</strong> — When a notification comes from an app you've muted in an active profile, Permly cancels that notification before it's displayed.</li>
+                </ul>
 
-        <section>
-            <h2>Data Sharing</h2>
-            <p><strong>We do not share any data with third parties.</strong> Period.</p>
-            <ul>
-                <li>No analytics services</li>
-                <li>No advertising networks</li>
-                <li>No crash reporting services</li>
-                <li>No cloud storage</li>
-                <li>No external APIs</li>
-            </ul>
-        </section>
+                <h3 class="do-not">What We DO NOT Access</h3>
+                <ul>
+                    <li><strong>Notification content</strong> — We never read, store, or process the actual text, images, or data within your notifications.</li>
+                    <li><strong>Personal messages</strong> — We cannot and do not read your messages, emails, or any communication content.</li>
+                    <li><strong>Sensitive data</strong> — We do not access contacts, location, camera, microphone, files, or any other sensitive device data.</li>
+                </ul>
+            </div>
 
-        <section>
-            <h2>Data Security</h2>
-            <p>Your data is protected by:</p>
-            <ul>
-                <li>Android's application sandboxing (other apps cannot access Permly's data)</li>
-                <li>Your device's built-in security features (screen lock, encryption)</li>
-                <li>Local-only storage with no network transmission</li>
-            </ul>
-        </section>
+            <div class="content-section">
+                <h2>Data Storage</h2>
+                <p>All data created by Permly is stored locally on your device:</p>
+                <ul>
+                    <li><strong>Profiles</strong> — Your custom notification profiles (names, descriptions, colors)</li>
+                    <li><strong>Muted Apps</strong> — The list of apps you've added to each profile</li>
+                    <li><strong>Statistics</strong> — Counts of blocked notifications (optional feature)</li>
+                    <li><strong>Preferences</strong> — Your app settings and onboarding status</li>
+                </ul>
+                <div class="callout callout-indigo">
+                    <strong>Note:</strong> This data is stored in a local SQLite database and Android DataStore on your device. No data is ever transmitted to external servers.
+                </div>
+            </div>
 
-        <section>
-            <h2>Data Retention</h2>
-            <p>Your data remains on your device until:</p>
-            <ul>
-                <li>You delete specific profiles or muted apps within the app</li>
-                <li>You clear the app's data through Android Settings</li>
-                <li>You uninstall the app</li>
-            </ul>
-        </section>
+            <div class="content-section">
+                <h2>Data Sharing</h2>
+                <p><strong>We do not share any data with third parties. Period.</strong></p>
+                <ul>
+                    <li>No analytics services</li>
+                    <li>No advertising networks</li>
+                    <li>No crash reporting services</li>
+                    <li>No cloud storage</li>
+                    <li>No external APIs</li>
+                </ul>
+            </div>
 
-        <section>
-            <h2>Children's Privacy</h2>
-            <p>Permly does not knowingly collect any information from children under 13 years of age. The app does not collect personal information from any user.</p>
-        </section>
+            <div class="content-section">
+                <h2>Data Security</h2>
+                <p>Your data is protected by:</p>
+                <ul>
+                    <li>Android's application sandboxing (other apps cannot access Permly's data)</li>
+                    <li>Your device's built-in security features (screen lock, encryption)</li>
+                    <li>Local-only storage with no network transmission</li>
+                </ul>
+            </div>
 
-        <section>
-            <h2>Your Rights</h2>
-            <p>Since all data is stored locally on your device, you have complete control:</p>
-            <ul>
-                <li><strong>Access</strong> - View your data directly in the app</li>
-                <li><strong>Modify</strong> - Edit or update your profiles at any time</li>
-                <li><strong>Delete</strong> - Remove profiles, muted apps, or clear all data</li>
-                <li><strong>Export</strong> - Your data belongs to you (may be available in a future update)</li>
-            </ul>
-        </section>
+            <div class="content-section">
+                <h2>Data Retention</h2>
+                <p>Your data remains on your device until:</p>
+                <ul>
+                    <li>You delete specific profiles or muted apps within the app</li>
+                    <li>You clear the app's data through Android Settings</li>
+                    <li>You uninstall the app</li>
+                </ul>
+            </div>
 
-        <section>
-            <h2>Permissions Used</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Permission</th>
-                        <th>Purpose</th>
-                        <th>Required</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Notification Access</td>
-                        <td>Intercept and block notifications from muted apps</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Receive Boot Completed</td>
-                        <td>Restart notification service after device reboot</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Post Notifications</td>
-                        <td>Show service status notification (required on Android 13+)</td>
-                        <td>Yes (Android 13+)</td>
-                    </tr>
-                    <tr>
-                        <td>Wake Lock</td>
-                        <td>Keep notification service running reliably in the background</td>
-                        <td>Yes</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <div class="content-section">
+                <h2>Children's Privacy</h2>
+                <p>Permly does not knowingly collect any information from children under 13 years of age. The app does not collect personal information from any user.</p>
+            </div>
 
-        <section>
-            <h2>Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last Updated" date at the top of this policy. We encourage you to review this Privacy Policy periodically.</p>
-        </section>
+            <div class="content-section">
+                <h2>Your Rights</h2>
+                <p>Since all data is stored locally on your device, you have complete control:</p>
+                <ul>
+                    <li><strong>Access</strong> — View your data directly in the app</li>
+                    <li><strong>Modify</strong> — Edit or update your profiles at any time</li>
+                    <li><strong>Delete</strong> — Remove profiles, muted apps, or clear all data</li>
+                    <li><strong>Export</strong> — Your data belongs to you (may be available in a future update)</li>
+                </ul>
+            </div>
 
-        <section>
-            <h2>Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
-            <ul>
-                <li><strong>Email</strong>: zartofapp@gmail.com</li>
-                <li><strong>Support Page</strong>: <a href="support.html">Visit our support page</a></li>
-            </ul>
-        </section>
+            <div class="content-section">
+                <h2>Permissions Used</h2>
+                <table class="perm-table" role="table" aria-label="Android permissions used by Permly">
+                    <thead>
+                        <tr><th>Permission</th><th>Purpose</th><th>Required</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Notification Access</td><td>Intercept and block notifications from muted apps</td><td>Yes</td></tr>
+                        <tr><td>Receive Boot Completed</td><td>Restart notification service after device reboot</td><td>Yes</td></tr>
+                        <tr><td>Post Notifications</td><td>Show service status notification (required on Android 13+)</td><td>Yes (Android 13+)</td></tr>
+                        <tr><td>Wake Lock</td><td>Keep notification service running reliably in the background</td><td>Yes</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <section>
-            <h2>Compliance</h2>
-            <p>This app complies with:</p>
-            <ul>
-                <li>Google Play Developer Program Policies</li>
-                <li>Android Notification Listener Service guidelines</li>
-                <li>General Data Protection Regulation (GDPR) principles</li>
-                <li>California Consumer Privacy Act (CCPA) principles</li>
-            </ul>
-        </section>
+            <div class="content-section">
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last Updated" date at the top of this policy. We encourage you to review this Privacy Policy periodically.</p>
+            </div>
 
-        <div class="plain-language">
-            <h3>In Plain Language</h3>
-            <p>Permly is a simple, privacy-focused app. It only looks at which app sent a notification (not what the notification says), decides whether to block it based on your settings, and stores everything locally on your phone. We don't collect your data, we don't send anything to servers, and we don't share anything with anyone.</p>
+            <div class="content-section">
+                <h2>Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
+                <ul>
+                    <li><strong>Email</strong>: <a href="mailto:zartofapp@gmail.com">zartofapp@gmail.com</a></li>
+                    <li><strong>Support Page</strong>: <a href="support.html">Visit our support page</a></li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>Compliance</h2>
+                <p>This app complies with:</p>
+                <ul>
+                    <li>Google Play Developer Program Policies</li>
+                    <li>Android Notification Listener Service guidelines</li>
+                    <li>General Data Protection Regulation (GDPR) principles</li>
+                    <li>California Consumer Privacy Act (CCPA) principles</li>
+                </ul>
+
+                <div class="callout callout-indigo" style="margin-top:24px;">
+                    <strong>In Plain Language:</strong> Permly is a simple, privacy-focused app. It only looks at which app sent a notification (not what the notification says), decides whether to block it based on your settings, and stores everything locally on your phone. We don't collect your data, we don't send anything to servers, and we don't share anything with anyone.
+                </div>
+            </div>
+
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Permly. All rights reserved.</p>
-        <p>
-            <a href="index.html">Home</a> |
-            <a href="terms-of-service.html">Terms of Service</a> |
+        <div class="footer-brand">
+            <div class="footer-brand-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
+            </div>
+            <span class="footer-brand-name">Permly</span>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="terms-of-service.html">Terms of Service</a>
             <a href="support.html">Support</a>
-        </p>
+        </div>
+        <p>&copy; 2026 Permly. All rights reserved.</p>
     </footer>
+
 </body>
 </html>

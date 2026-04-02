@@ -6,69 +6,169 @@
     <title>Page Not Found — Permly</title>
     <meta name="robots" content="noindex, follow">
     <meta name="theme-color" content="#4F46E5">
-    <link rel="icon" href="/assets/icon.png" type="image/png">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --indigo: #4F46E5;
+            --indigo-light: #6366F1;
+            --violet: #7C3AED;
+            --dark: #0B0F1A;
+            --border: #E5E7EB;
+        }
+        html, body {
+            height: 100%;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Dot grid */
+        body::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        /* Glow */
+        body::after {
+            content: '';
+            position: absolute;
+            top: -200px; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
         .card {
-            background: white;
+            position: relative; z-index: 1;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
-            padding: 60px 40px;
-            max-width: 480px;
+            padding: 56px 48px;
+            max-width: 460px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
         }
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-            border-radius: 20px;
-            margin: 0 auto 24px;
+
+        .logo-wrap {
+            width: 72px; height: 72px;
+            margin: 0 auto 28px;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .logo-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .error-code {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            background: linear-gradient(135deg, #ffffff 20%, #a5b4fc 60%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 0.925rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
             display: flex;
-            align-items: center;
+            gap: 12px;
             justify-content: center;
+            flex-wrap: wrap;
         }
-        .logo svg { width: 48px; height: 48px; fill: white; }
-        h1 { font-size: 5em; color: #4F46E5; margin-bottom: 8px; line-height: 1; }
-        h2 { font-size: 1.4em; color: #111827; margin-bottom: 12px; }
-        p { color: #6B7280; margin-bottom: 32px; }
-        .links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-        a.btn {
-            display: inline-block;
-            padding: 12px 24px;
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 0.9rem;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
         }
-        a.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-        a.btn-primary { background: #4F46E5; color: white; }
-        a.btn-secondary { background: #F3F4F6; color: #374151; }
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-primary {
+            background: var(--indigo);
+            color: white;
+            box-shadow: 0 4px 16px rgba(79,70,229,0.35);
+        }
+        .btn-primary:hover { box-shadow: 0 8px 24px rgba(79,70,229,0.5); }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.14);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.14); }
+
+        .btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+        @media (max-width: 480px) {
+            .card { padding: 40px 28px; }
+            .error-code { font-size: 4rem; }
+            .btn-group { flex-direction: column; }
+            .btn { justify-content: center; }
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <div class="logo">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
-            </svg>
+        <div class="logo-wrap">
+            <img src="assets/icon.png" alt="Permly">
         </div>
-        <h1>404</h1>
-        <h2>Page Not Found</h2>
-        <p>The page you're looking for doesn't exist. Maybe you were looking for something else?</p>
-        <div class="links">
-            <a href="/" class="btn btn-primary">Go Home</a>
-            <a href="/support.html" class="btn btn-secondary">Support &amp; FAQ</a>
+        <div class="error-code">404</div>
+        <h1>Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or may have moved. Head back home or visit support.</p>
+        <div class="btn-group">
+            <a href="index.html" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Go Home
+            </a>
+            <a href="support.html" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+                Support &amp; FAQ
+            </a>
         </div>
     </div>
 </body>

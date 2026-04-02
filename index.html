@@ -4,33 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary SEO -->
     <title>Permly — Android Notification Manager | Block Apps Selectively, No Ads</title>
     <meta name="description" content="Permly lets you mute specific app notifications with custom profiles — Work, Sleep, Focus, and more. No ads, no data collection, no tracking. Android 8.0+.">
     <link rel="canonical" href="https://permly.app/">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Permly">
     <meta name="theme-color" content="#4F46E5">
-
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://permly.app/">
     <meta property="og:title" content="Permly — Notification Manager for Android">
     <meta property="og:description" content="Block app notifications selectively. Custom profiles for Work, Sleep, Focus. No ads, no data collection, no tracking. Privacy-first.">
     <meta property="og:image" content="https://permly.app/assets/logo.png">
     <meta property="og:site_name" content="Permly">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Permly — Notification Manager for Android">
     <meta name="twitter:description" content="Block app notifications selectively. Custom profiles for Work, Sleep, Focus. No ads, no data collection.">
     <meta name="twitter:image" content="https://permly.app/assets/logo.png">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
 
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Structured Data: SoftwareApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -41,483 +37,814 @@
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Android 8.0+",
       "offers": [
-        {
-          "@type": "Offer",
-          "name": "Free",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        {
-          "@type": "Offer",
-          "name": "Permly Pro — Monthly",
-          "price": "1.99",
-          "priceCurrency": "USD"
-        },
-        {
-          "@type": "Offer",
-          "name": "Permly Pro — Lifetime",
-          "price": "29.99",
-          "priceCurrency": "USD"
-        }
+        {"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},
+        {"@type":"Offer","name":"Permly Pro — Monthly","price":"1.99","priceCurrency":"USD"},
+        {"@type":"Offer","name":"Permly Pro — Lifetime","price":"29.99","priceCurrency":"USD"}
       ],
-      "author": {
-        "@type": "Person",
-        "email": "zartofapp@gmail.com"
-      }
+      "author": {"@type":"Person","email":"zartofapp@gmail.com"}
     }
     </script>
 
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --indigo: #4F46E5;
+            --indigo-light: #6366F1;
+            --violet: #7C3AED;
+            --dark: #0B0F1A;
+            --surface: #ffffff;
+            --surface-alt: #F7F8FF;
+            --border: #E5E7EB;
+            --border-indigo: #C7D2FE;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
         }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-            min-height: 100vh;
+            color: var(--text-primary);
+            background: var(--surface-alt);
         }
-        .container {
-            max-width: 1000px;
+
+        /* ─── TOP NAV ─── */
+        .topnav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(11, 15, 26, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .topnav-inner {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 24px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
         }
-        header {
-            text-align: center;
-            padding: 60px 0;
+        .topnav-logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            flex-shrink: 0;
         }
-        .logo {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 28px;
-            margin: 0 auto 30px;
+        .topnav-logo-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            object-fit: cover;
+            display: block;
+        }
+        .topnav-logo-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+        }
+        .topnav-links {
+            display: flex;
+            gap: 2px;
+            flex: 1;
+        }
+        .topnav-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: color 0.15s, background 0.15s;
+        }
+        .topnav-links a:hover {
+            color: white;
+            background: rgba(255,255,255,0.08);
+        }
+        .topnav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 18px;
+            background: var(--indigo);
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: background 0.15s, box-shadow 0.15s;
+            flex-shrink: 0;
+        }
+        .topnav-cta:hover {
+            background: var(--indigo-light);
+            box-shadow: 0 4px 16px rgba(79,70,229,0.4);
+        }
+        .topnav-github {
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 8px;
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background 0.15s, color 0.15s;
         }
-        .logo svg {
-            width: 72px;
-            height: 72px;
-            fill: #4F46E5;
+        .topnav-github:hover { background: rgba(255,255,255,0.14); color: white; }
+        .topnav-github svg { width: 17px; height: 17px; fill: currentColor; }
+        .topnav-sep {
+            width: 1px;
+            height: 18px;
+            background: rgba(255,255,255,0.14);
+            flex-shrink: 0;
+            align-self: center;
         }
-        h1 {
+        .topnav-hamburger {
+            display: none;
+            background: none;
+            border: none;
             color: white;
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            padding: 8px;
+            margin-left: auto;
         }
-        .tagline {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.3em;
+        .topnav-hamburger svg { width: 22px; height: 22px; fill: white; }
+        @media (max-width: 700px) {
+            .topnav-links { display: none; }
+            .topnav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 58px; left: 0; right: 0;
+                background: var(--dark);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 12px 16px 20px;
+                gap: 4px;
+            }
+            .topnav-cta { display: none; }
+            .topnav-hamburger { display: block; }
+        }
+
+        /* ─── SECTION SIDENAV ─── */
+        .sidenav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        .sidenav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .sidenav-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: white;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(6px);
+            transition: opacity 0.18s, transform 0.18s;
+            text-decoration: none;
+        }
+        .sidenav-dot {
+            width: 7px;
+            height: 7px;
+            background: rgba(79,70,229,0.3);
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: background 0.18s, transform 0.18s;
+        }
+        .sidenav:hover .sidenav-label { opacity: 1; transform: translateX(0); }
+        .sidenav-item:hover .sidenav-dot { background: var(--indigo); transform: scale(1.5); }
+        @media (max-width: 1100px) { .sidenav { display: none; } }
+
+        /* ─── HERO ─── */
+        .hero {
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -160px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(99,102,241,0.22) 0%, rgba(124,58,237,0.1) 40%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 80px 24px 100px;
+            text-align: center;
+        }
+        .logo-wrap {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, #ffffff, #EEF2FF);
+            border-radius: 24px;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.15), 0 20px 60px rgba(79,70,229,0.4), 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .logo-wrap svg { width: 54px; height: 54px; fill: var(--indigo); }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #ffffff 20%, #a5b4fc 60%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 16px;
         }
-        .sub-tagline {
-            color: rgba(255,255,255,0.75);
-            font-size: 1em;
-            margin-bottom: 40px;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero .tagline { font-size: 1.25rem; font-weight: 500; color: rgba(255,255,255,0.85); margin-bottom: 12px; }
+        .hero .sub-tagline { font-size: 0.975rem; color: rgba(255,255,255,0.5); max-width: 520px; margin: 0 auto 40px; }
+        .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
+            gap: 9px;
+            padding: 14px 28px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            white-space: nowrap;
         }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+        .btn:hover { transform: translateY(-2px); }
         .btn-primary {
-            background: white;
-            color: #4F46E5;
+            background: #ffffff;
+            color: var(--indigo);
+            box-shadow: 0 4px 20px rgba(79,70,229,0.3), 0 1px 4px rgba(0,0,0,0.1);
         }
+        .btn-primary:hover { box-shadow: 0 8px 32px rgba(79,70,229,0.45), 0 2px 8px rgba(0,0,0,0.12); }
         .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(8px);
         }
-        .card {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin-top: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-        }
-        .card h2 {
-            text-align: center;
-            color: #4F46E5;
-            margin-bottom: 16px;
-            font-size: 2em;
-        }
-        .card .section-subtitle {
-            text-align: center;
-            color: #6B7280;
-            margin-bottom: 40px;
-            font-size: 1.05em;
-        }
-
-        /* Trust badges */
-        .trust-badges {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 36px;
-        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.14); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .trust-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         .trust-badge {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.18);
-            border: 1px solid rgba(255,255,255,0.35);
+            gap: 7px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
             border-radius: 999px;
-            padding: 8px 18px;
-            color: white;
-            font-size: 0.9em;
+            padding: 7px 16px;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.82rem;
             font-weight: 500;
         }
-        .trust-badge svg {
-            width: 18px;
-            height: 18px;
-            fill: white;
-            flex-shrink: 0;
-        }
+        .trust-badge svg { width: 15px; height: 15px; fill: rgba(165,180,252,0.9); flex-shrink: 0; }
 
-        /* Screenshots */
+        /* ─── BODY ─── */
+        .page-body { background: var(--surface-alt); }
+        .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+        .section-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 56px 48px;
+            margin: 28px 0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.03);
+        }
+        .section-card h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: -0.025em;
+        }
+        .section-card h2 .accent {
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 36px; font-size: 1rem; }
+
+        /* ─── SCREENSHOTS ─── */
+        .screenshot-section { overflow: hidden; }
         .screenshot-carousel {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
-            padding: 20px 4px 8px;
-            justify-content: center;
+            padding: 16px 40px 16px;
+            /* No justify-content: center — allows full scroll in both directions */
         }
-        .screenshot-carousel::-webkit-scrollbar {
-            height: 4px;
-        }
-        .screenshot-carousel::-webkit-scrollbar-track {
-            background: #F3F4F6;
-            border-radius: 2px;
-        }
-        .screenshot-carousel::-webkit-scrollbar-thumb {
-            background: #4F46E5;
-            border-radius: 2px;
-        }
+        .screenshot-carousel::-webkit-scrollbar { height: 4px; }
+        .screenshot-carousel::-webkit-scrollbar-track { background: #F3F4F6; border-radius: 2px; }
+        .screenshot-carousel::-webkit-scrollbar-thumb { background: var(--indigo); border-radius: 2px; }
         .phone-frame {
             flex-shrink: 0;
             scroll-snap-align: center;
-            background: #111827;
-            border-radius: 28px;
-            padding: 8px;
-            box-shadow: 0 16px 48px rgba(0,0,0,0.25);
-            transition: transform 0.3s;
+            background: #1C1C1E;
+            border-radius: 30px;
+            padding: 7px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.07);
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
         }
-        .phone-frame:hover {
-            transform: translateY(-6px) scale(1.02);
-        }
-        .phone-frame img {
-            display: block;
-            border-radius: 22px;
-            width: 180px;
-            height: auto;
-        }
-        @media (min-width: 800px) {
-            .phone-frame img {
-                width: 210px;
-            }
-        }
+        .phone-frame:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 32px 72px rgba(0,0,0,0.25), 0 6px 16px rgba(79,70,229,0.18); }
+        .phone-frame img { display: block; border-radius: 24px; width: 175px; height: auto; }
+        @media (min-width: 800px) { .phone-frame img { width: 200px; } }
 
-        /* How It Works */
+        /* ─── HOW IT WORKS ─── */
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 32px;
-            margin-top: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            position: relative;
         }
-        .step {
-            text-align: center;
-            padding: 20px;
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: calc(16.66% + 26px);
+            right: calc(16.66% + 26px);
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-indigo), var(--indigo), var(--border-indigo));
         }
+        @media (max-width: 640px) { .steps::before { display: none; } }
+        .step { text-align: center; padding: 24px 20px 20px; }
         .step-number {
             width: 52px;
             height: 52px;
-            background: #4F46E5;
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4em;
-            font-weight: 700;
-            margin: 0 auto 16px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0 auto 18px;
+            box-shadow: 0 4px 16px rgba(79,70,229,0.35);
+            position: relative;
+            z-index: 1;
         }
-        .step h3 {
-            color: #111827;
-            margin-bottom: 8px;
-            font-size: 1.05em;
-        }
-        .step p {
-            color: #6B7280;
-            font-size: 0.92em;
-        }
+        .step h3 { color: var(--text-primary); margin-bottom: 8px; font-size: 1rem; font-weight: 700; }
+        .step p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        /* Features */
-        .feature-grid {
+        /* ─── FEATURES BENTO ─── */
+        .feature-bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
         }
-        .feature {
-            padding: 20px;
+        .feature-bento {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            transition: box-shadow 0.2s, transform 0.2s;
         }
-        .feature h3 {
-            color: #4F46E5;
-            margin-bottom: 10px;
+        .feature-bento:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .feature-bento:nth-child(1) { grid-column: span 2; }
+        .feature-bento:nth-child(7) {
+            grid-column: span 2;
+            background: var(--dark);
+            border-color: transparent;
+            color: white;
+        }
+        .feature-bento-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.05em;
+            gap: 8px;
         }
-        .feature p {
-            color: #6B7280;
-            font-size: 0.95em;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 24px 0;
-            font-size: 0.95em;
-        }
-        .comparison-table th {
-            background: #4F46E5;
+        .feature-bento:nth-child(7) .feature-bento-title {
             color: white;
-            padding: 14px 16px;
-            text-align: left;
+            font-size: 1.05rem;
         }
-        .comparison-table th:first-child {
-            border-radius: 8px 0 0 0;
+        .feature-bento-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
-        .comparison-table th:last-child {
-            border-radius: 0 8px 0 0;
-        }
-        .comparison-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid #eee;
-            color: #555;
-        }
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-        .comparison-table tr:nth-child(even) td {
-            background: #fafafa;
-        }
-        .yes { color: #2e7d32; font-weight: 600; }
-        .no  { color: #c62828; font-weight: 600; }
-        .partial { color: #e65100; font-weight: 600; }
-        .privacy-banner {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            border-radius: 16px;
-            padding: 30px;
-            margin-top: 40px;
-            text-align: center;
-        }
-        .privacy-banner h3 {
-            color: #2e7d32;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-        .privacy-banner p {
-            color: #1b5e20;
-        }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
-        }
-        .pricing-card {
-            border: 2px solid #E5E7EB;
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-align: center;
-        }
-        .pricing-card.featured {
-            border-color: #4F46E5;
-            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
-        }
-        .pricing-card .plan-name {
-            font-size: 1.1em;
+        .feature-bento:nth-child(7) .feature-bento-text { color: rgba(255,255,255,0.6); }
+        .feature-bento:nth-child(1) .feature-bento-title { font-size: 1.05rem; }
+        .pro-badge {
+            display: inline-block;
+            font-size: 0.65rem;
             font-weight: 700;
-            color: #4F46E5;
-            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            color: var(--indigo);
+            background: #EEF2FF;
+            border: 1px solid #C7D2FE;
+            border-radius: 4px;
+            padding: 1px 6px;
+            text-transform: uppercase;
+            vertical-align: middle;
         }
-        .pricing-card .plan-price {
-            font-size: 2em;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 4px;
+        .privacy-dots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
         }
-        .pricing-card .plan-period {
-            font-size: 0.85em;
-            color: #6B7280;
-            margin-bottom: 20px;
+        .privacy-dot-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(99,102,241,0.18);
+            color: #A5B4FC;
+            border-radius: 999px;
+            padding: 4px 12px;
         }
-        .pricing-card ul {
-            list-style: none;
-            text-align: left;
-            padding: 0;
-            margin: 0;
-            color: #555;
-            font-size: 0.9em;
-        }
-        .pricing-card ul li {
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-        }
-        .pricing-card ul li:last-child { border-bottom: none; }
-        .use-cases {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 24px;
-        }
-        .use-case {
-            background: #F5F3FF;
-            border-radius: 12px;
-            padding: 20px;
-        }
-        .use-case h4 {
-            color: #4F46E5;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-        .use-case p {
-            color: #6B7280;
-            font-size: 0.88em;
+        @media (max-width: 700px) {
+            .feature-bento-grid { grid-template-columns: 1fr; }
+            .feature-bento:nth-child(1), .feature-bento:nth-child(7) { grid-column: span 1; }
         }
 
-        /* Competitor comparison */
-        .competitor-table-wrap {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin: 24px 0;
+        /* ─── COMPETITOR COMPARE ─── */
+        .compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 14px; border: 1px solid var(--border); }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: minmax(170px, 2fr) 1.3fr 1fr 1fr 1fr;
+            min-width: 560px;
         }
-        .competitor-table {
-            width: 100%;
-            min-width: 600px;
-            border-collapse: collapse;
-            font-size: 0.9em;
+        .c-cell {
+            padding: 13px 14px;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            align-items: center;
+            font-size: 0.86rem;
         }
-        .competitor-table th {
-            background: #4F46E5;
+        .c-cell.c-feature { color: var(--text-secondary); font-weight: 500; }
+        .c-cell.c-val {
+            justify-content: center;
+            font-weight: 700;
+            border-left: 1px solid #F3F4F6;
+        }
+        .c-cell.c-head {
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            background: #F9FAFB;
+            border-bottom: 2px solid var(--border);
+            padding: 18px 14px;
+            text-align: center;
+            justify-content: center;
+        }
+        /* Permly column highlight */
+        .c-cell.permly {
+            background: linear-gradient(to bottom, #EEF2FF, #F0EEFF);
+            border-left: 2px solid #C7D2FE !important;
+            border-right: 2px solid #C7D2FE;
+        }
+        .c-cell.c-head.permly {
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
             color: white;
-            padding: 12px 14px;
-            text-align: center;
-            white-space: nowrap;
-        }
-        .competitor-table th:first-child {
-            text-align: left;
-            border-radius: 8px 0 0 0;
-        }
-        .competitor-table th:last-child {
-            border-radius: 0 8px 0 0;
-        }
-        .competitor-table td {
-            padding: 11px 14px;
-            border-bottom: 1px solid #eee;
-            color: #555;
-        }
-        .competitor-table td:not(:first-child) {
-            text-align: center;
-        }
-        .competitor-table tr:last-child td {
+            font-size: 0.92rem;
+            font-weight: 800;
+            border-left: none !important;
+            border-right: none;
             border-bottom: none;
+            border-radius: 0;
         }
-        .competitor-table tr:nth-child(even) td {
-            background: #fafafa;
-        }
-        .competitor-table td:nth-child(2) {
-            background: #EEF2FF !important;
-            font-weight: 600;
-        }
+        /* Last rows - remove bottom border */
+        .compare-grid .c-cell:nth-last-child(-n+5) { border-bottom: none; }
+        /* Row hover */
+        .compare-row { display: contents; }
+        .compare-row:hover .c-cell { background-color: #FAFBFF; }
+        .compare-row:hover .c-cell.permly { background: linear-gradient(to bottom, #E8EDFF, #EAE8FF); }
+        /* Values */
+        .val-good { color: #16A34A; }
+        .val-bad  { color: #DC2626; }
+        .val-mid  { color: #D97706; }
         .table-disclaimer {
-            font-size: 0.8em;
-            color: #9CA3AF;
+            font-size: 0.78rem;
+            color: var(--text-muted);
             margin-top: 12px;
             text-align: center;
         }
+        .table-disclaimer a { color: var(--indigo); }
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: rgba(255,255,255,0.8);
+        /* ─── DND COMPARISON ─── */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
         }
-        footer a {
+        .comparison-table th {
+            background: var(--indigo);
             color: white;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
         }
-        .links {
+        .comparison-table td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #F3F4F6;
+            color: var(--text-secondary);
+        }
+        .comparison-table tbody tr:hover td { background: #FAFBFF; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .yes { color: #16A34A; font-weight: 600; }
+        .no  { color: #DC2626; font-weight: 600; }
+        .partial { color: #D97706; font-weight: 600; }
+
+        /* ─── USE CASES ─── */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .use-case-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .use-case-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        .use-case-top {
+            padding: 22px 22px 18px;
+            position: relative;
+        }
+        .use-case-card:nth-child(1) .use-case-top { background: #0F172A; }
+        .use-case-card:nth-child(2) .use-case-top { background: #1E1B4B; }
+        .use-case-card:nth-child(3) .use-case-top { background: #0C1A2E; }
+        .use-case-card:nth-child(4) .use-case-top { background: #1A1230; }
+        .use-case-card:nth-child(5) .use-case-top { background: #111827; }
+        .use-case-card:nth-child(6) .use-case-top { background: #0D1B1E; }
+        .use-case-accent {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            padding: 3px 8px;
+            margin-bottom: 10px;
+        }
+        .use-case-card:nth-child(1) .use-case-accent { background: rgba(99,102,241,0.25); color: #A5B4FC; }
+        .use-case-card:nth-child(2) .use-case-accent { background: rgba(139,92,246,0.25); color: #C4B5FD; }
+        .use-case-card:nth-child(3) .use-case-accent { background: rgba(6,182,212,0.2); color: #67E8F9; }
+        .use-case-card:nth-child(4) .use-case-accent { background: rgba(251,146,60,0.2); color: #FED7AA; }
+        .use-case-card:nth-child(5) .use-case-accent { background: rgba(148,163,184,0.15); color: #CBD5E1; }
+        .use-case-card:nth-child(6) .use-case-accent { background: rgba(52,211,153,0.2); color: #6EE7B7; }
+        .use-case-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .use-case-bottom {
+            padding: 16px 22px;
+            background: white;
+        }
+        .use-case-bottom p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+        @media (max-width: 800px) {
+            .use-cases-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .use-cases-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ─── PRICING ─── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            align-items: start;
+        }
+        .pricing-card {
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            background: var(--surface);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .pricing-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .pricing-card.featured-monthly {
+            border-color: var(--border-indigo);
+            background: linear-gradient(160deg, #F5F3FF, #EEF2FF);
+        }
+        .pricing-card.featured-lifetime {
+            border-color: var(--indigo);
+            background: linear-gradient(160deg, #EEF2FF, #E0E7FF);
+            box-shadow: 0 4px 20px rgba(79,70,229,0.15);
+            position: relative;
+        }
+        .pricing-card.featured-lifetime:hover { box-shadow: 0 12px 36px rgba(79,70,229,0.25); }
+        .best-value-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .plan-name { font-size: 0.8rem; font-weight: 700; color: var(--indigo); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+        .plan-price { font-size: 2.4rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; }
+        .plan-period { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; }
+        .pricing-card ul { list-style: none; text-align: left; padding: 0; margin: 0; font-size: 0.875rem; }
+        .pricing-card ul li {
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            color: var(--text-secondary);
             display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 9px;
         }
-        @media (max-width: 600px) {
-            h1 { font-size: 2em; }
-            .tagline { font-size: 1.1em; }
-            .card { padding: 40px 20px; }
-            .btn { width: 100%; justify-content: center; }
-            .screenshot-carousel { justify-content: flex-start; }
+        .pricing-card ul li:last-child { border-bottom: none; }
+        .pricing-card ul li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%234F46E5' fill-opacity='.12'/%3E%3Cpath d='M4.5 8L7 10.5L11.5 5.5' stroke='%234F46E5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+            padding: 48px 24px 40px;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.875rem;
+            margin-top: 28px;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .footer-brand-icon {
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .footer-brand-icon svg { width: 18px; height: 18px; fill: rgba(165,180,252,0.8); }
+        .footer-brand-name { font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.75); }
+        .footer-links { display: flex; gap: 32px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+        .footer-links a:hover { color: white; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 700px) {
+            .section-card { padding: 36px 20px; margin: 16px 0; }
+            .hero-inner { padding: 64px 20px 80px; }
+            .cta-buttons { flex-direction: column; align-items: stretch; }
+            .btn { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .tagline { font-size: 1.05rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
-                </svg>
+
+    <!-- Top Nav -->
+    <nav class="topnav" aria-label="Main navigation">
+        <div class="topnav-inner">
+            <a href="index.html" class="topnav-logo" aria-label="Permly home">
+                <img src="assets/icon.png" alt="" class="topnav-logo-img" aria-hidden="true">
+                <span class="topnav-logo-name">Permly</span>
+            </a>
+            <div class="topnav-links" id="topnav-links">
+                <a href="#screenshots">Screenshots</a>
+                <a href="#howitworks">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <span class="topnav-sep" aria-hidden="true"></span>
+                <a href="support.html">Support</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms-of-service.html">Terms</a>
+            </div>
+            <a href="https://github.com/Zartof23/permly-public" target="_blank" rel="noopener" class="topnav-github" aria-label="GitHub repository">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.permly" class="topnav-cta" aria-label="Download on Google Play">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                Download
+            </a>
+            <button class="topnav-hamburger" aria-label="Toggle menu" onclick="document.getElementById('topnav-links').classList.toggle('open')">
+                <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Right-side section nav (desktop only) -->
+    <aside class="sidenav" aria-label="Jump to section">
+        <div class="sidenav-item">
+            <a href="#screenshots" class="sidenav-label">Screenshots</a>
+            <div class="sidenav-dot" aria-hidden="true"></div>
+        </div>
+        <div class="sidenav-item">
+            <a href="#howitworks" class="sidenav-label">How It Works</a>
+            <div class="sidenav-dot" aria-hidden="true"></div>
+        </div>
+        <div class="sidenav-item">
+            <a href="#features" class="sidenav-label">Features</a>
+            <div class="sidenav-dot" aria-hidden="true"></div>
+        </div>
+        <div class="sidenav-item">
+            <a href="#comparison" class="sidenav-label">vs DND</a>
+            <div class="sidenav-dot" aria-hidden="true"></div>
+        </div>
+        <div class="sidenav-item">
+            <a href="#competitors" class="sidenav-label">Compare</a>
+            <div class="sidenav-dot" aria-hidden="true"></div>
+        </div>
+        <div class="sidenav-item">
+            <a href="#usecases" class="sidenav-label">Use Cases</a>
+            <div class="sidenav-dot" aria-hidden="true"></div>
+        </div>
+        <div class="sidenav-item">
+            <a href="#pricing" class="sidenav-label">Pricing</a>
+            <div class="sidenav-dot" aria-hidden="true"></div>
+        </div>
+    </aside>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-inner">
+            <div class="logo-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
             </div>
             <h1>Permly</h1>
             <p class="tagline">Take Back Your Focus</p>
             <p class="sub-tagline">The privacy-first notification blocker for Android. Mute distracting apps per profile — no ads, no tracking, no notification reading.</p>
             <div class="cta-buttons">
                 <a href="https://play.google.com/store/apps/details?id=com.permly" class="btn btn-primary" aria-label="Download Permly free on Google Play">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                    </svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
                     Get It Free on Google Play
                 </a>
                 <a href="support.html" class="btn btn-secondary" aria-label="Permly Support and FAQ">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
-                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
                     Support &amp; FAQ
                 </a>
             </div>
-
-            <!-- Trust badges -->
             <div class="trust-badges">
                 <div class="trust-badge">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.07c1.23-.13 2.15.42 2.94.47.88-.21 1.73-.76 2.72-.65 1.17.15 2.04.56 2.6 1.38-2.36 1.42-1.91 4.46.19 5.35-.44 1.22-1.01 2.39-1.5 3.28-.57.02-1.08-.07-1.5.5zm-5.12-15c.13-1.6 1.48-3.38 3.37-3.28.21 1.88-1.62 3.7-3.37 3.28z"/></svg>
-                    Available on Google Play
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                    Google Play
                 </div>
                 <div class="trust-badge">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 20c-.83 0-1.5-.67-1.5-1.5S11.17 18 12 18s1.5.67 1.5 1.5S12.83 21 12 21zm5-4H7V4h10v13z"/></svg>
@@ -532,310 +859,334 @@
                     No Ads — Ever
                 </div>
             </div>
-        </header>
+        </div>
+    </div>
 
-        <!-- Screenshots -->
-        <section class="card" aria-labelledby="screenshots-heading">
-            <h2 id="screenshots-heading">See Permly in Action</h2>
-            <p class="section-subtitle">Simple, clean, and focused — just like your notifications should be.</p>
-            <div class="screenshot-carousel">
-                <div class="phone-frame">
-                    <img src="assets/screenshots/phone/1-home.png"
-                         alt="Permly home screen showing notification profiles"
-                         loading="lazy" width="270" height="585">
-                </div>
-                <div class="phone-frame">
-                    <img src="assets/screenshots/phone/2-profile_editing.png"
-                         alt="Permly profile editing screen — select apps to mute"
-                         loading="lazy" width="270" height="585">
-                </div>
-                <div class="phone-frame">
-                    <img src="assets/screenshots/phone/4-profile_active.png"
-                         alt="Permly active profile screen — profile is running"
-                         loading="lazy" width="270" height="585">
-                </div>
-                <div class="phone-frame">
-                    <img src="assets/screenshots/phone/5-stats.png"
-                         alt="Permly distraction statistics screen showing blocked notifications"
-                         loading="lazy" width="270" height="585">
-                </div>
-            </div>
-        </section>
+    <div class="page-body">
+        <div class="container">
 
-        <!-- How It Works -->
-        <section class="card" aria-labelledby="howitworks-heading">
-            <h2 id="howitworks-heading">How It Works</h2>
-            <p class="section-subtitle">Set up in minutes. Focus for the rest of the day.</p>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Create a Profile</h3>
-                    <p>Name it Work, Sleep, Focus, or anything you need. Free tier includes 3 profiles.</p>
+            <!-- Screenshots -->
+            <section class="section-card screenshot-section" id="screenshots" aria-labelledby="screenshots-heading">
+                <h2 id="screenshots-heading">See Permly in Action</h2>
+                <p class="section-subtitle">Simple, clean, and focused — just like your notifications should be.</p>
+                <div class="screenshot-carousel">
+                    <div class="phone-frame">
+                        <img src="assets/screenshots/phone/1-home.png" alt="Permly home screen showing notification profiles" loading="lazy" width="270" height="585">
+                    </div>
+                    <div class="phone-frame">
+                        <img src="assets/screenshots/phone/2-profile_editing.png" alt="Permly profile editing screen — select apps to mute" loading="lazy" width="270" height="585">
+                    </div>
+                    <div class="phone-frame">
+                        <img src="assets/screenshots/phone/4-profile_active.png" alt="Permly active profile screen — profile is running" loading="lazy" width="270" height="585">
+                    </div>
+                    <div class="phone-frame">
+                        <img src="assets/screenshots/phone/5-stats.png" alt="Permly distraction statistics screen showing blocked notifications" loading="lazy" width="270" height="585">
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Pick Apps to Mute</h3>
-                    <p>Choose exactly which apps get silenced in each profile. Everything else comes through normally.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Activate &amp; Focus</h3>
-                    <p>One tap — or let auto-schedule (Pro) handle it. Distractions gone, important stuff through.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Features -->
-        <section class="card" aria-labelledby="features-heading">
-            <h2 id="features-heading">Selective Notification Blocking — Not All-or-Nothing</h2>
-            <p class="section-subtitle">Unlike Do Not Disturb, Permly lets you choose exactly which apps to silence in each situation.</p>
-            <div class="feature-grid">
-                <div class="feature">
-                    <h3>Custom Notification Profiles</h3>
-                    <p>Create profiles for any situation — Work, Sleep, Focus, Meetings, Gaming. Each profile silences exactly the apps you choose. Free tier includes 3 profiles; Pro offers unlimited.</p>
+            <!-- How It Works -->
+            <section class="section-card" id="howitworks" aria-labelledby="howitworks-heading">
+                <h2 id="howitworks-heading">How It Works</h2>
+                <p class="section-subtitle">Set up in minutes. Focus for the rest of the day.</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Create a Profile</h3>
+                        <p>Name it Work, Sleep, Focus, or anything you need. Free tier includes 3 profiles.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Pick Apps to Mute</h3>
+                        <p>Choose exactly which apps get silenced in each profile. Everything else comes through normally.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Activate &amp; Focus</h3>
+                        <p>One tap — or let auto-schedule (Pro) handle it. Distractions gone, important stuff through.</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <h3>Selective App Muting</h3>
-                    <p>Silence specific apps per profile. Social media during work? Blocked. Dating apps around family? Gone. Calls from loved ones? Always through.</p>
-                </div>
-                <div class="feature">
-                    <h3>Quick Settings Tile</h3>
-                    <p>Toggle your active profile directly from the notification shade — no need to open the app.</p>
-                </div>
-                <div class="feature">
-                    <h3>Distraction Statistics</h3>
-                    <p>Track how many notifications each profile has blocked and see which apps interrupt you most. Free: 7-day history. Pro: full history.</p>
-                </div>
-                <div class="feature">
-                    <h3>Automatic Scheduling <em style="font-size:0.75em;color:#4F46E5;font-style:normal;">Pro</em></h3>
-                    <p>Set start and end times for each profile. Work mode every weekday, sleep mode every night — set it once and forget it.</p>
-                </div>
-                <div class="feature">
-                    <h3>No Root Required</h3>
-                    <p>Works on any Android 8.0+ device using official Android APIs. Simple setup, no ADB, no sideloading.</p>
-                </div>
-                <div class="feature">
-                    <h3>No Ads. No Data. Ever.</h3>
-                    <p>No ads in any tier. No analytics SDK. No crash reporters. No cloud servers. All data stays on your device. Your attention is not our product.</p>
-                </div>
-            </div>
+            </section>
 
-            <div class="privacy-banner">
-                <h3>Privacy First — Zero Compromise</h3>
-                <p>Permly never reads your notification content — only the app name. All data stays on your device. No accounts, no cloud, no tracking, no ads.</p>
-            </div>
-        </section>
+            <!-- Features Bento -->
+            <section class="section-card" id="features" aria-labelledby="features-heading">
+                <h2 id="features-heading">Selective Blocking — <span class="accent">Not All-or-Nothing</span></h2>
+                <p class="section-subtitle">Unlike Do Not Disturb, Permly lets you choose exactly which apps to silence in each situation.</p>
+                <div class="feature-bento-grid">
+                    <!-- 1: Wide -->
+                    <div class="feature-bento">
+                        <div class="feature-bento-title">Custom Notification Profiles</div>
+                        <div class="feature-bento-text">Create profiles for any situation — Work, Sleep, Focus, Meetings, Gaming. Each profile silences exactly the apps you choose. Free tier includes 3 profiles; Pro offers unlimited.</div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="feature-bento">
+                        <div class="feature-bento-title">Automatic Scheduling <span class="pro-badge">Pro</span></div>
+                        <div class="feature-bento-text">Set start and end times for each profile. Work mode every weekday, sleep mode every night — set it once and forget it.</div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="feature-bento">
+                        <div class="feature-bento-title">Selective App Muting</div>
+                        <div class="feature-bento-text">Silence specific apps per profile. Social media during work? Blocked. Calls from loved ones? Always through.</div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="feature-bento">
+                        <div class="feature-bento-title">Quick Settings Tile</div>
+                        <div class="feature-bento-text">Toggle your active profile directly from the notification shade — no need to open the app.</div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="feature-bento">
+                        <div class="feature-bento-title">Distraction Statistics</div>
+                        <div class="feature-bento-text">Track how many notifications each profile has blocked and which apps interrupt you most. Free: 7-day history. Pro: full history.</div>
+                    </div>
+                    <!-- 6 -->
+                    <div class="feature-bento">
+                        <div class="feature-bento-title">No Root Required</div>
+                        <div class="feature-bento-text">Works on any Android 8.0+ device using official Android APIs. Simple setup, no ADB, no sideloading.</div>
+                    </div>
+                    <!-- 7: Wide, dark — Privacy callout -->
+                    <div class="feature-bento">
+                        <div class="feature-bento-title">No Ads. No Data. Ever.</div>
+                        <div class="feature-bento-text">Permly never reads your notification content — only the app name. All data stays on your device. No analytics, no cloud, no accounts, no tracking. Your attention is not our product.</div>
+                        <div class="privacy-dots">
+                            <span class="privacy-dot-tag">No analytics</span>
+                            <span class="privacy-dot-tag">No cloud</span>
+                            <span class="privacy-dot-tag">No accounts</span>
+                            <span class="privacy-dot-tag">No ads</span>
+                            <span class="privacy-dot-tag">Local-only</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <!-- vs Do Not Disturb -->
-        <section class="card" aria-labelledby="comparison-heading">
-            <h2 id="comparison-heading">Why Not Just Use Do Not Disturb?</h2>
-            <p class="section-subtitle">Android's built-in DND silences everything — or nothing. Permly gives you the middle ground.</p>
-            <table class="comparison-table" role="table" aria-label="Permly vs Do Not Disturb comparison">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Permly</th>
-                        <th>Android DND</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Mute specific apps only</td>
-                        <td class="yes">✓ Yes</td>
-                        <td class="no">✗ No</td>
-                    </tr>
-                    <tr>
-                        <td>Multiple saved profiles</td>
-                        <td class="yes">✓ Yes</td>
-                        <td class="no">✗ No</td>
-                    </tr>
-                    <tr>
-                        <td>Per-profile app selection</td>
-                        <td class="yes">✓ Yes</td>
-                        <td class="no">✗ No</td>
-                    </tr>
-                    <tr>
-                        <td>Automatic scheduling</td>
-                        <td class="yes">✓ Pro</td>
-                        <td class="partial">⚠ Limited</td>
-                    </tr>
-                    <tr>
-                        <td>Distraction statistics</td>
-                        <td class="yes">✓ Yes</td>
-                        <td class="no">✗ No</td>
-                    </tr>
-                    <tr>
-                        <td>Quick Settings tile</td>
-                        <td class="yes">✓ Yes</td>
-                        <td class="yes">✓ Yes</td>
-                    </tr>
-                    <tr>
-                        <td>No ads</td>
-                        <td class="yes">✓ Always</td>
-                        <td class="yes">✓ N/A</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Competitor comparison -->
-        <section class="card" aria-labelledby="competitors-heading">
-            <h2 id="competitors-heading">How Permly Compares</h2>
-            <p class="section-subtitle">Looking for an AppBlock alternative, BuzzKill alternative, or FilterBox alternative? Here's how they stack up.</p>
-            <div class="competitor-table-wrap">
-                <table class="competitor-table" role="table" aria-label="Permly vs AppBlock vs BuzzKill vs FilterBox comparison">
+            <!-- vs Do Not Disturb -->
+            <section class="section-card" id="comparison" aria-labelledby="comparison-heading">
+                <h2 id="comparison-heading">Why Not Just Use Do Not Disturb?</h2>
+                <p class="section-subtitle">Android's built-in DND silences everything — or nothing. Permly gives you the middle ground.</p>
+                <table class="comparison-table" role="table" aria-label="Permly vs Do Not Disturb comparison">
                     <thead>
                         <tr>
                             <th>Feature</th>
                             <th>Permly</th>
-                            <th>AppBlock</th>
-                            <th>BuzzKill</th>
-                            <th>FilterBox</th>
+                            <th>Android DND</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Reads notification content</td>
-                            <td class="yes">✗ Never</td>
-                            <td class="no">✓ Yes</td>
-                            <td class="no">✓ Yes</td>
-                            <td class="no">✓ Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Free tier available</td>
-                            <td class="yes">✓ Yes</td>
-                            <td class="yes">✓ Yes</td>
-                            <td class="no">✗ Paid only</td>
-                            <td class="yes">✓ Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Contains ads</td>
-                            <td class="yes">✗ Never</td>
-                            <td class="no">✓ Yes</td>
-                            <td class="yes">✗ No</td>
-                            <td class="no">✓ Yes</td>
-                        </tr>
-                        <tr>
-                            <td>May share data with third parties</td>
-                            <td class="yes">✗ No</td>
-                            <td class="no">✓ Yes<sup>*</sup></td>
-                            <td class="yes">✗ No<sup>*</sup></td>
-                            <td class="yes">✗ No<sup>*</sup></td>
-                        </tr>
-                        <tr>
-                            <td>Selective app muting</td>
-                            <td class="yes">✓ Yes</td>
-                            <td class="yes">✓ Yes</td>
-                            <td class="yes">✓ Yes</td>
-                            <td class="yes">✓ Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Custom profiles</td>
-                            <td class="yes">✓ Yes</td>
-                            <td class="partial">⚠ Limited</td>
-                            <td class="partial">⚠ Limited</td>
-                            <td class="partial">⚠ Limited</td>
-                        </tr>
-                        <tr>
-                            <td>Privacy-first design</td>
-                            <td class="yes">✓ Yes</td>
-                            <td class="no">✗ No</td>
-                            <td class="partial">⚠ Partial</td>
-                            <td class="no">✗ No</td>
-                        </tr>
+                        <tr><td>Mute specific apps only</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
+                        <tr><td>Multiple saved profiles</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
+                        <tr><td>Per-profile app selection</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
+                        <tr><td>Automatic scheduling</td><td class="yes">✓ Pro</td><td class="partial">⚠ Limited</td></tr>
+                        <tr><td>Distraction statistics</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
+                        <tr><td>Quick Settings tile</td><td class="yes">✓ Yes</td><td class="yes">✓ Yes</td></tr>
+                        <tr><td>No ads</td><td class="yes">✓ Always</td><td class="yes">✓ N/A</td></tr>
                     </tbody>
                 </table>
-            </div>
-            <p class="table-disclaimer"><sup>*</sup> Per their publicly available privacy policies as of April 2026. Features and policies may change. <a href="privacy-policy.html">Read Permly's Privacy Policy.</a></p>
-        </section>
+            </section>
 
-        <!-- Use Cases -->
-        <section class="card" aria-labelledby="usecases-heading">
-            <h2 id="usecases-heading">Built for Real Situations</h2>
-            <p class="section-subtitle">One app, infinite focus scenarios.</p>
-            <div class="use-cases">
-                <div class="use-case">
-                    <h4>Work Mode</h4>
-                    <p>Mute social media, games, and shopping apps during work hours. Keep Slack, email, and calls through.</p>
+            <!-- Competitor Comparison -->
+            <section class="section-card" id="competitors" aria-labelledby="competitors-heading">
+                <h2 id="competitors-heading">How Permly Compares</h2>
+                <p class="section-subtitle">Looking for an AppBlock, BuzzKill, or FilterBox alternative? Here's how they stack up.</p>
+                <div class="compare-scroll">
+                    <div class="compare-grid" role="table" aria-label="Permly vs competitors comparison">
+                        <!-- Header row -->
+                        <div class="c-cell c-head" role="columnheader">Feature</div>
+                        <div class="c-cell c-head permly" role="columnheader">Permly</div>
+                        <div class="c-cell c-head" role="columnheader">AppBlock</div>
+                        <div class="c-cell c-head" role="columnheader">BuzzKill</div>
+                        <div class="c-cell c-head" role="columnheader">FilterBox</div>
+                        <!-- Rows -->
+                        <div class="compare-row" role="row">
+                            <div class="c-cell c-feature" role="cell">Reads notification content</div>
+                            <div class="c-cell c-val permly val-good" role="cell">✗ Never</div>
+                            <div class="c-cell c-val val-bad" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-bad" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-bad" role="cell">✓ Yes</div>
+                        </div>
+                        <div class="compare-row" role="row">
+                            <div class="c-cell c-feature" role="cell">Free tier available</div>
+                            <div class="c-cell c-val permly val-good" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-good" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-bad" role="cell">✗ Paid</div>
+                            <div class="c-cell c-val val-good" role="cell">✓ Yes</div>
+                        </div>
+                        <div class="compare-row" role="row">
+                            <div class="c-cell c-feature" role="cell">Contains ads</div>
+                            <div class="c-cell c-val permly val-good" role="cell">✗ Never</div>
+                            <div class="c-cell c-val val-bad" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-good" role="cell">✗ No</div>
+                            <div class="c-cell c-val val-bad" role="cell">✓ Yes</div>
+                        </div>
+                        <div class="compare-row" role="row">
+                            <div class="c-cell c-feature" role="cell">May share data with third parties</div>
+                            <div class="c-cell c-val permly val-good" role="cell">✗ No</div>
+                            <div class="c-cell c-val val-bad" role="cell">✓ Yes<sup>*</sup></div>
+                            <div class="c-cell c-val val-good" role="cell">✗ No<sup>*</sup></div>
+                            <div class="c-cell c-val val-good" role="cell">✗ No<sup>*</sup></div>
+                        </div>
+                        <div class="compare-row" role="row">
+                            <div class="c-cell c-feature" role="cell">Selective app muting</div>
+                            <div class="c-cell c-val permly val-good" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-good" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-good" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-good" role="cell">✓ Yes</div>
+                        </div>
+                        <div class="compare-row" role="row">
+                            <div class="c-cell c-feature" role="cell">Custom profiles</div>
+                            <div class="c-cell c-val permly val-good" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-mid" role="cell">⚠ Limited</div>
+                            <div class="c-cell c-val val-mid" role="cell">⚠ Limited</div>
+                            <div class="c-cell c-val val-mid" role="cell">⚠ Limited</div>
+                        </div>
+                        <div class="compare-row" role="row">
+                            <div class="c-cell c-feature" role="cell">Privacy-first design</div>
+                            <div class="c-cell c-val permly val-good" role="cell">✓ Yes</div>
+                            <div class="c-cell c-val val-bad" role="cell">✗ No</div>
+                            <div class="c-cell c-val val-mid" role="cell">⚠ Partial</div>
+                            <div class="c-cell c-val val-bad" role="cell">✗ No</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="use-case">
-                    <h4>Sleep Mode</h4>
-                    <p>Block everything at night except emergency contacts and critical apps.</p>
-                </div>
-                <div class="use-case">
-                    <h4>Focus Sessions</h4>
-                    <p>Deep work, studying, or creative sessions without a single interruption.</p>
-                </div>
-                <div class="use-case">
-                    <h4>Family Time</h4>
-                    <p>Silence work apps and social media. Stay reachable only to who matters.</p>
-                </div>
-                <div class="use-case">
-                    <h4>Meetings</h4>
-                    <p>No embarrassing buzzes. No distractions. Just the meeting.</p>
-                </div>
-                <div class="use-case">
-                    <h4>Privacy Mode</h4>
-                    <p>Mute sensitive apps (dating, banking, health) in shared or public environments.</p>
-                </div>
-            </div>
-        </section>
+                <p class="table-disclaimer"><sup>*</sup> Per their publicly available privacy policies as of April 2026. Features and policies may change. <a href="privacy-policy.html">Read Permly's Privacy Policy.</a></p>
+            </section>
 
-        <!-- Pricing -->
-        <section class="card" aria-labelledby="pricing-heading">
-            <h2 id="pricing-heading">Simple, Honest Pricing</h2>
-            <p class="section-subtitle">No ads in any tier. No dark patterns. No pressure.</p>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="plan-name">Free</div>
-                    <div class="plan-price">$0</div>
-                    <div class="plan-period">forever</div>
-                    <ul>
-                        <li>Up to 3 custom profiles</li>
-                        <li>Unlimited apps per profile</li>
-                        <li>One-tap activation</li>
-                        <li>Quick Settings tile</li>
-                        <li>7-day statistics</li>
-                        <li>No ads, no tracking</li>
-                    </ul>
+            <!-- Use Cases -->
+            <section class="section-card" id="usecases" aria-labelledby="usecases-heading">
+                <h2 id="usecases-heading">Built for Real Situations</h2>
+                <p class="section-subtitle">One app, infinite focus scenarios.</p>
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <div class="use-case-top">
+                            <div class="use-case-accent">Productivity</div>
+                            <div class="use-case-title">Work Mode</div>
+                        </div>
+                        <div class="use-case-bottom"><p>Mute social media, games, and shopping apps during work hours. Keep Slack, email, and calls through.</p></div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-top">
+                            <div class="use-case-accent">Rest</div>
+                            <div class="use-case-title">Sleep Mode</div>
+                        </div>
+                        <div class="use-case-bottom"><p>Block everything at night except emergency contacts and critical apps.</p></div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-top">
+                            <div class="use-case-accent">Deep Work</div>
+                            <div class="use-case-title">Focus Sessions</div>
+                        </div>
+                        <div class="use-case-bottom"><p>Deep work, studying, or creative sessions without a single interruption.</p></div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-top">
+                            <div class="use-case-accent">Presence</div>
+                            <div class="use-case-title">Family Time</div>
+                        </div>
+                        <div class="use-case-bottom"><p>Silence work apps and social media. Stay reachable only to who matters.</p></div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-top">
+                            <div class="use-case-accent">Professional</div>
+                            <div class="use-case-title">Meetings</div>
+                        </div>
+                        <div class="use-case-bottom"><p>No embarrassing buzzes. No distractions. Just the meeting.</p></div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-top">
+                            <div class="use-case-accent">Discretion</div>
+                            <div class="use-case-title">Privacy Mode</div>
+                        </div>
+                        <div class="use-case-bottom"><p>Mute sensitive apps (dating, banking, health) in shared or public environments.</p></div>
+                    </div>
                 </div>
-                <div class="pricing-card featured">
-                    <div class="plan-name">Pro — Monthly</div>
-                    <div class="plan-price">$1.99</div>
-                    <div class="plan-period">per month, cancel anytime</div>
-                    <ul>
-                        <li>Unlimited profiles</li>
-                        <li>Full statistics history</li>
-                        <li>Automatic scheduling</li>
-                        <li>Priority support</li>
-                        <li>All future features</li>
-                        <li>No ads, no tracking</li>
-                    </ul>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="plan-name">Pro — Lifetime</div>
-                    <div class="plan-price">$29.99</div>
-                    <div class="plan-period">one-time, yours forever</div>
-                    <ul>
-                        <li>Unlimited profiles</li>
-                        <li>Full statistics history</li>
-                        <li>Automatic scheduling</li>
-                        <li>Priority support</li>
-                        <li>All future features</li>
-                        <li>No ads, no tracking</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <footer>
-            <div class="links">
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-of-service.html">Terms of Service</a>
-                <a href="support.html">Support</a>
-            </div>
-            <p>&copy; 2026 Permly. All rights reserved.</p>
-        </footer>
+            <!-- Pricing -->
+            <section class="section-card" id="pricing" aria-labelledby="pricing-heading">
+                <h2 id="pricing-heading">Simple, Honest Pricing</h2>
+                <p class="section-subtitle">No ads in any tier. No dark patterns. No pressure.</p>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="plan-name">Free</div>
+                        <div class="plan-price">$0</div>
+                        <div class="plan-period">forever</div>
+                        <ul>
+                            <li>Up to 3 custom profiles</li>
+                            <li>Unlimited apps per profile</li>
+                            <li>One-tap activation</li>
+                            <li>Quick Settings tile</li>
+                            <li>7-day statistics</li>
+                            <li>No ads, no tracking</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured-monthly">
+                        <div class="plan-name">Pro — Monthly</div>
+                        <div class="plan-price">$1.99</div>
+                        <div class="plan-period">per month, cancel anytime</div>
+                        <ul>
+                            <li>Unlimited profiles</li>
+                            <li>Full statistics history</li>
+                            <li>Automatic scheduling</li>
+                            <li>Priority support</li>
+                            <li>All future features</li>
+                            <li>No ads, no tracking</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured-lifetime">
+                        <div class="best-value-badge">Best Value</div>
+                        <div class="plan-name">Pro — Lifetime</div>
+                        <div class="plan-price">$29.99</div>
+                        <div class="plan-period">one-time, yours forever</div>
+                        <ul>
+                            <li>Unlimited profiles</li>
+                            <li>Full statistics history</li>
+                            <li>Automatic scheduling</li>
+                            <li>Priority support</li>
+                            <li>All future features</li>
+                            <li>No ads, no tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </div>
+
+    <footer>
+        <div class="footer-brand">
+            <div class="footer-brand-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
+            </div>
+            <span class="footer-brand-name">Permly</span>
+        </div>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+        </div>
+        <p>&copy; 2026 Permly. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Drag-to-scroll on screenshot carousel
+        (function() {
+            var el = document.querySelector('.screenshot-carousel');
+            if (!el) return;
+            var isDown = false, startX, scrollLeft;
+            el.style.cursor = 'grab';
+            el.addEventListener('mousedown', function(e) {
+                isDown = true;
+                el.style.cursor = 'grabbing';
+                startX = e.pageX - el.offsetLeft;
+                scrollLeft = el.scrollLeft;
+            });
+            el.addEventListener('mouseleave', function() { isDown = false; el.style.cursor = 'grab'; });
+            el.addEventListener('mouseup',    function() { isDown = false; el.style.cursor = 'grab'; });
+            el.addEventListener('mousemove',  function(e) {
+                if (!isDown) return;
+                e.preventDefault();
+                var x = e.pageX - el.offsetLeft;
+                el.scrollLeft = scrollLeft - (x - startX) * 1.4;
+            });
+        })();
+    </script>
 </body>
 </html>
