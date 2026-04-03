@@ -1172,20 +1172,32 @@
             if (!el) return;
             var isDown = false, startX, scrollLeft;
             el.style.cursor = 'grab';
+            var moved = false;
             el.addEventListener('mousedown', function(e) {
-                isDown = true;
+                e.preventDefault(); // stops native image drag from stealing events
+                isDown = true; moved = false;
                 el.style.cursor = 'grabbing';
-                startX = e.pageX - el.offsetLeft;
+                el.style.userSelect = 'none';
+                el.style.scrollSnapType = 'none';
+                startX = e.clientX;
                 scrollLeft = el.scrollLeft;
             });
-            el.addEventListener('mouseleave', function() { isDown = false; el.style.cursor = 'grab'; });
-            el.addEventListener('mouseup',    function() { isDown = false; el.style.cursor = 'grab'; });
-            el.addEventListener('mousemove',  function(e) {
+            document.addEventListener('mouseup', function() {
                 if (!isDown) return;
-                e.preventDefault();
-                var x = e.pageX - el.offsetLeft;
-                el.scrollLeft = scrollLeft - (x - startX) * 1.4;
+                isDown = false;
+                el.style.cursor = 'grab';
+                el.style.userSelect = '';
+                setTimeout(function() { el.style.scrollSnapType = ''; }, 50);
             });
+            document.addEventListener('mousemove', function(e) {
+                if (!isDown) return;
+                var dx = e.clientX - startX;
+                if (Math.abs(dx) > 4) moved = true;
+                el.scrollLeft = scrollLeft - dx;
+            });
+            el.addEventListener('click', function(e) {
+                if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+            }, true);
         })();
     </script>
 </body>
