@@ -8,7 +8,7 @@
 
 [![Google Play](https://img.shields.io/badge/Google_Play-Download_Now-3DDC84?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.permly)
 [![License](https://img.shields.io/badge/License-Proprietary-blue?style=for-the-badge)](LICENSE)
-[![Support](https://img.shields.io/badge/Support-Contact_Us-6650a4?style=for-the-badge)](https://zartof23.github.io/permly-public/support.html)
+[![Support](https://img.shields.io/badge/Support-Contact_Us-6650a4?style=for-the-badge)](https://permly.app/support.html)
 
 [Features](#features) • [Download](#download) • [Support](#support) • [Privacy](#privacy)
 
@@ -70,7 +70,7 @@ Your privacy is a constraint, not a feature:
 - **No ads** — in any tier, ever
 - **Minimum permissions** — only what is strictly required to function
 
-Read the full [Privacy Policy](https://zartof23.github.io/permly-public/privacy-policy.html).
+Read the full [Privacy Policy](https://permly.app/privacy-policy.html).
 
 ---
 
@@ -110,15 +110,15 @@ Read the full [Privacy Policy](https://zartof23.github.io/permly-public/privacy-
 ## Support
 
 - **Email**: [zartofapp@gmail.com](mailto:zartofapp@gmail.com)
-- **Support Page**: [Visit Support & FAQ](https://zartof23.github.io/permly-public/support.html)
+- **Support Page**: [Visit Support & FAQ](https://permly.app/support.html)
 - **Bug Reports**: [GitHub Issues](https://github.com/Zartof23/permly-public/issues)
 
 ---
 
 ## Legal
 
-- [Privacy Policy](https://zartof23.github.io/permly-public/privacy-policy.html)
-- [Terms of Service](https://zartof23.github.io/permly-public/terms-of-service.html)
+- [Privacy Policy](https://permly.app/privacy-policy.html)
+- [Terms of Service](https://permly.app/terms-of-service.html)
 
 ---
 
@@ -137,16 +137,6 @@ Built with Kotlin & Jetpack Compose, Material Design 3, and the Android Notifica
 
 ---
 
-## Roadmap
-
-Upcoming Pro features:
-- Backup & restore profiles
-- Home screen widget
-- Whitelist mode (block all except selected apps)
-- Profile sync across devices
-
----
-
 ## License
 
 Permly is proprietary software. All rights reserved.
@@ -159,6 +149,6 @@ This repository hosts the public-facing website and documentation. The app sourc
 
 **Your Focus Guardian — Only what matters, when it matters.**
 
-[Download on Google Play](https://play.google.com/store/apps/details?id=com.permly) • [Privacy Policy](https://zartof23.github.io/permly-public/privacy-policy.html) • [Support](https://zartof23.github.io/permly-public/support.html)
+[Download on Google Play](https://play.google.com/store/apps/details?id=com.permly) • [Privacy Policy](https://permly.app/privacy-policy.html) • [Support](https://permly.app/support.html)
 
 </div>

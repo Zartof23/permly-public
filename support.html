@@ -14,12 +14,19 @@
     <meta property="og:title" content="Permly Support & FAQ">
     <meta property="og:description" content="Get help with Permly — Android notification manager. FAQs, troubleshooting, and contact information.">
     <meta property="og:site_name" content="Permly">
-    <link rel="icon" href="assets/icon.png" type="image/png">
+    <meta property="og:image" content="https://permly.app/assets/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://permly.app/assets/logo.png">
+    <meta name="application-name" content="Permly">
+    <link rel="icon" href="assets/icon.png" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="assets/icon.png">
+    <link rel="preload" as="image" href="assets/icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
     <script type="application/ld+json">
     {
@@ -46,7 +53,7 @@
             --border-indigo: #C7D2FE;
             --text-primary: #111827;
             --text-secondary: #4B5563;
-            --text-muted: #9CA3AF;
+            --text-muted: #6B7280;
         }
         html { scroll-behavior: smooth; }
         body {
@@ -332,7 +339,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
                 Download
             </a>
-            <button class="topnav-hamburger" aria-label="Toggle menu" onclick="document.getElementById('topnav-links').classList.toggle('open')">
+            <button class="topnav-hamburger" aria-label="Toggle menu" aria-expanded="false" onclick="var m=document.getElementById('topnav-links'); m.classList.toggle('open'); this.setAttribute('aria-expanded', m.classList.contains('open'))">
                 <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </button>
         </div>
@@ -450,6 +457,7 @@
                                 <tr><td>Support</td><td>Community</td><td>Priority</td></tr>
                             </tbody>
                         </table>
+                        <p style="margin-top:12px;">See full pricing details on the <a href="index.html#pricing">Permly pricing page</a> or <a href="https://play.google.com/store/apps/details?id=com.permly">download Permly on Google Play</a>.</p>
                     </div>
                 </div>
 
@@ -627,6 +635,7 @@
             <a href="index.html">Home</a>
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms-of-service.html">Terms of Service</a>
+            <a href="support.html" aria-current="page">Support</a>
         </div>
         <p>&copy; 2026 Permly. All rights reserved.</p>
     </footer>
