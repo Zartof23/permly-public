@@ -43,6 +43,8 @@ permly-public/
 ├── privacy-policy.html        # Privacy Policy (required by Play Store)
 ├── terms-of-service.html      # Terms of Service (required for IAP)
 ├── support.html               # Support page with FAQs
+├── .well-known/
+│   └── assetlinks.json        # Android App Links verification (Digital Asset Links)
 └── assets/                    # Images, logos, etc.
     ├── icon.png
     ├── screenshots/

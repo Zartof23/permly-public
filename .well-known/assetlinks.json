@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.permly",
+      "sha256_cert_fingerprints": [
+        "D8:2C:E3:E8:01:96:5E:BB:70:82:9C:31:C1:D4:FB:F5:14:62:A6:E2:ED:1C:42:54:D1:6A:94:DE:32:26:D7:B3"
+      ]
+    }
+  }
+]
