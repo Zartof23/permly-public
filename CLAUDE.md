@@ -302,26 +302,38 @@ All links to the Play Store must include UTM parameters for conversion tracking.
 | Parameter | Value |
 |-----------|-------|
 | `utm_source` | `permly_website` |
-| `utm_campaign` | `download_cta` |
+| `utm_campaign` | `download_cta` (free/general) or `upgrade_cta` (paid plans) |
 | `utm_medium` | *(depends on placement — see table below)* |
+| `utm_content` | *(depends on plan — see table below; omit if not a pricing CTA)* |
 
-**`utm_medium` values by placement**:
+**Placement table**:
 
-| Placement | `utm_medium` | Files |
-|-----------|-------------|-------|
-| Top navigation bar CTA ("Download" button) | `navbar` | all pages |
-| Hero section primary CTA button | `hero` | `index.html` |
-| Inline text link inside body content | `inline` | `support.html` |
+| Placement | `utm_medium` | `utm_campaign` | `utm_content` | Files |
+|-----------|-------------|----------------|---------------|-------|
+| Top navigation bar CTA ("Download" button) | `navbar` | `download_cta` | *(omit)* | all pages |
+| Hero section primary CTA button | `hero` | `download_cta` | *(omit)* | `index.html` |
+| Inline text link inside body content | `inline` | `download_cta` | *(omit)* | `support.html` |
+| Pricing card — Free tier | `pricing` | `download_cta` | `free` | `open.html` |
+| Pricing card — Monthly tier | `pricing` | `upgrade_cta` | `monthly` | `upgrade.html` |
+| Pricing card — Yearly tier | `pricing` | `upgrade_cta` | `yearly` | `upgrade.html` |
+| Pricing card — Lifetime tier | `pricing` | `upgrade_cta` | `lifetime` | `upgrade.html` |
+
+Note: pricing CTAs route through `/open` and `/upgrade` (App Link pages) and pass UTM values via the `referrer=` parameter (Play Install Referrer API), not as direct query params.
 
 **Full example** (navbar):
 ```
 https://play.google.com/store/apps/details?id=com.permly&utm_source=permly_website&utm_medium=navbar&utm_campaign=download_cta
 ```
 
+**Full example** (pricing — lifetime, via referrer):
+```
+https://play.google.com/store/apps/details?id=com.permly&referrer=utm_source%3Dpermly_website%26utm_medium%3Dpricing%26utm_campaign%3Dupgrade_cta%26utm_content%3Dlifetime
+```
+
 **When adding a new Play Store link**:
-1. Pick the appropriate `utm_medium` from the table above (or add a new row if it's a new placement type)
-2. Keep `utm_source` and `utm_campaign` unchanged
-3. Update this table if you introduce a new `utm_medium` value
+1. Pick the appropriate row from the table above (or add a new row if it's a new placement type)
+2. Keep `utm_source` unchanged
+3. Update this table if you introduce a new `utm_medium`, `utm_campaign`, or `utm_content` value
 
 ---
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Upgrade Permly</title>
+<meta name="robots" content="noindex">
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0B0F1A; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 24px; box-sizing: border-box; }
+  .card { max-width: 380px; }
+  .icon { width: 80px; height: 80px; border-radius: 20px; margin: 0 auto 20px; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 10px; }
+  p { font-size: 0.95rem; color: rgba(255,255,255,0.6); margin: 0 0 28px; line-height: 1.5; }
+  .badge { display: inline-block; }
+  .badge img { height: 52px; }
+  .home { display: block; margin-top: 20px; font-size: 0.8rem; color: rgba(255,255,255,0.35); text-decoration: none; }
+  .home:hover { color: rgba(255,255,255,0.6); }
+</style>
+<script>
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var plan = params.get('plan') || 'monthly';
+    var allowed = ['monthly', 'yearly', 'lifetime'];
+    if (allowed.indexOf(plan) === -1) plan = 'monthly';
+
+    var storeUrl =
+      'https://play.google.com/store/apps/details?id=com.permly' +
+      '&referrer=utm_source%3Dpermly_website' +
+      '%26utm_medium%3Dpricing' +
+      '%26utm_campaign%3Dupgrade_cta' +
+      '%26utm_content%3D' + encodeURIComponent(plan);
+
+    var ua = navigator.userAgent || '';
+    if (/Android/i.test(ua)) {
+      window.location.replace(storeUrl);
+    } else {
+      // Populate the fallback badge link
+      document.addEventListener('DOMContentLoaded', function() {
+        var link = document.getElementById('store-link');
+        if (link) link.href = storeUrl;
+      });
+    }
+  })();
+</script>
+</head>
+<body>
+<div class="card">
+  <img src="assets/icon.png" alt="Permly icon" class="icon">
+  <h1>Permly is for Android</h1>
+  <p>Upgrade to Pro inside the app after downloading from the Google Play Store.</p>
+  <a class="badge" id="store-link" href="https://play.google.com/store/apps/details?id=com.permly" aria-label="Get Permly on Google Play">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+  </a>
+  <a href="/#pricing" class="home">Back to pricing</a>
+</div>
+</body>
+</html>

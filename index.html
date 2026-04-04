@@ -759,6 +759,30 @@
             gap: 9px;
         }
         .pricing-card ul li:last-child { border-bottom: none; }
+        .pricing-cta {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .pricing-cta-free {
+            background: var(--surface-alt);
+            color: var(--indigo);
+            border: 1.5px solid var(--border-indigo);
+        }
+        .pricing-cta-free:hover { background: #EEF2FF; }
+        .pricing-cta-pro {
+            background: var(--indigo);
+            color: #fff;
+            border: 1.5px solid transparent;
+        }
+        .pricing-cta-pro:hover { background: var(--indigo-light); box-shadow: 0 4px 14px rgba(79,70,229,0.35); }
+        .pricing-cta ul li:last-child { border-bottom: none; }
         .pricing-card ul li::before {
             content: '';
             flex-shrink: 0;
@@ -1166,6 +1190,7 @@
                             <li>7-day statistics</li>
                             <li>No ads, no tracking</li>
                         </ul>
+                        <a href="/open" class="pricing-cta pricing-cta-free">Get Started Free</a>
                     </div>
                     <div class="pricing-card featured-monthly">
                         <div class="plan-name">Pro</div>
@@ -1180,6 +1205,7 @@
                             <li>All future features</li>
                             <li>No ads, no tracking</li>
                         </ul>
+                        <a href="/upgrade?plan=monthly" id="pro-cta" class="pricing-cta pricing-cta-pro">Upgrade to Pro</a>
                     </div>
                     <div class="pricing-card featured-lifetime">
                         <div class="best-value-badge">Best Value</div>
@@ -1195,6 +1221,7 @@
                             <li>All future features</li>
                             <li>No ads, no tracking</li>
                         </ul>
+                        <a href="/upgrade?plan=lifetime" class="pricing-cta pricing-cta-pro">Get Lifetime Access</a>
                     </div>
                 </div>
             </section>
@@ -1228,6 +1255,9 @@
             document.getElementById('btn-yearly').classList.toggle('active', yearly);
             document.getElementById('btn-monthly').setAttribute('aria-pressed', String(!yearly));
             document.getElementById('btn-yearly').setAttribute('aria-pressed', String(yearly));
+            document.getElementById('pro-cta').href = yearly
+                ? '/upgrade?plan=yearly'
+                : '/upgrade?plan=monthly';
         }
 
         // Drag-to-scroll and keyboard navigation on screenshot carousel
