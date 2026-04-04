@@ -293,6 +293,36 @@ This website fulfills Play Store requirements:
 - Terms of Service: Link from subscription screen
 - Support: Link from help/about screen
 
+### Google Play Store Links (UTM)
+
+All links to the Play Store must include UTM parameters for conversion tracking. Use the values below — do not invent new ones without updating this table.
+
+**Base URL**: `https://play.google.com/store/apps/details?id=com.permly`
+
+| Parameter | Value |
+|-----------|-------|
+| `utm_source` | `permly_website` |
+| `utm_campaign` | `download_cta` |
+| `utm_medium` | *(depends on placement — see table below)* |
+
+**`utm_medium` values by placement**:
+
+| Placement | `utm_medium` | Files |
+|-----------|-------------|-------|
+| Top navigation bar CTA ("Download" button) | `navbar` | all pages |
+| Hero section primary CTA button | `hero` | `index.html` |
+| Inline text link inside body content | `inline` | `support.html` |
+
+**Full example** (navbar):
+```
+https://play.google.com/store/apps/details?id=com.permly&utm_source=permly_website&utm_medium=navbar&utm_campaign=download_cta
+```
+
+**When adding a new Play Store link**:
+1. Pick the appropriate `utm_medium` from the table above (or add a new row if it's a new placement type)
+2. Keep `utm_source` and `utm_campaign` unchanged
+3. Update this table if you introduce a new `utm_medium` value
+
 ---
 
 ## 🔄 Version Control
