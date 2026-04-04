@@ -18,9 +18,9 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://permly.app/assets/logo.png">
     <meta name="application-name" content="Permly">
-    <link rel="icon" href="/assets/icon.png" type="image/png" sizes="512x512">
-    <link rel="apple-touch-icon" href="/assets/icon.png">
-    <link rel="preload" as="image" href="/assets/icon.png">
+    <link rel="icon" href="/assets/icon.png?v=1" type="image/png" sizes="512x512">
+    <link rel="apple-touch-icon" href="/assets/icon.png?v=1">
+    <link rel="preload" as="image" href="/assets/icon.png?v=1">
 
     <script type="application/ld+json">
     {
@@ -236,7 +236,7 @@
         .footer-brand-icon svg { width: 18px; height: 18px; fill: rgba(165,180,252,0.8); }
         .footer-brand-name { font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.75); }
         .footer-links { display: flex; gap: 32px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
-        .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+        .footer-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-weight: 500; transition: color 0.15s; }
         .footer-links a:hover { color: white; }
 
         @media (max-width: 700px) {
@@ -251,7 +251,10 @@
     <nav class="topnav" aria-label="Main navigation">
         <div class="topnav-inner">
             <a href="/" class="topnav-logo" aria-label="Permly home">
-                <img src="/assets/icon.png" alt="" class="topnav-logo-img" aria-hidden="true">
+                <picture>
+                    <source type="image/webp" srcset="/assets/icon-64.webp?v=1">
+                    <img src="/assets/icon.png?v=1?v=1" alt="" class="topnav-logo-img" aria-hidden="true">
+                </picture>
                 <span class="topnav-logo-name">Permly</span>
             </a>
             <div class="topnav-links" id="topnav-links">
@@ -439,7 +442,7 @@
             <a href="/terms-of-service">Terms of Service</a>
             <a href="/support">Support</a>
         </div>
-        <p>&copy; 2026 Permly. All rights reserved.</p>
+        <p style="color:rgba(255,255,255,0.70)">&copy; 2026 Permly. All rights reserved.</p>
     </footer>
 
 </body>
