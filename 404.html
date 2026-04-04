@@ -6,8 +6,8 @@
     <title>Page Not Found — Permly</title>
     <meta name="robots" content="noindex, follow">
     <meta name="theme-color" content="#4F46E5">
-    <link rel="icon" href="/assets/icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="icon" href="/assets/icon.png?v=1" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/icon.png?v=1">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,7 +103,7 @@
 
         p {
             font-size: 0.925rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255,255,255,0.60);
             margin-bottom: 36px;
             line-height: 1.6;
         }
@@ -155,7 +155,10 @@
 <body>
     <div class="card">
         <div class="logo-wrap">
-            <img src="/assets/icon.png" alt="Permly">
+            <picture>
+                <source type="image/webp" srcset="/assets/icon-64.webp?v=1">
+                <img src="/assets/icon.png?v=1" alt="Permly">
+            </picture>
         </div>
         <div class="error-code">404</div>
         <h1>Page Not Found</h1>

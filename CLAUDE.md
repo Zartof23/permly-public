@@ -37,18 +37,21 @@ permly-public/
 ├── README.md                  # Repository overview
 ├── CLAUDE.md                  # This file - AI context
 ├── CNAME                      # Custom domain: permly.app
-├── sitemap.xml                # XML sitemap for search engines
-├── 404.html                   # Custom 404 page
+├── sitemap.xml                # XML sitemap for search engines (index, support, privacy, terms only)
+├── 404.html                   # Custom 404 page (noindex)
 ├── index.html                 # Landing page
+├── open.html                  # App Link redirect → Play Store free download (noindex)
+├── upgrade.html               # App Link redirect → Play Store upgrade (noindex, plan= param)
 ├── privacy-policy.html        # Privacy Policy (required by Play Store)
 ├── terms-of-service.html      # Terms of Service (required for IAP)
 ├── support.html               # Support page with FAQs
 ├── .well-known/
 │   └── assetlinks.json        # Android App Links verification (Digital Asset Links)
 └── assets/                    # Images, logos, etc.
-    ├── icon.png
+    ├── icon.png               # 512×512 source icon
+    ├── icon-64.webp           # 64×64 WebP for navbar (2× retina at 30 px display)
     ├── screenshots/
-    │   ├── phone/
+    │   ├── phone/             # PNG originals + -400w.webp / -800w.webp WebP variants
     │   └── tablet/
     └── logo.png
 ```
@@ -83,9 +86,16 @@ permly-public/
 - When contact information changes
 - When new features are released
 
+**open.html / upgrade.html**:
+- These are App Link redirect pages — they immediately redirect Android users to the Play Store
+- Both are `noindex` and must NOT be added to `sitemap.xml`
+- `open.html` handles the free-tier CTA; `upgrade.html` reads a `?plan=` query param (monthly/yearly/lifetime)
+- Update only if Play Store URL or UTM parameters change
+
 **sitemap.xml**:
 - Update `<lastmod>` dates whenever any page content changes
-- All four URLs must always be present
+- Contains exactly four indexable URLs: home, support, privacy-policy, terms-of-service
+- Do NOT add 404, open, or upgrade — they are all `noindex`
 
 ### Update Protocol
 
@@ -263,8 +273,12 @@ This website fulfills Play Store requirements:
 - `<link rel="preload" as="image">` for hero icon
 - Open Graph + Twitter Card meta on all pages
 - Schema.org structured data: `SoftwareApplication` (index), `FAQPage` (support), `WebPage` (privacy, terms)
-- `sitemap.xml` with all four URLs
+- `sitemap.xml` with all four indexable URLs (home, support, privacy-policy, terms-of-service)
 - `--text-muted` is `#6B7280` — do not use `#9CA3AF` or lighter (fails WCAG AA contrast)
+- All asset image URLs include `?v=1` version query string for cache busting — increment when images change
+- Carousel screenshots use `<picture>` with WebP `srcset` (400w/800w) + PNG fallback; `sizes="(max-width: 600px) 175px, 270px"`
+- Navbar icon uses `<picture>` with `icon-64.webp` WebP source + `icon.png` fallback on all pages
+- When adding new screenshots: generate `-400w.webp` and `-800w.webp` variants, add to `assets/screenshots/phone/`, use `<picture>` pattern
 
 ### Accessibility
 - All hamburger buttons have `aria-expanded` toggled by JS
@@ -272,6 +286,8 @@ This website fulfills Play Store requirements:
 - Sidenav labels visible on `:focus-within`
 - Footer links include `aria-current="page"` on the current page link
 - Competitor comparison grid uses `role="region"` (not `role="table"`) because `display:contents` on rows breaks ARIA table semantics
+- `index.html` wraps all page content between `<nav>` and `<footer>` in a `<main>` element
+- Footer links use `color: rgba(255,255,255,0.70)` minimum on dark backgrounds (0.55 fails WCAG AA)
 
 ---
 
