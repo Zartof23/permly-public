@@ -191,7 +191,7 @@ When updating content, remember:
 ### Contact Points
 - **Email**: zartofapp@gmail.com
 - **GitHub Issues**: For bug reports and feature requests
-- **Support Page**: https://permly.app/support.html
+- **Support Page**: https://permly.app/support
 
 ### Response Guidelines
 - Email support: Respond within 48 hours
@@ -204,7 +204,7 @@ When updating content, remember:
 
 This repository uses **GitHub Pages** with a custom domain.
 
-- **Live URL**: `https://permly.app/`
+- **Live URL**: `https://permly.app`
 - **Custom domain**: configured via `CNAME` file
 - **Deploy**: push to `main` branch → GitHub Pages auto-deploys
 
@@ -232,15 +232,15 @@ Before committing changes:
 This website fulfills Play Store requirements:
 
 ✅ **Privacy Policy** (Required)
-- URL: `https://permly.app/privacy-policy.html`
+- URL: `https://permly.app/privacy-policy`
 - Add this URL to Play Console → App content → Privacy Policy
 
 ✅ **Terms of Service** (Required for IAP)
-- URL: `https://permly.app/terms-of-service.html`
+- URL: `https://permly.app/terms-of-service`
 - Reference in app and Play Store listing
 
 ✅ **Support/Contact** (Recommended)
-- URL: `https://permly.app/support.html`
+- URL: `https://permly.app/support`
 - Email: zartofapp@gmail.com
 
 ✅ **Data Deletion Instructions** (Required for data collection)
@@ -278,14 +278,14 @@ This website fulfills Play Store requirements:
 ## 📞 Important URLs
 
 ### Live Site
-- **Home**: `https://permly.app/`
-- **Privacy Policy**: `https://permly.app/privacy-policy.html`
-- **Terms of Service**: `https://permly.app/terms-of-service.html`
-- **Support**: `https://permly.app/support.html`
+- **Home**: `https://permly.app`
+- **Privacy Policy**: `https://permly.app/privacy-policy`
+- **Terms of Service**: `https://permly.app/terms-of-service`
+- **Support**: `https://permly.app/support`
 
 ### Google Play Console
-- **Privacy Policy**: `https://permly.app/privacy-policy.html`
-- **Website**: `https://permly.app/`
+- **Privacy Policy**: `https://permly.app/privacy-policy`
+- **Website**: `https://permly.app`
 - **Support Email**: zartofapp@gmail.com
 
 ### In-App Links
