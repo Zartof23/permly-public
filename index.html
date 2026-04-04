@@ -670,7 +670,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
-            align-items: stretch;
+            align-items: start;
+            padding-top: 16px;
         }
         .pricing-card {
             border: 1.5px solid var(--border);
@@ -683,17 +684,59 @@
             flex-direction: column;
         }
         .pricing-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-3px); }
+
+        /* Featured Pro card — hero treatment */
         .pricing-card.featured-monthly {
+            border-color: var(--indigo);
+            background: white;
+            box-shadow: 0 16px 48px rgba(79,70,229,0.28), 0 4px 16px rgba(79,70,229,0.10);
+            transform: translateY(-12px) scale(1.02);
+            padding: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .pricing-card.featured-monthly:hover {
+            box-shadow: 0 22px 60px rgba(79,70,229,0.35), 0 6px 20px rgba(79,70,229,0.15);
+            transform: translateY(-16px) scale(1.02);
+        }
+        .pricing-card-featured-header {
+            background: linear-gradient(135deg, #4338CA 0%, #7C3AED 100%);
+            padding: 22px 24px 20px;
+            color: white;
+            text-align: center;
+        }
+        .pricing-card-featured-body {
+            padding: 20px 24px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .most-popular-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+        .featured-monthly .plan-name { color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+        .featured-monthly .plan-price { color: white; }
+        .featured-monthly .plan-period { color: rgba(255,255,255,0.78); }
+        .featured-monthly .plan-subperiod { color: rgba(255,255,255,0.6); margin-bottom: 0; min-height: 0; }
+        .pricing-card-featured-body ul { flex: 1; }
+
+        /* Lifetime card — secondary featured */
+        .pricing-card.featured-lifetime {
             border-color: var(--border-indigo);
             background: linear-gradient(160deg, #F5F3FF, #EEF2FF);
-        }
-        .pricing-card.featured-lifetime {
-            border-color: var(--indigo);
-            background: linear-gradient(160deg, #EEF2FF, #E0E7FF);
-            box-shadow: 0 4px 20px rgba(79,70,229,0.15);
             position: relative;
         }
-        .pricing-card.featured-lifetime:hover { box-shadow: 0 12px 36px rgba(79,70,229,0.25); }
+        .pricing-card.featured-lifetime:hover { box-shadow: 0 12px 36px rgba(79,70,229,0.18); }
         .best-value-badge {
             position: absolute;
             top: -13px;
@@ -782,6 +825,25 @@
             border: 1.5px solid transparent;
         }
         .pricing-cta-pro:hover { background: var(--indigo-light); box-shadow: 0 4px 14px rgba(79,70,229,0.35); }
+        .pricing-cta-featured {
+            display: block;
+            margin-top: 20px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #4338CA 0%, #7C3AED 100%);
+            border: none;
+            box-shadow: 0 4px 14px rgba(79,70,229,0.4);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .pricing-cta-featured:hover {
+            box-shadow: 0 6px 20px rgba(79,70,229,0.55);
+            transform: translateY(-1px);
+        }
         .pricing-cta ul li:last-child { border-bottom: none; }
         .pricing-card ul li::before {
             content: '';
@@ -1193,19 +1255,24 @@
                         <a href="/open" class="pricing-cta pricing-cta-free">Get Started Free</a>
                     </div>
                     <div class="pricing-card featured-monthly">
-                        <div class="plan-name">Pro</div>
-                        <div class="plan-price" id="pro-price">$1.99</div>
-                        <div class="plan-period" id="pro-period">per month, cancel anytime</div>
-                        <div class="plan-subperiod" id="pro-subperiod"></div>
-                        <ul>
-                            <li>Unlimited profiles</li>
-                            <li>Full statistics history</li>
-                            <li>Automatic scheduling</li>
-                            <li>Priority support</li>
-                            <li>All future features</li>
-                            <li>No ads, no tracking</li>
-                        </ul>
-                        <a href="/upgrade?plan=monthly" id="pro-cta" class="pricing-cta pricing-cta-pro">Upgrade to Pro</a>
+                        <div class="pricing-card-featured-header">
+                            <span class="most-popular-badge">Most Popular</span>
+                            <div class="plan-name">Pro</div>
+                            <div class="plan-price" id="pro-price">$1.99</div>
+                            <div class="plan-period" id="pro-period">per month, cancel anytime</div>
+                            <div class="plan-subperiod" id="pro-subperiod"></div>
+                        </div>
+                        <div class="pricing-card-featured-body">
+                            <ul>
+                                <li>Unlimited profiles</li>
+                                <li>Full statistics history</li>
+                                <li>Automatic scheduling</li>
+                                <li>Priority support</li>
+                                <li>All future features</li>
+                                <li>No ads, no tracking</li>
+                            </ul>
+                            <a href="/upgrade?plan=monthly" id="pro-cta" class="pricing-cta-featured">Upgrade to Pro</a>
+                        </div>
                     </div>
                     <div class="pricing-card featured-lifetime">
                         <div class="best-value-badge">Best Value</div>
