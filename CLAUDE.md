@@ -348,8 +348,21 @@ https://play.google.com/store/apps/details?id=com.permly&referrer=utm_source%3Dp
 
 **When adding a new Play Store link**:
 1. Pick the appropriate row from the table above (or add a new row if it's a new placement type)
-2. Keep `utm_source` unchanged
+2. Keep `utm_source` unchanged for website links; use the source in the external table below for third-party placements
 3. Update this table if you introduce a new `utm_medium`, `utm_campaign`, or `utm_content` value
+
+### External / Third-Party Play Store Links (UTM)
+
+Links placed on external platforms use a different `utm_source` per platform. All other rules (campaign, content) follow the same conventions as above.
+
+| Platform | `utm_source` | `utm_medium` | `utm_campaign` | Full URL |
+|----------|-------------|--------------|----------------|----------|
+| ProductHunt — product page listing | `producthunt_website` | `product_page` | `download_cta` | `https://play.google.com/store/apps/details?id=com.permly&utm_source=producthunt_website&utm_medium=product_page&utm_campaign=download_cta` |
+
+**When adding a new external platform**:
+1. Use `<platform_name>_website` as `utm_source` (e.g. `reddit_website`, `twitter_website`)
+2. Use a descriptive `utm_medium` that reflects the placement (e.g. `post`, `bio`, `product_page`)
+3. Add a row to the table above
 
 ---
 
