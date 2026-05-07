@@ -1,0 +1,20 @@
+# Permly — Selective Notification Manager for Android
+
+> Permly is a privacy-first Android app that lets you silence specific app notifications using custom profiles (Work, Sleep, Focus, etc.) without blocking everything. No ads, no data collection, no cloud sync — all settings stay on your device. Free to use; Pro unlocks unlimited profiles and extended statistics.
+
+Permly is available on the Google Play Store. It requires Android 8.0 or higher and the Notification Access permission. It does not read notification content — it only acts on notification metadata (which app sent it) to decide whether to suppress it.
+
+## App
+
+- [Permly on Google Play](https://play.google.com/store/apps/details?id=com.permly): Download the free Android app. Supports up to 3 custom notification profiles on the free tier.
+
+## Pages
+
+- [Home](https://permly.app/): Landing page with feature overview, screenshot gallery, pricing plans (Free / Pro Monthly $1.99 / Pro Yearly $14.99 / Pro Lifetime $29.99), and comparison with full-DND solutions.
+- [Support & FAQ](https://permly.app/support): Answers to common questions — how profiles work, how to fix notifications not being blocked, battery optimisation, differences between Free and Pro, and how to contact support.
+- [Privacy Policy](https://permly.app/privacy-policy): Full privacy policy. Permly collects zero personal data. No analytics, no crash reporting, no third-party SDKs. All data (profiles, stats) is stored locally on the device.
+- [Terms of Service](https://permly.app/terms-of-service): Terms covering app usage, in-app purchases, subscription cancellation, and refund policy.
+
+## Optional
+
+- [Privacy Policy](https://permly.app/privacy-policy): Confirms Permly uses only two system permissions — Notification Access (to intercept and suppress notifications) and POST_NOTIFICATIONS (Android 13+ status notification). No internet permission is requested.
