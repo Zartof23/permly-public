@@ -38,6 +38,7 @@ permly-public/
 ├── CLAUDE.md                  # This file - AI context
 ├── CNAME                      # Custom domain: permly.app
 ├── sitemap.xml                # XML sitemap for search engines (index, support, privacy, terms only)
+├── llms.txt                   # LLM/AI discoverability file (https://llmstxt.org spec)
 ├── 404.html                   # Custom 404 page (noindex)
 ├── index.html                 # Landing page
 ├── open.html                  # App Link redirect → Play Store free download (noindex)
@@ -96,6 +97,13 @@ permly-public/
 - Update `<lastmod>` dates whenever any page content changes
 - Contains exactly four indexable URLs: home, support, privacy-policy, terms-of-service
 - Do NOT add 404, open, or upgrade — they are all `noindex`
+
+**llms.txt**:
+- LLM/AI discoverability file served at `https://permly.app/llms.txt` (follows https://llmstxt.org spec)
+- Update when: app description changes, pricing changes, new pages are added, or key facts (permissions, privacy stance) change
+- Structure: H1 app name, blockquote summary, prose description, then `## App` and `## Pages` sections with markdown links
+- Keep in sync with actual pricing in `index.html` and `CLAUDE.md`
+- Do NOT add redirect/noindex pages (open, upgrade, 404)
 
 ### Update Protocol
 
