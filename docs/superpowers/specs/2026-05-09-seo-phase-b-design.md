@@ -67,7 +67,7 @@ Add a short paragraph (2–3 sentences) below the H1, before the CTA buttons:
 This paragraph introduces the key differentiators naturally with keyword density for: "notification blockers", "selective control", "mute specific apps", "profile".
 
 ### JSON-LD schema
-No changes needed now. Add `aggregateRating` once Play Store rating data is available (Phase C or later).
+No changes in this phase. Current Play Store rating is 4.8 stars but with fewer than 20 reviews — Google does not surface the star snippet below that threshold. Add `aggregateRating` (ratingValue: 4.8, ratingCount: actual count) once reviews reach ~20+.
 
 ---
 
