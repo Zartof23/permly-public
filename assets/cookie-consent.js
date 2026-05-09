@@ -71,9 +71,20 @@
   function showBanner() {
     var el = document.getElementById('cookie-banner');
     if (!el) return;
+    el.innerHTML =
+      '<p class="cb-title">🍪 Cookie time (sorry)</p>' +
+      '<p class="cb-body">' +
+        'The necessary ones keep the lights on. The optional ones (Google Analytics) help us ' +
+        'understand if anyone\'s actually reading this. Your choice — no pressure, no guilt trip.' +
+      '</p>' +
+      '<div class="cb-actions">' +
+        '<button class="cb-btn cb-btn-primary" data-accept>Sure, why not</button>' +
+        '<button class="cb-btn cb-btn-secondary" data-customize>Picky mode</button>' +
+      '</div>';
+    el.querySelector('button[data-accept]').addEventListener('click', onAccept);
+    el.querySelector('button[data-customize]').addEventListener('click', showCustomize);
     el.removeAttribute('hidden');
-    var btn = el.querySelector('button[data-accept]');
-    if (btn) btn.focus();
+    el.querySelector('button[data-accept]').focus();
   }
 
   function onAccept() {
@@ -85,12 +96,49 @@
     loadGA4();
   }
 
-  function onDecline() {
+  var _analyticsEnabled = true;
+
+  function showCustomize() {
+    _analyticsEnabled = true;
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    banner.innerHTML =
+      '<p class="cb-title">⚙️ Cookie preferences</p>' +
+      '<p class="cb-subtitle">Choose what you’re comfortable with.</p>' +
+      '<div class="cb-row">' +
+        '<div>' +
+          '<div class="cb-row-label">Necessary</div>' +
+          '<div class="cb-row-desc">Keeps the site working. Non-negotiable.</div>' +
+        '</div>' +
+        '<span class="cb-pill" aria-disabled="true">Always on</span>' +
+      '</div>' +
+      '<div class="cb-row">' +
+        '<div>' +
+          '<div class="cb-row-label">Analytics</div>' +
+          '<div class="cb-row-desc">Google Analytics — helps us know if this page exists to anyone.</div>' +
+        '</div>' +
+        '<button class="cb-toggle" role="switch" aria-checked="true" data-analytics-toggle' +
+          ' aria-label="Analytics cookies"></button>' +
+      '</div>' +
+      '<button class="cb-btn-full" data-confirm>I’m on a cookie diet</button>';
+
+    var toggle = banner.querySelector('button[data-analytics-toggle]');
+    toggle.addEventListener('click', function () {
+      _analyticsEnabled = !_analyticsEnabled;
+      toggle.setAttribute('aria-checked', _analyticsEnabled ? 'true' : 'false');
+    });
+
+    banner.querySelector('button[data-confirm]').addEventListener('click', onConfirmCustomize);
+    toggle.focus();
+  }
+
+  function onConfirmCustomize() {
     var prefs = readPrefs();
     prefs.version = 1;
-    prefs.ga_consent = 'denied';
+    prefs.ga_consent = _analyticsEnabled ? 'granted' : 'denied';
     writePrefs(prefs);
     hideBanner();
+    if (_analyticsEnabled) loadGA4();
   }
 
   // Exposed globally so footer "Cookie Settings" links can call it
@@ -106,31 +154,86 @@
   function injectBanner() {
     var style = document.createElement('style');
     style.textContent = [
+      /* Card */
       '#cookie-banner{',
-        'position:fixed;bottom:0;left:0;right:0;z-index:9999;',
-        'background:#fff;border-top:2px solid #4F46E5;',
-        'padding:16px 24px;',
-        'display:flex;align-items:center;justify-content:space-between;',
-        'flex-wrap:wrap;gap:12px;',
-        'box-shadow:0 -4px 24px rgba(0,0,0,0.12);',
+        'position:fixed;bottom:20px;right:20px;z-index:9999;',
+        'background:#fff;border:2px solid #4F46E5;border-radius:12px;',
+        'padding:18px 20px;width:100%;max-width:320px;',
+        'box-shadow:0 4px 24px rgba(0,0,0,0.14);',
         'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;',
+        'box-sizing:border-box;',
       '}',
       '#cookie-banner[hidden]{display:none!important;}',
-      '#cookie-banner p{margin:0;color:#111827;font-size:0.9em;max-width:640px;line-height:1.5;}',
-      '#cookie-banner a{color:#4F46E5;text-decoration:underline;}',
-      '#cookie-banner .cookie-actions{display:flex;gap:10px;flex-shrink:0;}',
-      '#cookie-banner button{',
-        'padding:10px 22px;border-radius:8px;font-size:0.9em;',
-        'font-weight:600;cursor:pointer;transition:opacity 0.15s;',
-        'border:2px solid #4F46E5;',
+
+      /* Title */
+      '#cookie-banner .cb-title{',
+        'font-size:0.92em;font-weight:700;color:#111827;margin:0 0 6px;',
       '}',
-      '#cookie-banner button:hover{opacity:0.85;}',
-      '#cookie-banner button[data-accept]{background:#4F46E5;color:#fff;}',
-      '#cookie-banner button[data-decline]{background:#fff;color:#4F46E5;}',
-      '@media(max-width:520px){',
-        '#cookie-banner{flex-direction:column;align-items:flex-start;}',
-        '#cookie-banner .cookie-actions{width:100%;justify-content:flex-end;}',
-      '}'
+
+      /* Body text */
+      '#cookie-banner .cb-body{',
+        'font-size:0.78em;color:#4B5563;line-height:1.55;margin:0 0 14px;',
+      '}',
+      '#cookie-banner .cb-body a{color:#4F46E5;text-decoration:underline;}',
+
+      /* Banner action buttons */
+      '#cookie-banner .cb-actions{display:flex;gap:8px;flex-wrap:wrap;}',
+      '#cookie-banner .cb-btn{',
+        'padding:9px 16px;border-radius:8px;font-size:0.82em;',
+        'font-weight:600;cursor:pointer;transition:opacity 0.15s;border:2px solid #4F46E5;',
+        'white-space:nowrap;',
+      '}',
+      '#cookie-banner .cb-btn:hover{opacity:0.85;}',
+      '#cookie-banner .cb-btn-primary{background:#4F46E5;color:#fff;}',
+      '#cookie-banner .cb-btn-secondary{background:#fff;color:#4F46E5;}',
+
+      /* Customize panel rows */
+      '#cookie-banner .cb-subtitle{',
+        'font-size:0.75em;color:#6B7280;margin:0 0 14px;',
+      '}',
+      '#cookie-banner .cb-row{',
+        'display:flex;justify-content:space-between;align-items:center;',
+        'padding:10px 0;border-top:1px solid #E5E7EB;gap:12px;',
+      '}',
+      '#cookie-banner .cb-row-label{font-size:0.8em;font-weight:600;color:#111827;}',
+      '#cookie-banner .cb-row-desc{font-size:0.68em;color:#6B7280;margin-top:2px;}',
+
+      /* Always-on pill */
+      '#cookie-banner .cb-pill{',
+        'background:#E5E7EB;border-radius:20px;padding:3px 10px;',
+        'font-size:0.68em;color:#6B7280;font-weight:600;flex-shrink:0;',
+      '}',
+
+      /* Toggle */
+      '#cookie-banner .cb-toggle{',
+        'width:38px;height:22px;border-radius:11px;',
+        'position:relative;cursor:pointer;flex-shrink:0;',
+        'border:none;padding:0;transition:background 0.2s;',
+        'background:#E5E7EB;',
+      '}',
+      '#cookie-banner .cb-toggle[aria-checked="true"]{background:#4F46E5;}',
+      '#cookie-banner .cb-toggle::after{',
+        'content:"";width:16px;height:16px;background:#fff;border-radius:50%;',
+        'position:absolute;top:3px;left:3px;',
+        'box-shadow:0 1px 3px rgba(0,0,0,0.2);transition:left 0.2s;',
+      '}',
+      '#cookie-banner .cb-toggle[aria-checked="true"]::after{left:19px;}',
+
+      /* Confirm button (full-width) */
+      '#cookie-banner .cb-btn-full{',
+        'width:100%;margin-top:14px;padding:10px;',
+        'border-radius:8px;font-size:0.82em;font-weight:600;',
+        'cursor:pointer;border:none;background:#4F46E5;color:#fff;',
+        'transition:opacity 0.15s;',
+      '}',
+      '#cookie-banner .cb-btn-full:hover{opacity:0.85;}',
+
+      /* Mobile: full-width centered */
+      '@media(max-width:480px){',
+        '#cookie-banner{',
+          'left:12px;right:12px;bottom:12px;max-width:none;width:auto;',
+        '}',
+      '}',
     ].join('');
     document.head.appendChild(style);
 
@@ -141,19 +244,19 @@
     banner.setAttribute('aria-live', 'polite');
     banner.setAttribute('hidden', '');
     banner.innerHTML =
-      '<p>' +
-        'We use cookies to remember your preferences on this website. ' +
-        'Analytics cookies (Google Analytics 4) are only loaded after you accept. ' +
-        '<a href="/privacy-policy#cookie-policy">Cookie Policy</a>' +
+      '<p class="cb-title">🍪 Cookie time (sorry)</p>' +
+      '<p class="cb-body">' +
+        'The necessary ones keep the lights on. The optional ones (Google Analytics) help us ' +
+        'understand if anyone\'s actually reading this. Your choice — no pressure, no guilt trip.' +
       '</p>' +
-      '<div class="cookie-actions">' +
-        '<button data-decline>Decline</button>' +
-        '<button data-accept>Accept</button>' +
+      '<div class="cb-actions">' +
+        '<button class="cb-btn cb-btn-primary" data-accept>Sure, why not</button>' +
+        '<button class="cb-btn cb-btn-secondary" data-customize>Picky mode</button>' +
       '</div>';
-    document.body.appendChild(banner);
 
     banner.querySelector('button[data-accept]').addEventListener('click', onAccept);
-    banner.querySelector('button[data-decline]').addEventListener('click', onDecline);
+    banner.querySelector('button[data-customize]').addEventListener('click', showCustomize);
+    document.body.appendChild(banner);
   }
 
   // ── Init ─────────────────────────────────────────────────────────────────
