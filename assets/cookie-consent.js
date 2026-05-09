@@ -83,6 +83,7 @@
       '</div>';
     el.querySelector('button[data-accept]').addEventListener('click', onAccept);
     el.querySelector('button[data-customize]').addEventListener('click', showCustomize);
+    el.style.maxHeight = '200px';
     el.removeAttribute('hidden');
     el.querySelector('button[data-accept]').focus();
   }
@@ -129,6 +130,7 @@
     });
 
     banner.querySelector('button[data-confirm]').addEventListener('click', onConfirmCustomize);
+    banner.style.maxHeight = '420px';
     toggle.focus();
   }
 
@@ -162,6 +164,7 @@
         'box-shadow:0 4px 24px rgba(0,0,0,0.14);',
         'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;',
         'box-sizing:border-box;',
+        'overflow:hidden;transition:max-height 0.28s ease;max-height:200px;',
       '}',
       '#cookie-banner[hidden]{display:none!important;}',
 
