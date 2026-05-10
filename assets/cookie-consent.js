@@ -1,6 +1,9 @@
 /**
  * Permly Cookie Consent Manager
  *
+ * Uses Google Consent Mode v2: gtag loads immediately with all signals denied,
+ * then updates to 'granted' once the user accepts analytics cookies.
+ *
  * Stores user preferences as JSON in a single cookie ("permly_prefs") with a
  * 6-month expiry. The JSON envelope allows future preference keys to be added
  * without introducing a new cookie.
@@ -11,7 +14,6 @@
 (function () {
   var COOKIE_NAME = 'permly_prefs';
   var COOKIE_DAYS = 180; // 6 months
-  var GA_ID = 'G-YC8B7W3KNN';
 
   // ── Cookie helpers ───────────────────────────────────────────────────────
 
@@ -46,19 +48,15 @@
     writeCookie(COOKIE_NAME, JSON.stringify(prefs), COOKIE_DAYS);
   }
 
-  // ── GA4 loader ───────────────────────────────────────────────────────────
+  // ── Consent update helpers ───────────────────────────────────────────────
 
-  function loadGA4() {
-    if (!GA_ID || GA_ID === 'G-XXXXXXXXXX') return;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', GA_ID);
+  function grantAnalytics() {
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      analytics_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted'
+    });
   }
 
   // ── Banner actions ───────────────────────────────────────────────────────
@@ -94,7 +92,7 @@
     prefs.ga_consent = 'granted';
     writePrefs(prefs);
     hideBanner();
-    loadGA4();
+    grantAnalytics();
   }
 
   var _analyticsEnabled = true;
@@ -105,7 +103,7 @@
     if (!banner) return;
     banner.innerHTML =
       '<p class="cb-title">⚙️ Cookie preferences</p>' +
-      "<p class=\"cb-subtitle\">Choose what you’re comfortable with.</p>" +
+      "<p class=\"cb-subtitle\">Choose what you're comfortable with.</p>" +
       '<div class="cb-row">' +
         '<div>' +
           '<div class="cb-row-label">Necessary</div>' +
@@ -121,7 +119,7 @@
         '<button class="cb-toggle" role="switch" aria-checked="true" data-analytics-toggle' +
           ' aria-label="Analytics cookies"></button>' +
       '</div>' +
-      "<button class=\"cb-btn-full\" data-confirm>I’m on a cookie diet</button>";
+      "<button class=\"cb-btn-full\" data-confirm>I'm on a cookie diet</button>";
 
     var toggle = banner.querySelector('button[data-analytics-toggle]');
     toggle.addEventListener('click', function () {
@@ -140,7 +138,7 @@
     prefs.ga_consent = _analyticsEnabled ? 'granted' : 'denied';
     writePrefs(prefs);
     hideBanner();
-    if (_analyticsEnabled) loadGA4();
+    if (_analyticsEnabled) grantAnalytics();
   }
 
   // Exposed globally so footer "Cookie Settings" links can call it
@@ -268,10 +266,10 @@
     injectBanner();
     var consent = readPrefs().ga_consent;
     if (consent === 'granted') {
-      loadGA4();
+      grantAnalytics();
     } else if (!consent) {
       showBanner();
     }
-    // If "denied", do nothing — GA4 is never loaded
+    // If "denied", consent remains at default (all denied) — no update needed
   });
 })();
