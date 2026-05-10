@@ -104,9 +104,9 @@
     var banner = document.getElementById('cookie-banner');
     if (!banner) return;
     banner.innerHTML =
-      ‘<p class="cb-title">⚙️ Cookie preferences</p>’ +
+      '<p class="cb-title">⚙️ Cookie preferences</p>' +
       "<p class=\"cb-subtitle\">Choose what you’re comfortable with.</p>" +
-      ‘<div class="cb-row">’ +
+      '<div class="cb-row">' +
         '<div>' +
           '<div class="cb-row-label">Necessary</div>' +
           '<div class="cb-row-desc">Keeps the site working. Non-negotiable.</div>' +
@@ -118,9 +118,9 @@
           '<div class="cb-row-label">Analytics</div>' +
           '<div class="cb-row-desc">Google Analytics — helps us know if this page exists to anyone.</div>' +
         '</div>' +
-        ‘<button class="cb-toggle" role="switch" aria-checked="true" data-analytics-toggle’ +
-          ‘ aria-label="Analytics cookies"></button>’ +
-      ‘</div>’ +
+        '<button class="cb-toggle" role="switch" aria-checked="true" data-analytics-toggle' +
+          ' aria-label="Analytics cookies"></button>' +
+      '</div>' +
       "<button class=\"cb-btn-full\" data-confirm>I’m on a cookie diet</button>";
 
     var toggle = banner.querySelector('button[data-analytics-toggle]');
