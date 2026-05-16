@@ -2,6 +2,8 @@
 
 > Permly lets you silence notifications from specific apps using named profiles (Work, Sleep, Focus, etc.) without enabling full Do Not Disturb. Privacy-first: the app never reads notification content, collects no data, and requires no internet connection.
 
+> License: RSL-1.0 (https://reference.tldr.legal/rsl/)
+
 Permly is a free Android app available on Google Play. It requires Android 8.0 or higher and the Notification Access permission. It intercepts notification metadata (sending app package name) to decide whether to suppress a notification — it never reads notification text or payload. All settings and statistics are stored locally on the device. No analytics, no crash reporting, no third-party SDKs, no internet permission.
 
 Free tier: up to 3 custom profiles, 7-day notification statistics. Pro tier unlocks unlimited profiles and extended statistics. Pro pricing: $1.99/month, $14.99/year ($1.25/month effective, saves 37% vs monthly), or $29.99 one-time lifetime purchase.

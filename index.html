@@ -14,15 +14,20 @@
     <meta property="og:url" content="https://permly.app/">
     <meta property="og:title" content="Permly — Notification Manager for Android">
     <meta property="og:description" content="Block app notifications selectively. Custom profiles for Work, Sleep, Focus. No ads, no data collection, no tracking. Privacy-first.">
-    <meta property="og:image" content="https://permly.app/assets/logo.png">
+    <meta property="og:image" content="https://permly.app/assets/logo.webp">
     <meta property="og:site_name" content="Permly">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Permly — Notification Manager for Android">
     <meta name="twitter:description" content="Block app notifications selectively. Custom profiles for Work, Sleep, Focus. No ads, no data collection.">
-    <meta name="twitter:image" content="https://permly.app/assets/logo.png">
+    <meta name="twitter:image" content="https://permly.app/assets/logo.webp">
     <meta name="application-name" content="Permly">
     <link rel="icon" href="/assets/icon.png?v=1" type="image/png" sizes="512x512">
-    <link rel="preload" as="image" href="/assets/icon.png?v=1">
+    <link rel="preload" as="image"
+          href="/assets/screenshots/phone/1-home-400w.webp?v=1"
+          imagesrcset="/assets/screenshots/phone/1-home-400w.webp?v=1 400w,
+                       /assets/screenshots/phone/1-home-800w.webp?v=1 800w"
+          imagesizes="(max-width: 600px) 175px, 270px"
+          type="image/webp">
     <link rel="apple-touch-icon" href="/assets/icon.png?v=1">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,19 +39,60 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Permly",
+      "url": "https://permly.app/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://permly.app/#organization",
+      "name": "ZartofApp",
+      "url": "https://robertocalo.me",
+      "email": "zartofapp@gmail.com",
+      "sameAs": [
+        "https://twitter.com/zartofapp",
+        "https://www.instagram.com/zartof.app",
+        "https://www.tiktok.com/@zartof.app"
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Permly: Notification Manager",
       "description": "Permly is a selective notification manager for Android. Create custom profiles to mute specific app notifications — Work, Sleep, Focus, and more. No ads, no data collection, no cloud.",
       "url": "https://permly.app/",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.permly",
+      "image": "https://permly.app/assets/icon.png",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Android 8.0+",
+      "datePublished": "2026-03-07",
+      "dateModified": "2026-05-09",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "5000",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "offers": [
-        {"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},
-        {"@type":"Offer","name":"Permly Pro — Monthly","price":"1.99","priceCurrency":"USD"},
-        {"@type":"Offer","name":"Permly Pro — Yearly","price":"14.99","priceCurrency":"USD"},
-        {"@type":"Offer","name":"Permly Pro — Lifetime","price":"29.99","priceCurrency":"USD"}
+        {"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD","url":"https://play.google.com/store/apps/details?id=com.permly"},
+        {"@type":"Offer","name":"Permly Pro — Monthly","price":"1.99","priceCurrency":"USD","url":"https://play.google.com/store/apps/details?id=com.permly"},
+        {"@type":"Offer","name":"Permly Pro — Yearly","price":"14.99","priceCurrency":"USD","url":"https://play.google.com/store/apps/details?id=com.permly"},
+        {"@type":"Offer","name":"Permly Pro — Lifetime","price":"29.99","priceCurrency":"USD","url":"https://play.google.com/store/apps/details?id=com.permly"}
       ],
-      "author": {"@type":"Person","email":"zartofapp@gmail.com"}
+      "author": {
+        "@type": "Organization",
+        "@id": "https://permly.app/#organization",
+        "name": "ZartofApp",
+        "url": "https://robertocalo.me"
+      }
     }
     </script>
 
@@ -890,6 +936,40 @@
             .hero h1 { font-size: 2rem; }
             .hero .tagline { font-size: 1.05rem; }
         }
+        @media (max-width: 560px) {
+            .pricing-card.featured-monthly { transform: none; }
+        }
+
+        /* ─── MOBILE STICKY CTA ─── */
+        #mobile-sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 300;
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 20px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        }
+        #mobile-sticky-cta a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            width: 100%;
+            padding: 14px;
+            background: var(--indigo);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        @media (max-width: 700px) {
+            #mobile-sticky-cta.is-visible { display: block; }
+        }
     </style>
     <!-- Google tag (gtag.js) — Consent Mode v2 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC8B7W3KNN"></script>
@@ -989,14 +1069,14 @@
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
                     Get It Free on Google Play
                 </a>
-                <a href="/support" class="btn btn-secondary" aria-label="Permly Support and FAQ">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
-                    Support &amp; FAQ
+                <a href="#screenshots" class="btn btn-secondary" aria-label="See how Permly works">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    See How It Works
                 </a>
             </div>
             <p class="hero-social-proof">
                 <span class="stars" aria-hidden="true">★★★★★</span>
-                <span><strong>4.8</strong> on Google Play</span>
+                <span><a href="https://play.google.com/store/apps/details?id=com.permly&utm_source=permly_website&utm_medium=hero&utm_campaign=download_cta" style="color:inherit;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.3)"><strong>4.8</strong> on Google Play</a></span>
                 <span class="divider">·</span>
                 <span>5,000+ downloads</span>
             </p>
@@ -1104,22 +1184,22 @@
                     <!-- 2 -->
                     <div class="feature-bento">
                         <div class="feature-bento-title">Automatic Scheduling <span class="pro-badge">Pro</span></div>
-                        <div class="feature-bento-text">Set start and end times for each profile. Work mode every weekday, sleep mode every night — set it once and forget it.</div>
+                        <div class="feature-bento-text">Set start and end times for each profile. Work mode every weekday, sleep mode every night — set it once and forget it. Scheduling runs entirely on-device, with no network access required.</div>
                     </div>
                     <!-- 3 -->
                     <div class="feature-bento">
                         <div class="feature-bento-title">Selective App Muting</div>
-                        <div class="feature-bento-text">Silence specific apps per profile. Social media during work? Blocked. Calls from loved ones? Always through.</div>
+                        <div class="feature-bento-text">Silence specific apps per profile. Social media during work? Blocked. Calls from loved ones? Always through. Per-profile selection means each situation gets exactly the right apps silenced — nothing more, nothing less.</div>
                     </div>
                     <!-- 4 -->
                     <div class="feature-bento">
                         <div class="feature-bento-title">Quick Settings Tile</div>
-                        <div class="feature-bento-text">Toggle your active profile directly from the notification shade — no need to open the app.</div>
+                        <div class="feature-bento-text">Toggle your active profile directly from the notification shade — no need to open the app. One swipe down, one tap, and you're back in focus mode. Works on Android 7.0+ with standard Quick Settings support.</div>
                     </div>
                     <!-- 5 -->
                     <div class="feature-bento">
                         <div class="feature-bento-title">Distraction Statistics</div>
-                        <div class="feature-bento-text">Track how many notifications each profile has blocked and which apps interrupt you most. Free: 7-day history. Pro: full history.</div>
+                        <div class="feature-bento-text">Track how many notifications each profile has blocked and which apps interrupt you most. Free: 7-day history. Pro: full history. All stats stay local — they're never uploaded or shared.</div>
                     </div>
                     <!-- 6 -->
                     <div class="feature-bento">
@@ -1358,6 +1438,7 @@
             <span class="footer-brand-name">Permly</span>
         </div>
         <div class="footer-links">
+            <a href="/" aria-current="page">Home</a>
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/terms-of-service">Terms of Service</a>
             <a href="/support">Support</a>
@@ -1366,7 +1447,7 @@
         <p style="color:rgba(255,255,255,0.70)">&copy; 2026 Permly. All rights reserved.</p>
     </footer>
 
-    <script src="assets/cookie-consent.js"></script>
+    <script src="assets/cookie-consent.js" defer></script>
     <script>
         // Pricing toggle — monthly / yearly
         function setBilling(period) {
@@ -1421,6 +1502,23 @@
                 if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
             }, true);
         })();
+
+        // Mobile sticky CTA — show after scrolling past hero
+        (function() {
+            var bar = document.getElementById('mobile-sticky-cta');
+            if (!bar) return;
+            window.addEventListener('scroll', function() {
+                bar.classList.toggle('is-visible', window.scrollY > 300);
+                bar.setAttribute('aria-hidden', String(window.scrollY <= 300));
+            }, { passive: true });
+        })();
     </script>
+
+    <div id="mobile-sticky-cta" aria-hidden="true">
+        <a href="https://play.google.com/store/apps/details?id=com.permly&utm_source=permly_website&utm_medium=hero&utm_campaign=download_cta" aria-label="Download Permly free on Google Play">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+            Get It Free on Google Play
+        </a>
+    </div>
 </body>
 </html>

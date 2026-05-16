@@ -14,14 +14,12 @@
     <meta property="og:title" content="Permly Support & FAQ">
     <meta property="og:description" content="Get help with Permly — Android notification manager. FAQs, troubleshooting, and contact information.">
     <meta property="og:site_name" content="Permly">
-    <meta property="og:image" content="https://permly.app/assets/logo.png">
+    <meta property="og:image" content="https://permly.app/assets/logo.webp">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://permly.app/assets/logo.png">
+    <meta name="twitter:image" content="https://permly.app/assets/logo.webp">
     <meta name="application-name" content="Permly">
     <link rel="icon" href="/assets/icon.png?v=1" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="/assets/icon.png?v=1">
-    <link rel="preload" as="image" href="/assets/icon.png?v=1">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
@@ -31,19 +29,47 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {"@type":"Question","name":"How do I grant notification access permission?","acceptedAnswer":{"@type":"Answer","text":"To use Permly, you need to grant Notification Access permission. Open the Permly app, tap 'Grant Permission' on the welcome screen, find 'Permly' in the list and toggle it on, then confirm when prompted. Alternatively, go to: Settings → Apps → Special app access → Notification access → Permly."}},
-        {"@type":"Question","name":"Why aren't notifications being blocked?","acceptedAnswer":{"@type":"Answer","text":"If notifications aren't being blocked, check: (1) Permission granted — ensure Notification Access is enabled in Android Settings. (2) Profile is active — make sure the profile is toggled ON. (3) App is added to profile — verify the app you want to mute is added to the active profile. (4) Service is running — try toggling the profile off and on again. (5) Device restart — some devices require a restart after granting permission."}},
-        {"@type":"Question","name":"Can I schedule profiles to activate automatically?","acceptedAnswer":{"@type":"Answer","text":"Yes! Profile scheduling is a Pro feature that lets you set start and end times for each profile so it activates automatically — for example, enabling your Work profile every weekday from 9 AM to 5 PM."}},
-        {"@type":"Question","name":"How do I mute notifications from a specific app on Android?","acceptedAnswer":{"@type":"Answer","text":"Permly is built exactly for this. Create a profile (e.g., Work or Focus), add the specific app you want to silence, and activate the profile with one tap. The app's notifications will be blocked while all your other apps continue normally. You can add as many apps as you like to each profile."}},
-        {"@type":"Question","name":"Can I block notifications on a schedule?","acceptedAnswer":{"@type":"Answer","text":"Yes — profile scheduling is a Pro feature. You can set a start and end time (and days of the week) for any profile, and Permly will activate and deactivate it automatically. You can also override the schedule at any time by toggling a profile manually."}},
-        {"@type":"Question","name":"Will blocking notifications stop my calls too?","acceptedAnswer":{"@type":"Answer","text":"No. Permly only blocks the notification alerts from the apps you choose. Phone calls come through a separate system channel that Permly does not touch — you will always receive calls regardless of which profile is active."}},
-        {"@type":"Question","name":"What's the difference between Permly and Do Not Disturb?","acceptedAnswer":{"@type":"Answer","text":"Do Not Disturb silences everything at once. Permly takes the opposite approach: your phone stays normal, and you only mute the specific apps you choose per profile. Use Do Not Disturb for full-focus emergencies. Use Permly for everyday situations where you want to silence distracting apps without cutting off important ones."}},
-        {"@type":"Question","name":"Does Permly work with WhatsApp, Instagram, or Gmail?","acceptedAnswer":{"@type":"Answer","text":"Yes. Permly works with any app that sends Android notifications — including WhatsApp, Instagram, Gmail, YouTube, TikTok, Twitter/X, Slack, and others. If it shows up in your notification shade, Permly can mute it selectively."}},
-        {"@type":"Question","name":"Is Permly free? What do I get without paying?","acceptedAnswer":{"@type":"Answer","text":"Permly is free to download with no ads and no time limit. The free tier includes up to 3 profiles and 7 days of notification statistics. Permly Pro unlocks unlimited profiles, automatic profile scheduling, and full statistics history. Pro is available monthly ($1.99/mo), yearly ($14.99/yr), or as a one-time lifetime purchase ($29.99)."}},
-        {"@type":"Question","name":"How is Permly different from other notification manager apps?","acceptedAnswer":{"@type":"Answer","text":"Permly blocks noise at the source, per profile, with one tap — no ads, no data collection, no account required. All data stays on your device. One-tap profile switching from the home screen or Quick Settings tile."}}
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://permly.app"},
+        {"@type": "ListItem", "position": 2, "name": "Support", "item": "https://permly.app/support"}
       ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://permly.app/support",
+      "name": "Permly FAQ — How to Block App Notifications on Android",
+      "url": "https://permly.app/support",
+      "description": "Answers to common questions about blocking app notifications on Android with Permly — profiles, scheduling, permissions, privacy, and troubleshooting.",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "WebSite", "name": "Permly", "url": "https://permly.app/"},
+      "mainEntity": {
+        "@type": "FAQPage",
+        "@id": "https://permly.app/support#faq",
+        "mainEntity": [
+          {"@type":"Question","name":"How do I grant notification access permission?","acceptedAnswer":{"@type":"Answer","text":"To use Permly, you need to grant Notification Access permission. Open the Permly app, tap 'Grant Permission' on the welcome screen, find 'Permly' in the list and toggle it on, then confirm when prompted. Alternatively, go to: Settings → Apps → Special app access → Notification access → Permly."}},
+          {"@type":"Question","name":"Why aren't notifications being blocked?","acceptedAnswer":{"@type":"Answer","text":"If notifications aren't being blocked, check: (1) Permission granted — ensure Notification Access is enabled in Android Settings. (2) Profile is active — make sure the profile is toggled ON. (3) App is added to profile — verify the app you want to mute is added to the active profile. (4) Service is running — try toggling the profile off and on again. (5) Device restart — some devices require a restart after granting permission."}},
+          {"@type":"Question","name":"Can I schedule profiles to activate automatically?","acceptedAnswer":{"@type":"Answer","text":"Yes! Profile scheduling is a Pro feature that lets you set start and end times for each profile so it activates automatically — for example, enabling your Work profile every weekday from 9 AM to 5 PM. You can also manually toggle a profile at any time regardless of its schedule."}},
+          {"@type":"Question","name":"What's the difference between Free and Pro?","acceptedAnswer":{"@type":"Answer","text":"The Free tier includes up to 3 profiles, unlimited apps per profile, 7-day notification statistics, Quick Settings tile access, and no ads. Permly Pro adds unlimited profiles, full notification history with no cutoff, automatic profile scheduling, and priority support. Pro is available monthly ($1.99/mo), yearly ($14.99/yr, $1.25/mo effective), or as a one-time lifetime purchase ($29.99)."}},
+          {"@type":"Question","name":"How do I cancel my Pro subscription?","acceptedAnswer":{"@type":"Answer","text":"To cancel Permly Pro: open the Google Play Store app, tap your profile icon, go to Payments & subscriptions, then Subscriptions, find Permly Pro, tap it, and tap Cancel subscription. You will retain Pro access until the end of your current billing period. For refund inquiries, see the Refund Policy at https://permly.app/terms-of-service#refund-policy."}},
+          {"@type":"Question","name":"Does Permly read my notifications?","acceptedAnswer":{"@type":"Answer","text":"No. Permly only reads the package name (app identifier) of incoming notifications to determine whether to block them. We never read notification content, messages, or any personal data. All data stays on your device. Nothing is sent to servers or shared with third parties."}},
+          {"@type":"Question","name":"Which Android versions are supported?","acceptedAnswer":{"@type":"Answer","text":"Permly requires Android 8.0 (Oreo) or later (API level 26+). This is because the Notification Listener API functionality Permly relies on was introduced in API level 26. Permly is tested on Android versions 8.0 through 15."}},
+          {"@type":"Question","name":"How do I mute notifications from a specific app on Android?","acceptedAnswer":{"@type":"Answer","text":"Permly is built exactly for this. Create a profile (e.g., Work or Focus), add the specific app you want to silence, and activate the profile with one tap. The app's notifications will be blocked while all your other apps continue normally. You can add as many apps as you like to each profile."}},
+          {"@type":"Question","name":"Can I block notifications on a schedule?","acceptedAnswer":{"@type":"Answer","text":"Yes — profile scheduling is a Pro feature. You can set a start and end time (and days of the week) for any profile, and Permly will activate and deactivate it automatically. You can also override the schedule at any time by toggling a profile manually."}},
+          {"@type":"Question","name":"Will blocking notifications stop my calls too?","acceptedAnswer":{"@type":"Answer","text":"No. Permly only blocks the notification alerts from the apps you choose. Phone calls come through a separate system channel that Permly does not touch — you will always receive calls regardless of which profile is active."}},
+          {"@type":"Question","name":"What's the difference between Permly and Do Not Disturb?","acceptedAnswer":{"@type":"Answer","text":"Do Not Disturb silences everything at once. Permly takes the opposite approach: your phone stays normal, and you only mute the specific apps you choose per profile. Use Do Not Disturb for full-focus emergencies. Use Permly for everyday situations where you want to silence distracting apps without cutting off important ones."}},
+          {"@type":"Question","name":"Does Permly work with WhatsApp, Instagram, or Gmail?","acceptedAnswer":{"@type":"Answer","text":"Yes. Permly works with any app that sends Android notifications — including WhatsApp, Instagram, Gmail, YouTube, TikTok, Twitter/X, Slack, and others. If it shows up in your notification shade, Permly can mute it selectively."}},
+          {"@type":"Question","name":"Is Permly free? What do I get without paying?","acceptedAnswer":{"@type":"Answer","text":"Permly is free to download with no ads and no time limit. The free tier includes up to 3 profiles and 7 days of notification statistics. Permly Pro unlocks unlimited profiles, automatic profile scheduling, and full statistics history. Pro is available monthly ($1.99/mo), yearly ($14.99/yr), or as a one-time lifetime purchase ($29.99)."}},
+          {"@type":"Question","name":"How is Permly different from other notification manager apps?","acceptedAnswer":{"@type":"Answer","text":"Permly blocks noise at the source, per profile, with one tap — no ads, no data collection, no account required. All data stays on your device. One-tap profile switching from the home screen or Quick Settings tile."}},
+          {"@type":"Question","name":"Why does my battery drain faster?","acceptedAnswer":{"@type":"Answer","text":"Permly is designed to be lightweight and should have minimal battery impact. If you notice unusual battery drain, check that battery optimization settings are configured in Settings → Apps → Permly → Battery. Try updating to the latest version, restart your device, or contact support if the issue persists."}},
+          {"@type":"Question","name":"Can I use Permly on multiple devices?","acceptedAnswer":{"@type":"Answer","text":"Yes. If you have Permly Pro, your subscription is tied to your Google Play account and works on all your Android devices. However, profiles are stored locally and do not sync between devices automatically."}},
+          {"@type":"Question","name":"How do I use the Quick Settings tile?","acceptedAnswer":{"@type":"Answer","text":"The Quick Settings tile lets you toggle profiles without opening the Permly app. To add it: swipe down from the top of your screen to open Quick Settings, tap the edit or pencil icon, find Permly and drag it to your active tiles, then tap Done. You can then tap the Permly tile to quickly enable or disable your last active profile."}}
+        ]
+      }
     }
     </script>
 
@@ -345,7 +371,7 @@
             <a href="/" class="topnav-logo" aria-label="Permly home">
                 <picture>
                     <source type="image/webp" srcset="/assets/icon-64.webp?v=1">
-                    <img src="/assets/icon.png?v=1?v=1" alt="" class="topnav-logo-img" aria-hidden="true">
+                    <img src="/assets/icon.png?v=1" alt="" class="topnav-logo-img" aria-hidden="true">
                 </picture>
                 <span class="topnav-logo-name">Permly</span>
             </a>
@@ -375,7 +401,7 @@
             <div class="page-hero-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
             </div>
-            <h1>Support &amp; FAQ</h1>
+            <h1>How to Block App Notifications on Android — Permly FAQ</h1>
             <p>We're here to help you take control of your notifications.</p>
         </div>
     </div>
@@ -746,6 +772,6 @@
         <p style="color:rgba(255,255,255,0.70)">&copy; 2026 Permly. All rights reserved.</p>
     </footer>
 
-    <script src="assets/cookie-consent.js"></script>
+    <script src="assets/cookie-consent.js" defer></script>
 </body>
 </html>

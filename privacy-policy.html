@@ -14,13 +14,22 @@
     <meta property="og:description" content="Permly never reads notification content and collects zero personal data. All data stays on your device.">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Permly">
-    <meta property="og:image" content="https://permly.app/assets/logo.png">
+    <meta property="og:image" content="https://permly.app/assets/logo.webp">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://permly.app/assets/logo.png">
+    <meta name="twitter:image" content="https://permly.app/assets/logo.webp">
     <meta name="application-name" content="Permly">
     <link rel="icon" href="/assets/icon.png?v=1" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="/assets/icon.png?v=1">
-    <link rel="preload" as="image" href="/assets/icon.png?v=1">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://permly.app"},
+        {"@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://permly.app/privacy-policy"}
+      ]
+    }
+    </script>
 
     <script type="application/ld+json">
     {
@@ -29,7 +38,9 @@
       "name": "Permly Privacy Policy",
       "url": "https://permly.app/privacy-policy",
       "description": "Permly collects zero personal data. Full privacy policy for the Permly Android app.",
-      "isPartOf": {"@type": "WebSite", "url": "https://permly.app/"}
+      "inLanguage": "en",
+      "dateModified": "2026-05-16",
+      "isPartOf": {"@type": "WebSite", "name": "Permly", "url": "https://permly.app/"}
     }
     </script>
 
@@ -267,7 +278,7 @@
             <a href="/" class="topnav-logo" aria-label="Permly home">
                 <picture>
                     <source type="image/webp" srcset="/assets/icon-64.webp?v=1">
-                    <img src="/assets/icon.png?v=1?v=1" alt="" class="topnav-logo-img" aria-hidden="true">
+                    <img src="/assets/icon.png?v=1" alt="" class="topnav-logo-img" aria-hidden="true">
                 </picture>
                 <span class="topnav-logo-name">Permly</span>
             </a>
@@ -514,6 +525,6 @@
         <p style="color:rgba(255,255,255,0.70)">&copy; 2026 Permly. All rights reserved.</p>
     </footer>
 
-    <script src="assets/cookie-consent.js"></script>
+    <script src="assets/cookie-consent.js" defer></script>
 </body>
 </html>

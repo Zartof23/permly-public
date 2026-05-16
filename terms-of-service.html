@@ -14,13 +14,22 @@
     <meta property="og:title" content="Permly Terms of Service">
     <meta property="og:description" content="Terms of Service for Permly, the Android notification manager. Subscription, refunds, and license terms.">
     <meta property="og:site_name" content="Permly">
-    <meta property="og:image" content="https://permly.app/assets/logo.png">
+    <meta property="og:image" content="https://permly.app/assets/logo.webp">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://permly.app/assets/logo.png">
+    <meta name="twitter:image" content="https://permly.app/assets/logo.webp">
     <meta name="application-name" content="Permly">
     <link rel="icon" href="/assets/icon.png?v=1" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="/assets/icon.png?v=1">
-    <link rel="preload" as="image" href="/assets/icon.png?v=1">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://permly.app"},
+        {"@type": "ListItem", "position": 2, "name": "Terms of Service", "item": "https://permly.app/terms-of-service"}
+      ]
+    }
+    </script>
 
     <script type="application/ld+json">
     {
@@ -29,7 +38,9 @@
       "name": "Permly Terms of Service",
       "url": "https://permly.app/terms-of-service",
       "description": "Terms of Service for Permly, the Android notification manager.",
-      "isPartOf": {"@type": "WebSite", "url": "https://permly.app/"}
+      "inLanguage": "en",
+      "dateModified": "2026-05-16",
+      "isPartOf": {"@type": "WebSite", "name": "Permly", "url": "https://permly.app/"}
     }
     </script>
 
@@ -249,7 +260,7 @@
             <a href="/" class="topnav-logo" aria-label="Permly home">
                 <picture>
                     <source type="image/webp" srcset="/assets/icon-64.webp?v=1">
-                    <img src="/assets/icon.png?v=1?v=1" alt="" class="topnav-logo-img" aria-hidden="true">
+                    <img src="/assets/icon.png?v=1" alt="" class="topnav-logo-img" aria-hidden="true">
                 </picture>
                 <span class="topnav-logo-name">Permly</span>
             </a>
@@ -288,7 +299,7 @@
         <div class="content-wrap">
 
             <div class="content-section">
-                <div class="updated-chip">Last Updated: February 14, 2026</div>
+                <div class="updated-chip">Last Updated: May 16, 2026</div>
 
                 <div class="callout callout-indigo">
                     <strong>In Simple Terms:</strong> You can use Permly for free (3 profiles) or upgrade to Pro for unlimited profiles. Subscriptions are managed through Google Play and renew automatically unless you cancel. We don't collect your data, but we're not responsible if you accidentally mute something important. Be careful with your profile settings!
@@ -385,6 +396,8 @@
                 <ul>
                     <li><strong>Notification Access</strong>: Required to intercept and block notifications from muted apps</li>
                     <li><strong>Receive Boot Completed</strong>: Required to restart the notification service after device reboot</li>
+                    <li><strong>Post Notifications</strong>: Required on Android 13+ to display the service status notification</li>
+                    <li><strong>Wake Lock</strong>: Required to keep the notification service running reliably in the background</li>
                 </ul>
                 <p>These permissions are essential for the App to function and are used solely for the stated purposes.</p>
             </div>
@@ -492,6 +505,6 @@
         <p style="color:rgba(255,255,255,0.70)">&copy; 2026 Permly. All rights reserved.</p>
     </footer>
 
-    <script src="assets/cookie-consent.js"></script>
+    <script src="assets/cookie-consent.js" defer></script>
 </body>
 </html>
