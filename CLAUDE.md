@@ -341,6 +341,7 @@ All links to the Play Store must include UTM parameters for conversion tracking.
 | Pricing card — Monthly tier | `pricing` | `upgrade_cta` | `monthly` | `upgrade.html` |
 | Pricing card — Yearly tier | `pricing` | `upgrade_cta` | `yearly` | `upgrade.html` |
 | Pricing card — Lifetime tier | `pricing` | `upgrade_cta` | `lifetime` | `upgrade.html` |
+| Mobile sticky bottom bar (shown on mobile after scrolling past hero) | `mobile_sticky` | `download_cta` | *(omit)* | `index.html` |
 
 Note: pricing CTAs route through `/open` and `/upgrade` (App Link pages) and pass UTM values via the `referrer=` parameter (Play Install Referrer API), not as direct query params.
 
