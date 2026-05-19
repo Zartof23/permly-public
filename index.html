@@ -442,44 +442,187 @@
         }
         .section-subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 36px; font-size: 1rem; }
 
-        /* ─── SCREENSHOTS ─── */
-        .screenshot-section { overflow: hidden; }
-        .screenshot-carousel {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding: 16px 40px 16px;
-            /* No justify-content: center — allows full scroll in both directions */
-        }
-        .screenshot-carousel::-webkit-scrollbar { height: 4px; }
-        .screenshot-carousel::-webkit-scrollbar-track { background: #F3F4F6; border-radius: 2px; }
-        .screenshot-carousel::-webkit-scrollbar-thumb { background: var(--indigo); border-radius: 2px; }
-        .phone-frame {
-            flex-shrink: 0;
-            scroll-snap-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-        .phone-shell {
-            background: #1C1C1E;
-            border-radius: 30px;
-            padding: 7px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.07);
-            transition: transform 0.28s ease, box-shadow 0.28s ease;
-        }
-        .phone-frame:hover .phone-shell { transform: translateY(-8px) scale(1.02); box-shadow: 0 32px 72px rgba(0,0,0,0.25), 0 6px 16px rgba(79,70,229,0.18); }
-        .phone-frame img { display: block; border-radius: 24px; width: 175px; height: auto; }
-        @media (min-width: 800px) { .phone-frame img { width: 200px; } }
-        .phone-frame figcaption {
+        /* ─── SCREENSHOT BRIDGE ─── */
+        .ss-bridge-dark {
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+            padding: 56px 24px 0;
             text-align: center;
-            font-size: 0.75rem;
-            font-weight: 500;
+        }
+        .ss-bridge-dark::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        .ss-bridge-dark::after {
+            content: '';
+            position: absolute;
+            top: -80px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 400px;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .ss-bridge-heading {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 40px;
+        }
+        .ss-bridge-heading h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .ss-bridge-heading h2 .accent {
+            background: linear-gradient(135deg, #a5b4fc, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .ss-bridge-heading p {
+            color: rgba(255,255,255,0.45);
+            font-size: 1rem;
+        }
+        .ss-phone-stage {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+        .ss-glow {
+            position: absolute;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99,102,241,0.38) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(52px);
+            transition: background 0.65s ease;
+            pointer-events: none;
+        }
+        .ss-phone-float { animation: ss-float 5s ease-in-out infinite; }
+        @keyframes ss-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .ss-phone-shell {
+            background: #1A1A1C;
+            border-radius: 38px;
+            padding: 8px;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.09),
+                0 0 0 2px rgba(0,0,0,0.55),
+                0 44px 88px rgba(0,0,0,0.55),
+                0 14px 32px rgba(0,0,0,0.35);
+        }
+        .ss-images {
+            position: relative;
+            width: 260px; height: 564px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .ss-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+        }
+        .ss-slide.active { opacity: 1; }
+        .ss-slide picture { display: block; width: 100%; height: 100%; }
+        .ss-slide img {
+            display: block; width: 100%; height: 100%;
+            object-fit: cover; object-position: top center;
+        }
+        .ss-gradient {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--surface-alt) 100%);
+            height: 120px;
+            margin-top: -1px;
+        }
+        .ss-captions-zone {
+            background: var(--surface-alt);
+            padding: 0 24px 28px;
+        }
+        .ss-captions {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .ss-cap {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 14px 12px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            text-align: left;
+            font-family: inherit;
+            width: 100%;
+        }
+        .ss-cap:hover { border-color: var(--border-indigo); }
+        .ss-cap.active {
+            border-color: var(--indigo);
+            box-shadow: 0 4px 16px rgba(79,70,229,0.1);
+        }
+        .ss-cap-num {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
             color: var(--text-muted);
-            padding: 0 4px;
+            margin-bottom: 4px;
+        }
+        .ss-cap.active .ss-cap-num { color: var(--indigo); }
+        .ss-cap-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+        .ss-cap.active .ss-cap-title { color: var(--text-primary); }
+        .ss-cap-desc {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: 5px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.3s;
+        }
+        .ss-cap.active .ss-cap-desc { max-height: 60px; opacity: 1; }
+        .ss-cap-bar {
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--indigo), var(--violet));
+            width: 0%;
+        }
+        .ss-cap.active .ss-cap-bar { animation: ss-progress 5s linear forwards; }
+        @keyframes ss-progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        @media (max-width: 860px) {
+            .ss-bridge-dark { padding: 40px 20px 0; }
+            .ss-bridge-heading { margin-bottom: 28px; }
+            .ss-images { width: 210px; height: 456px; }
+            .ss-phone-shell { border-radius: 32px; }
+            .ss-images { border-radius: 24px; }
+            .ss-phone-float { animation: none; }
+            .ss-gradient { height: 80px; }
+            .ss-captions { grid-template-columns: repeat(2, 1fr); }
+            .ss-captions-zone { padding: 0 20px 24px; }
+        }
+        @media (max-width: 480px) {
+            .ss-captions { grid-template-columns: 1fr; }
         }
 
         /* ─── HOW IT WORKS ─── */
@@ -1138,63 +1281,78 @@
     </div>
 
     <div class="page-body">
-        <div class="container">
-
-            <!-- Screenshots -->
-            <section class="section-card screenshot-section" id="screenshots" aria-labelledby="screenshots-heading">
-                <h2 id="screenshots-heading">How Permly Works: One-Tap Notification Control</h2>
-                <p class="section-subtitle">Simple, clean, and focused — just like your notifications should be.</p>
-                <div class="screenshot-carousel">
-                    <figure class="phone-frame">
-                        <div class="phone-shell">
-                            <picture>
-                                <source type="image/webp"
-                                    srcset="assets/screenshots/phone/1-home-400w.webp?v=1 400w,
-                                            assets/screenshots/phone/1-home-800w.webp?v=1 800w"
-                                    sizes="(max-width: 600px) 175px, 270px">
-                                <img src="assets/screenshots/phone/1-home.png?v=1" alt="Permly home screen showing notification profiles" fetchpriority="high" width="270" height="585">
-                            </picture>
+    <!-- Screenshots -->
+    <section class="ss-bridge" id="screenshots" aria-labelledby="ss-heading">
+        <div class="ss-bridge-dark">
+            <div class="ss-bridge-heading">
+                <h2 id="ss-heading">See Permly <span class="accent">in Action</span></h2>
+                <p>Four screens. One powerful idea: your attention, your rules.</p>
+            </div>
+            <div class="ss-phone-stage">
+                <div class="ss-glow" aria-hidden="true"></div>
+                <div class="ss-phone-float">
+                    <div class="ss-phone-shell">
+                        <div class="ss-images">
+                            <div class="ss-slide active" data-index="0">
+                                <picture>
+                                    <source type="image/webp" srcset="assets/screenshots/phone/1-home-400w.webp?v=1 400w, assets/screenshots/phone/1-home-800w.webp?v=1 800w" sizes="(max-width: 860px) 210px, 260px">
+                                    <img src="assets/screenshots/phone/1-home.png?v=1" alt="Permly home screen showing notification profiles" fetchpriority="high" width="260" height="564">
+                                </picture>
+                            </div>
+                            <div class="ss-slide" data-index="1">
+                                <picture>
+                                    <source type="image/webp" srcset="assets/screenshots/phone/2-profile_editing-400w.webp?v=1 400w, assets/screenshots/phone/2-profile_editing-800w.webp?v=1 800w" sizes="(max-width: 860px) 210px, 260px">
+                                    <img src="assets/screenshots/phone/2-profile_editing.png?v=1" alt="Permly profile editing screen — select apps to mute" loading="lazy" width="260" height="564">
+                                </picture>
+                            </div>
+                            <div class="ss-slide" data-index="2">
+                                <picture>
+                                    <source type="image/webp" srcset="assets/screenshots/phone/4-profile_active-400w.webp?v=1 400w, assets/screenshots/phone/4-profile_active-800w.webp?v=1 800w" sizes="(max-width: 860px) 210px, 260px">
+                                    <img src="assets/screenshots/phone/4-profile_active.png?v=1" alt="Permly active profile screen — profile is running" loading="lazy" width="260" height="564">
+                                </picture>
+                            </div>
+                            <div class="ss-slide" data-index="3">
+                                <picture>
+                                    <source type="image/webp" srcset="assets/screenshots/phone/5-stats-400w.webp?v=1 400w, assets/screenshots/phone/5-stats-800w.webp?v=1 800w" sizes="(max-width: 860px) 210px, 260px">
+                                    <img src="assets/screenshots/phone/5-stats.png?v=1" alt="Permly distraction statistics screen showing blocked notifications" loading="lazy" width="260" height="564">
+                                </picture>
+                            </div>
                         </div>
-                        <figcaption>Your profiles, at a glance</figcaption>
-                    </figure>
-                    <figure class="phone-frame">
-                        <div class="phone-shell">
-                            <picture>
-                                <source type="image/webp"
-                                    srcset="assets/screenshots/phone/2-profile_editing-400w.webp?v=1 400w,
-                                            assets/screenshots/phone/2-profile_editing-800w.webp?v=1 800w"
-                                    sizes="(max-width: 600px) 175px, 270px">
-                                <img src="assets/screenshots/phone/2-profile_editing.png?v=1" alt="Permly profile editing screen — select apps to mute" loading="lazy" width="270" height="585">
-                            </picture>
-                        </div>
-                        <figcaption>Pick exactly which apps to mute</figcaption>
-                    </figure>
-                    <figure class="phone-frame">
-                        <div class="phone-shell">
-                            <picture>
-                                <source type="image/webp"
-                                    srcset="assets/screenshots/phone/4-profile_active-400w.webp?v=1 400w,
-                                            assets/screenshots/phone/4-profile_active-800w.webp?v=1 800w"
-                                    sizes="(max-width: 600px) 175px, 270px">
-                                <img src="assets/screenshots/phone/4-profile_active.png?v=1" alt="Permly active profile screen — profile is running" loading="lazy" width="270" height="585">
-                            </picture>
-                        </div>
-                        <figcaption>One tap to activate a profile</figcaption>
-                    </figure>
-                    <figure class="phone-frame">
-                        <div class="phone-shell">
-                            <picture>
-                                <source type="image/webp"
-                                    srcset="assets/screenshots/phone/5-stats-400w.webp?v=1 400w,
-                                            assets/screenshots/phone/5-stats-800w.webp?v=1 800w"
-                                    sizes="(max-width: 600px) 175px, 270px">
-                                <img src="assets/screenshots/phone/5-stats.png?v=1" alt="Permly distraction statistics screen showing blocked notifications" loading="lazy" width="270" height="585">
-                            </picture>
-                        </div>
-                        <figcaption>See how many distractions you've blocked</figcaption>
-                    </figure>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </div>
+        <div class="ss-gradient" aria-hidden="true"></div>
+        <div class="ss-captions-zone">
+            <div class="ss-captions" role="tablist" aria-label="App screenshots">
+                <button class="ss-cap active" role="tab" aria-selected="true" data-index="0">
+                    <div class="ss-cap-num">01</div>
+                    <div class="ss-cap-title">Your Focus Profiles</div>
+                    <div class="ss-cap-desc">All your modes in one place. Work, Sleep, Focus — activate any with one tap.</div>
+                    <div class="ss-cap-bar" aria-hidden="true"></div>
+                </button>
+                <button class="ss-cap" role="tab" aria-selected="false" data-index="1">
+                    <div class="ss-cap-num">02</div>
+                    <div class="ss-cap-title">Choose What Gets Through</div>
+                    <div class="ss-cap-desc">Pick exactly which apps get silenced. Calls and messages still come through.</div>
+                    <div class="ss-cap-bar" aria-hidden="true"></div>
+                </button>
+                <button class="ss-cap" role="tab" aria-selected="false" data-index="2">
+                    <div class="ss-cap-num">03</div>
+                    <div class="ss-cap-title">One Tap. Done.</div>
+                    <div class="ss-cap-desc">Activate instantly. Permly runs silently — no app needed to stay active.</div>
+                    <div class="ss-cap-bar" aria-hidden="true"></div>
+                </button>
+                <button class="ss-cap" role="tab" aria-selected="false" data-index="3">
+                    <div class="ss-cap-num">04</div>
+                    <div class="ss-cap-title">See the Difference</div>
+                    <div class="ss-cap-desc">Watch your distraction count drop. See which apps interrupted you most.</div>
+                    <div class="ss-cap-bar" aria-hidden="true"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+        <div class="container">
 
             <!-- How It Works -->
             <section class="section-card" id="howitworks" aria-labelledby="howitworks-heading">
@@ -1512,43 +1670,53 @@
                 : '/upgrade?plan=monthly';
         }
 
-        // Drag-to-scroll and keyboard navigation on screenshot carousel
+        // Screenshot bridge — auto-advance + interaction
         (function() {
-            var el = document.querySelector('.screenshot-carousel');
-            if (!el) return;
-            el.setAttribute('tabindex', '0');
-            el.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight') { e.preventDefault(); el.scrollLeft += 220; }
-                if (e.key === 'ArrowLeft')  { e.preventDefault(); el.scrollLeft -= 220; }
+            var caps = document.querySelectorAll('.ss-cap');
+            var slides = document.querySelectorAll('.ss-slide');
+            var glow = document.querySelector('.ss-glow');
+            var section = document.querySelector('.ss-bridge');
+            var current = 0, timer, paused = false;
+            var glows = [
+                'radial-gradient(circle, rgba(99,102,241,0.38) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(124,58,237,0.38) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(99,102,241,0.42) 0%, transparent 70%)',
+                'radial-gradient(circle, rgba(79,110,255,0.38) 0%, transparent 70%)'
+            ];
+            function goTo(idx) {
+                current = idx;
+                caps.forEach(function(c, i) {
+                    var on = i === idx;
+                    c.classList.toggle('active', on);
+                    c.setAttribute('aria-selected', String(on));
+                    if (on) {
+                        var b = c.querySelector('.ss-cap-bar');
+                        if (b) { b.style.animation = 'none'; b.offsetHeight; b.style.animation = ''; }
+                    }
+                });
+                slides.forEach(function(s, i) { s.classList.toggle('active', i === idx); });
+                if (glow) glow.style.background = glows[idx] || glows[0];
+            }
+            function startTimer() {
+                clearInterval(timer);
+                timer = setInterval(function() { if (!paused) goTo((current + 1) % 4); }, 5000);
+            }
+            caps.forEach(function(c) {
+                c.addEventListener('click', function() { goTo(+this.dataset.index); startTimer(); });
             });
-            var isDown = false, startX, scrollLeft;
-            el.style.cursor = 'grab';
-            var moved = false;
-            el.addEventListener('mousedown', function(e) {
-                e.preventDefault(); // stops native image drag from stealing events
-                isDown = true; moved = false;
-                startX = e.clientX;
-                scrollLeft = el.scrollLeft; // read before style writes to avoid forced reflow
-                el.style.cursor = 'grabbing';
-                el.style.userSelect = 'none';
-                el.style.scrollSnapType = 'none';
-            });
-            document.addEventListener('mouseup', function() {
-                if (!isDown) return;
-                isDown = false;
-                el.style.cursor = 'grab';
-                el.style.userSelect = '';
-                setTimeout(function() { el.style.scrollSnapType = ''; }, 50);
-            });
-            document.addEventListener('mousemove', function(e) {
-                if (!isDown) return;
-                var dx = e.clientX - startX;
-                if (Math.abs(dx) > 4) moved = true;
-                el.scrollLeft = scrollLeft - dx;
-            });
-            el.addEventListener('click', function(e) {
-                if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
-            }, true);
+            if (section) {
+                section.addEventListener('mouseenter', function() { paused = true; });
+                section.addEventListener('mouseleave', function() { paused = false; });
+            }
+            var tx = 0, phoneStage = document.querySelector('.ss-phone-stage');
+            if (phoneStage) {
+                phoneStage.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+                phoneStage.addEventListener('touchend', function(e) {
+                    var dx = e.changedTouches[0].clientX - tx;
+                    if (Math.abs(dx) > 40) { goTo(dx < 0 ? (current+1)%4 : (current+3)%4); startTimer(); }
+                }, { passive: true });
+            }
+            goTo(0); startTimer();
         })();
 
         // Mobile sticky CTA — show after scrolling past hero
