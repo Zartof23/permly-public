@@ -1832,16 +1832,20 @@
                 </div>
             </section>
 
-            <!-- Pricing -->
-            <section class="section-card" id="pricing" aria-labelledby="pricing-heading">
-                <h2 id="pricing-heading">Simple, Honest Pricing</h2>
-                <p class="section-subtitle">No ads in any tier. No dark patterns. No pressure.</p>
+        </div>
+    </div>
+
+    <!-- Pricing (dark section, inside main but outside page-body) -->
+    <section class="pricing-dark" id="pricing" aria-labelledby="pricing-heading">
+        <div class="pricing-dark-inner">
+            <h2 id="pricing-heading">Simple, Honest Pricing</h2>
+            <p class="section-subtitle">No ads in any tier. No dark patterns. No pressure.</p>
                 <div class="billing-switch" role="group" aria-label="Billing period">
                     <button class="billing-btn active" id="btn-monthly" onclick="setBilling('monthly')" aria-pressed="true">Monthly</button>
                     <button class="billing-btn" id="btn-yearly" onclick="setBilling('yearly')" aria-pressed="false">Yearly <span class="billing-save-chip">Save 37%</span></button>
                 </div>
                 <div class="pricing-grid">
-                    <div class="pricing-card">
+                    <div class="pricing-card pricing-card-dark">
                         <div class="plan-name">Free</div>
                         <div class="plan-price">$0</div>
                         <div class="plan-period">forever</div>
@@ -1876,7 +1880,7 @@
                             <a href="/upgrade?plan=monthly" id="pro-cta" class="pricing-cta-featured">Upgrade to Pro</a>
                         </div>
                     </div>
-                    <div class="pricing-card featured-lifetime">
+                    <div class="pricing-card featured-lifetime featured-lifetime-dark">
                         <div class="best-value-badge">Best Value</div>
                         <div class="plan-name">Pro — Lifetime</div>
                         <div class="plan-price">$29.99</div>
@@ -1893,10 +1897,9 @@
                         <a href="/upgrade?plan=lifetime" class="pricing-cta pricing-cta-pro">Get Lifetime Access</a>
                     </div>
                 </div>
-            </section>
-
-        </div>
-    </div>
+                <p class="pricing-dark-footnote">No credit card needed to start. Cancel anytime.</p>
+            </div>
+    </section>
 
     </main>
 
