@@ -184,18 +184,19 @@
             align-items: center;
             gap: 7px;
             padding: 8px 18px;
-            background: var(--indigo);
+            background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 100%);
             color: white;
             text-decoration: none;
             border-radius: 9px;
             font-size: 0.875rem;
             font-weight: 600;
-            transition: background 0.15s, box-shadow 0.15s;
+            transition: box-shadow 0.18s, filter 0.18s;
             flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(79,70,229,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
         }
         .topnav-cta:hover {
-            background: var(--indigo-light);
-            box-shadow: 0 4px 16px rgba(79,70,229,0.4);
+            box-shadow: 0 4px 18px rgba(79,70,229,0.58), inset 0 1px 0 rgba(255,255,255,0.15);
+            filter: brightness(1.08);
         }
         .topnav-github {
             display: flex;
@@ -554,7 +555,26 @@
             box-shadow: 0 6px 24px rgba(0,0,0,0.08);
             transform: translateY(-2px);
         }
+        /* Zigzag bento: row1=[span2][1], row2=[1][span2], row3=[span2][1] */
         .feature-bento:nth-child(1) { grid-column: span 2; }
+        .feature-bento:nth-child(4) { grid-column: span 2; }
+        .feature-bento:nth-child(5) { grid-column: span 2; }
+        .feature-bento-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(79,70,229,0.12), rgba(124,58,237,0.12));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            flex-shrink: 0;
+        }
+        .feature-bento-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--indigo);
+        }
         .feature-bento-title {
             font-size: 0.95rem;
             font-weight: 700;
@@ -569,7 +589,6 @@
             color: var(--text-secondary);
             line-height: 1.6;
         }
-        .feature-bento:nth-child(1) .feature-bento-title { font-size: 1.05rem; }
         .pro-badge {
             display: inline-block;
             font-size: 0.65rem;
@@ -599,7 +618,9 @@
         }
         @media (max-width: 700px) {
             .feature-bento-grid { grid-template-columns: 1fr; }
-            .feature-bento:nth-child(1) { grid-column: span 1; }
+            .feature-bento:nth-child(1),
+            .feature-bento:nth-child(4),
+            .feature-bento:nth-child(5) { grid-column: span 1; }
         }
 
         /* ─── COMPETITOR COMPARE ─── */
@@ -816,7 +837,7 @@
         .featured-monthly .plan-name { color: rgba(255,255,255,0.8); margin-bottom: 8px; }
         .featured-monthly .plan-price { color: white; }
         .featured-monthly .plan-period { color: rgba(255,255,255,0.78); }
-        .featured-monthly .plan-subperiod { color: rgba(255,255,255,0.6); margin-bottom: 0; min-height: 0; }
+        .featured-monthly .plan-subperiod { color: rgba(255,255,255,0.6); margin-bottom: 0; height: 1.2rem; line-height: 1.2rem; overflow: hidden; white-space: nowrap; }
         .pricing-card-featured-body ul { flex: 1; }
 
         /* Lifetime card — secondary featured */
@@ -950,7 +971,6 @@
             padding: 48px 24px 40px;
             color: rgba(255,255,255,0.4);
             font-size: 0.875rem;
-            margin-top: 28px;
         }
         .footer-brand { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 20px; }
         .footer-brand-icon {
@@ -978,6 +998,25 @@
         }
         @media (max-width: 560px) {
             .pricing-card.featured-monthly { transform: none; }
+        }
+        @media (max-width: 600px) {
+            .pricing-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                gap: 14px;
+                padding-bottom: 8px;
+                align-items: stretch;
+            }
+            .pricing-grid::-webkit-scrollbar { height: 4px; }
+            .pricing-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.07); border-radius: 2px; }
+            .pricing-grid::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.45); border-radius: 2px; }
+            .pricing-card {
+                flex-shrink: 0;
+                width: 82vw;
+                scroll-snap-align: start;
+            }
         }
 
         /* ─── MOBILE STICKY CTA ─── */
@@ -1009,6 +1048,9 @@
         }
         @media (max-width: 700px) {
             #mobile-sticky-cta.is-visible { display: block; }
+            body.sticky-cta-visible footer {
+                padding-bottom: calc(48px + 52px + env(safe-area-inset-bottom));
+            }
         }
 
         /* ─── STATS STRIP ─── */
@@ -1097,14 +1139,21 @@
             font-size: 0.9rem;
             margin-bottom: 40px;
         }
+        .testimonials-scroll-wrap {
+            position: relative;
+        }
         .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
             gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 8px;
+            cursor: grab;
         }
-        @media (max-width: 700px) {
-            .testimonials-grid { grid-template-columns: 1fr; }
-        }
+        .testimonials-grid::-webkit-scrollbar { height: 3px; }
+        .testimonials-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 2px; }
+        .testimonials-grid::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.4); border-radius: 2px; }
         .testimonial-card {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.12);
@@ -1113,6 +1162,12 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
+            flex-shrink: 0;
+            width: 320px;
+            scroll-snap-align: start;
+        }
+        @media (max-width: 700px) {
+            .testimonial-card { width: 82vw; }
         }
         .testimonial-stars {
             color: #FBBF24;
@@ -1240,22 +1295,8 @@
                 overflow-x: visible;
                 padding: 24px 40px 32px;
             }
-            .phone-frame:nth-child(2),
-            .phone-frame:nth-child(3) {
-                transform: scale(1.0);
-            }
-            .phone-frame:nth-child(1),
-            .phone-frame:nth-child(4) {
-                transform: scale(0.92);
-                opacity: 0.72;
-            }
-            .phone-frame:nth-child(1) .phone-shell,
-            .phone-frame:nth-child(4) .phone-shell {
-                box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08);
-            }
-            .phone-frame:nth-child(2) .phone-shell,
-            .phone-frame:nth-child(3) .phone-shell {
-                box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 6px 16px rgba(79,70,229,0.15);
+            .phone-frame .phone-shell {
+                box-shadow: 0 24px 64px rgba(0,0,0,0.22), 0 4px 14px rgba(79,70,229,0.12);
             }
         }
         .screenshot-glow {
@@ -1443,7 +1484,7 @@
                 <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
             </div>
             <div class="hero-eyebrow" aria-hidden="true">✦ Your Focus Guardian</div>
-            <h1>Your phone interrupted you<br><span class="hero-h1-solution">Permly fixes that.</span></h1>
+            <h1>How to Block Notifications on Android<br><span class="hero-h1-solution">with Permly</span></h1>
             <p class="sub-tagline">Selectively mute any app, per situation. Work. Sleep. Focus. One tap to switch — all on-device, no account, no tracking.</p>
             <div class="cta-buttons">
                 <a href="https://play.google.com/store/apps/details?id=com.permly&utm_source=permly_website&utm_medium=hero&utm_campaign=download_cta" class="btn btn-primary" aria-label="Download Permly free on Google Play">
@@ -1563,7 +1604,7 @@
                                 <img src="assets/screenshots/phone/5-stats.png?v=1" alt="Permly distraction statistics screen showing blocked notifications" loading="lazy" width="270" height="585">
                             </picture>
                         </div>
-                        <figcaption>See how many notifications blocked</figcaption>
+                        <figcaption>Stats of notifications blocked</figcaption>
                     </figure>
                 </div>
                 </div>
@@ -1577,42 +1618,59 @@
             <section class="testimonials-section" id="testimonials" aria-labelledby="testimonials-heading">
                 <div class="testimonials-inner">
                     <h2 class="testimonials-heading" id="testimonials-heading">What people are saying</h2>
-                    <p class="testimonials-subtitle">Real reviews from Google Play</p>
-                    <div class="testimonials-grid">
+                    <p class="testimonials-subtitle">Real reviews from Google Play and around</p>
+                    <div class="testimonials-scroll-wrap">
+                    <div class="testimonials-grid" id="testimonials-grid">
+                        <!-- 1: Marco R. -->
                         <div class="testimonial-card">
                             <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
                             <p class="testimonial-quote">"Finally an app that lets me silence only the apps I want. I can keep calls and important messages coming through while blocking everything else during work. Exactly what I needed."</p>
                             <div class="testimonial-footer">
                                 <span class="testimonial-name">Marco R.</span>
+                            </div>
+                        </div>
+                        <!-- 2: A. (Google Play) -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                            <p class="testimonial-quote">"It's simple, intuitive and works smoothly."</p>
+                            <div class="testimonial-footer">
+                                <span class="testimonial-name">A.</span>
                                 <span class="testimonial-source">
                                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
                                     Google Play
                                 </span>
                             </div>
                         </div>
+                        <!-- 3: Sarah K. -->
                         <div class="testimonial-card">
                             <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
                             <p class="testimonial-quote">"Simple, clean, and it just works. No ads, no weird permissions, no account needed. I set up my Sleep profile in 2 minutes and haven't been woken up by notifications since."</p>
                             <div class="testimonial-footer">
                                 <span class="testimonial-name">Sarah K.</span>
+                            </div>
+                        </div>
+                        <!-- 4: Euly R. (Google Play) -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                            <p class="testimonial-quote">"Very useful! The three offered profiles with the free plan are more than enough to manage my notifications. No ads as promised. It simply works."</p>
+                            <div class="testimonial-footer">
+                                <span class="testimonial-name">Euly R.</span>
                                 <span class="testimonial-source">
                                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
                                     Google Play
                                 </span>
                             </div>
                         </div>
+                        <!-- 5: Dev J. -->
                         <div class="testimonial-card">
                             <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
                             <p class="testimonial-quote">"The privacy aspect sold me. Unlike other apps that read your notification content, Permly only sees the app name. All data stays local. This is how apps should be built."</p>
                             <div class="testimonial-footer">
                                 <span class="testimonial-name">Dev J.</span>
-                                <span class="testimonial-source">
-                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                                    Google Play
-                                </span>
                             </div>
                         </div>
                     </div>
+                    </div><!-- /.testimonials-scroll-wrap -->
                 </div>
             </section>
 
@@ -1648,35 +1706,53 @@
                 <h2 id="features-heading">Selective Blocking — <span class="accent">Not All-or-Nothing</span></h2>
                 <p class="section-subtitle">Unlike Do Not Disturb, Permly lets you choose exactly which apps to silence in each situation.</p>
                 <div class="feature-bento-grid">
-                    <!-- 1: Wide -->
+                    <!-- 1: Wide (span 2) -->
                     <div class="feature-bento">
+                        <div class="feature-bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                        </div>
                         <div class="feature-bento-title">Custom Notification Profiles</div>
-                        <div class="feature-bento-text">Create profiles for any situation — Work, Sleep, Focus, Meetings, Gaming. Each profile silences exactly the apps you choose. Free tier includes 3 profiles; Pro offers unlimited.</div>
+                        <div class="feature-bento-text">Create profiles for any situation — Work, Sleep, Focus, Meetings. Each profile silences exactly the apps you choose. Free tier includes 3 profiles; Pro offers unlimited.</div>
                     </div>
                     <!-- 2 -->
                     <div class="feature-bento">
+                        <div class="feature-bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+                        </div>
                         <div class="feature-bento-title">Automatic Scheduling <span class="pro-badge">Pro</span></div>
-                        <div class="feature-bento-text">Set start and end times for each profile. Work mode every weekday, sleep mode every night — set it once and forget it. Scheduling runs entirely on-device, with no network access required.</div>
+                        <div class="feature-bento-text">Set start and end times for each profile. Set it once and forget it — runs entirely on-device.</div>
                     </div>
                     <!-- 3 -->
                     <div class="feature-bento">
+                        <div class="feature-bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+                        </div>
                         <div class="feature-bento-title">Selective App Muting</div>
-                        <div class="feature-bento-text">Silence specific apps per profile. Social media during work? Blocked. Calls from loved ones? Always through. Per-profile selection means each situation gets exactly the right apps silenced — nothing more, nothing less.</div>
+                        <div class="feature-bento-text">Choose exactly which apps get silenced per profile. Social media blocked during work; calls from family always through.</div>
                     </div>
-                    <!-- 4 -->
+                    <!-- 4: Wide (span 2) -->
                     <div class="feature-bento">
+                        <div class="feature-bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 20c-.83 0-1.5-.67-1.5-1.5S11.17 18 12 18s1.5.67 1.5 1.5S12.83 21 12 21zm5-4H7V4h10v13z"/></svg>
+                        </div>
                         <div class="feature-bento-title">Quick Settings Tile</div>
-                        <div class="feature-bento-text">Toggle your active profile directly from the notification shade — no need to open the app. One swipe down, one tap, and you're back in focus mode. Works on Android 7.0+ with standard Quick Settings support.</div>
+                        <div class="feature-bento-text">Toggle your active profile directly from the notification shade — one swipe down, one tap. Works on Android 7.0+ with standard Quick Settings.</div>
                     </div>
-                    <!-- 5 -->
+                    <!-- 5: Wide (span 2) -->
                     <div class="feature-bento">
+                        <div class="feature-bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                        </div>
                         <div class="feature-bento-title">Distraction Statistics</div>
-                        <div class="feature-bento-text">Track how many notifications each profile has blocked and which apps interrupt you most. Free: 7-day history. Pro: full history. All stats stay local — they're never uploaded or shared.</div>
+                        <div class="feature-bento-text">Track how many notifications each profile has blocked and which apps interrupt you most. Free: 7-day history. Pro: full history. All stats stay local.</div>
                     </div>
                     <!-- 6 -->
                     <div class="feature-bento">
+                        <div class="feature-bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                        </div>
                         <div class="feature-bento-title">No Root Required</div>
-                        <div class="feature-bento-text">Works on any Android 8.0+ device using official Android APIs. Simple setup, no ADB, no sideloading.</div>
+                        <div class="feature-bento-text">Works on any Android 8.0+ device via official APIs. Simple setup, no ADB or sideloading needed.</div>
                     </div>
                 </div>
             </section>
@@ -1896,7 +1972,7 @@
                             <a href="/upgrade?plan=monthly" id="pro-cta" class="pricing-cta-featured">Upgrade to Pro</a>
                         </div>
                     </div>
-                    <div class="pricing-card featured-lifetime featured-lifetime-dark">
+                    <div class="pricing-card pricing-card-dark featured-lifetime featured-lifetime-dark">
                         <div class="best-value-badge">Best Value</div>
                         <div class="plan-name">Pro — Lifetime</div>
                         <div class="plan-price">$29.99</div>
@@ -1935,6 +2011,13 @@
         </div>
         <p style="color:rgba(255,255,255,0.70)">&copy; 2026 Permly. All rights reserved.</p>
     </footer>
+
+    <div id="mobile-sticky-cta" aria-hidden="true">
+        <a href="https://play.google.com/store/apps/details?id=com.permly&utm_source=permly_website&utm_medium=mobile_sticky&utm_campaign=download_cta" aria-label="Download Permly free on Google Play">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+            Get It Free on Google Play
+        </a>
+    </div>
 
     <script src="assets/cookie-consent.js" defer></script>
     <script>
@@ -1997,17 +2080,61 @@
             var bar = document.getElementById('mobile-sticky-cta');
             if (!bar) return;
             window.addEventListener('scroll', function() {
-                bar.classList.toggle('is-visible', window.scrollY > 300);
-                bar.setAttribute('aria-hidden', String(window.scrollY <= 300));
+                var visible = window.scrollY > 300;
+                bar.classList.toggle('is-visible', visible);
+                bar.setAttribute('aria-hidden', String(!visible));
+                document.body.classList.toggle('sticky-cta-visible', visible);
             }, { passive: true });
+        })();
+
+        // Mobile nav — close menu when a nav link is tapped
+        (function() {
+            var links = document.querySelectorAll('#topnav-links a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    var m = document.getElementById('topnav-links');
+                    var btn = document.querySelector('.topnav-hamburger');
+                    if (m.classList.contains('open')) {
+                        m.classList.remove('open');
+                        if (btn) btn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        })();
+
+        // Drag-to-scroll on testimonials grid
+        (function() {
+            var el = document.getElementById('testimonials-grid');
+            if (!el) return;
+            var isDown = false, startX, scrollLeft, moved = false;
+            el.addEventListener('mousedown', function(e) {
+                e.preventDefault(); // critical: stops browser text-select / image-drag hijacking events
+                isDown = true; moved = false;
+                startX = e.clientX;
+                scrollLeft = el.scrollLeft;
+                el.style.cursor = 'grabbing';
+                el.style.userSelect = 'none';
+                el.style.scrollSnapType = 'none';
+            });
+            document.addEventListener('mouseup', function() {
+                if (!isDown) return;
+                isDown = false;
+                el.style.cursor = 'grab';
+                el.style.userSelect = '';
+                setTimeout(function() { el.style.scrollSnapType = ''; }, 50);
+            });
+            document.addEventListener('mousemove', function(e) {
+                if (!isDown) return;
+                var dx = e.clientX - startX;
+                if (Math.abs(dx) > 4) moved = true;
+                el.scrollLeft = scrollLeft - dx;
+            });
+            el.addEventListener('click', function(e) {
+                if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+            }, true);
         })();
     </script>
 
-    <div id="mobile-sticky-cta" aria-hidden="true">
-        <a href="https://play.google.com/store/apps/details?id=com.permly&utm_source=permly_website&utm_medium=mobile_sticky&utm_campaign=download_cta" aria-label="Download Permly free on Google Play">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-            Get It Free on Google Play
-        </a>
-    </div>
+
 </body>
 </html>
