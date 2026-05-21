@@ -555,12 +555,6 @@
             transform: translateY(-2px);
         }
         .feature-bento:nth-child(1) { grid-column: span 2; }
-        .feature-bento:nth-child(7) {
-            grid-column: span 2;
-            background: var(--dark);
-            border-color: transparent;
-            color: white;
-        }
         .feature-bento-title {
             font-size: 0.95rem;
             font-weight: 700;
@@ -570,16 +564,11 @@
             align-items: center;
             gap: 8px;
         }
-        .feature-bento:nth-child(7) .feature-bento-title {
-            color: white;
-            font-size: 1.05rem;
-        }
         .feature-bento-text {
             font-size: 0.875rem;
             color: var(--text-secondary);
             line-height: 1.6;
         }
-        .feature-bento:nth-child(7) .feature-bento-text { color: rgba(255,255,255,0.6); }
         .feature-bento:nth-child(1) .feature-bento-title { font-size: 1.05rem; }
         .pro-badge {
             display: inline-block;
@@ -610,7 +599,7 @@
         }
         @media (max-width: 700px) {
             .feature-bento-grid { grid-template-columns: 1fr; }
-            .feature-bento:nth-child(1), .feature-bento:nth-child(7) { grid-column: span 1; }
+            .feature-bento:nth-child(1) { grid-column: span 1; }
         }
 
         /* ─── COMPETITOR COMPARE ─── */
@@ -1647,7 +1636,7 @@
             </section>
 
             <!-- Features Bento -->
-            <section class="section-card" id="features" aria-labelledby="features-heading">
+            <section class="open-section" id="features" aria-labelledby="features-heading">
                 <h2 id="features-heading">Selective Blocking — <span class="accent">Not All-or-Nothing</span></h2>
                 <p class="section-subtitle">Unlike Do Not Disturb, Permly lets you choose exactly which apps to silence in each situation.</p>
                 <div class="feature-bento-grid">
@@ -1680,18 +1669,6 @@
                     <div class="feature-bento">
                         <div class="feature-bento-title">No Root Required</div>
                         <div class="feature-bento-text">Works on any Android 8.0+ device using official Android APIs. Simple setup, no ADB, no sideloading.</div>
-                    </div>
-                    <!-- 7: Wide, dark — Privacy callout -->
-                    <div class="feature-bento">
-                        <div class="feature-bento-title">No Ads. No Data. Ever.</div>
-                        <div class="feature-bento-text">Permly never reads your notification content — only the app name. All data stays on your device. No analytics, no cloud, no accounts, no tracking. Your attention is not our product.</div>
-                        <div class="privacy-dots">
-                            <span class="privacy-dot-tag">No analytics</span>
-                            <span class="privacy-dot-tag">No cloud</span>
-                            <span class="privacy-dot-tag">No accounts</span>
-                            <span class="privacy-dot-tag">No ads</span>
-                            <span class="privacy-dot-tag">Local-only</span>
-                        </div>
                     </div>
                 </div>
             </section>
