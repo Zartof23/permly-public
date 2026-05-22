@@ -623,62 +623,59 @@
             .feature-bento:nth-child(5) { grid-column: span 1; }
         }
 
-        /* ─── COMPETITOR COMPARE ─── */
-        .compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 14px; border: 1px solid var(--border); }
-        .compare-grid {
+        /* ─── WIN CARDS (competitor comparison) ─── */
+        .win-cards-grid {
             display: grid;
-            grid-template-columns: minmax(170px, 2fr) 1.3fr 1fr 1fr 1fr;
-            min-width: 560px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
-        .c-cell {
-            padding: 13px 14px;
-            border-bottom: 1px solid #F3F4F6;
+        .win-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--indigo);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 28px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .win-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        .win-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(99,102,241,0.1);
             display: flex;
             align-items: center;
-            font-size: 0.86rem;
-        }
-        .c-cell.c-feature { color: var(--text-secondary); font-weight: 500; }
-        .c-cell.c-val {
             justify-content: center;
-            font-weight: 700;
-            border-left: 1px solid #F3F4F6;
+            margin-bottom: 16px;
+            color: var(--indigo);
         }
-        .c-cell.c-head {
-            font-weight: 700;
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            background: #F9FAFB;
-            border-bottom: 2px solid var(--border);
-            padding: 18px 14px;
-            text-align: center;
-            justify-content: center;
-        }
-        /* Permly column highlight */
-        .c-cell.permly {
-            background: linear-gradient(to bottom, #EEF2FF, #F0EEFF);
-            border-left: 2px solid #C7D2FE !important;
-            border-right: 2px solid #C7D2FE;
-        }
-        .c-cell.c-head.permly {
-            background: linear-gradient(135deg, var(--indigo), var(--violet));
-            color: white;
-            font-size: 0.92rem;
+        .win-card h3 {
+            font-size: 1.05rem;
             font-weight: 800;
-            border-left: none !important;
-            border-right: none;
-            border-bottom: none;
-            border-radius: 0;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
         }
-        /* Last rows - remove bottom border */
-        .compare-grid .c-cell:nth-last-child(-n+5) { border-bottom: none; }
-        /* Row hover */
-        .compare-row { display: contents; }
-        .compare-row:hover .c-cell { background-color: #FAFBFF; }
-        .compare-row:hover .c-cell.permly { background: linear-gradient(to bottom, #E8EDFF, #EAE8FF); }
-        /* Values */
-        .val-good { color: #16A34A; }
-        .val-bad  { color: #DC2626; }
-        .val-mid  { color: #D97706; }
+        .win-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 16px;
+        }
+        .win-card-footer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            line-height: 1.5;
+        }
         .table-disclaimer {
             font-size: 0.78rem;
             color: var(--text-muted);
@@ -686,6 +683,9 @@
             text-align: center;
         }
         .table-disclaimer a { color: var(--indigo); }
+        @media (max-width: 700px) {
+            .win-cards-grid { grid-template-columns: 1fr; }
+        }
 
         /* ─── DND COMPARISON ─── */
         .dnd-compare-grid {
@@ -1835,67 +1835,33 @@
             </section>
 
             <!-- Competitor Comparison -->
+            <!-- Competitor Comparison -->
             <section class="open-section" id="competitors" aria-labelledby="competitors-heading">
-                <h2 id="competitors-heading">Permly vs Other Notification Apps</h2>
-                <p class="section-subtitle">Looking for an AppBlock, BuzzKill, or FilterBox alternative? Here's how they stack up.</p>
-                <div class="compare-scroll">
-                    <div class="compare-grid" aria-label="Permly vs competitors comparison" role="region">
-                        <!-- Header row -->
-                        <div class="c-cell c-head">Feature</div>
-                        <div class="c-cell c-head permly">Permly</div>
-                        <div class="c-cell c-head">AppBlock</div>
-                        <div class="c-cell c-head">BuzzKill</div>
-                        <div class="c-cell c-head">FilterBox</div>
-                        <!-- Rows -->
-                        <div class="compare-row">
-                            <div class="c-cell c-feature">Reads notification content</div>
-                            <div class="c-cell c-val permly val-good">✗ Never</div>
-                            <div class="c-cell c-val val-bad">✓ Yes</div>
-                            <div class="c-cell c-val val-bad">✓ Yes</div>
-                            <div class="c-cell c-val val-bad">✓ Yes</div>
+                <h2 id="competitors-heading">Other apps read your messages. Show you ads. <span class="accent">Permly never does.</span></h2>
+                <div class="win-cards-grid">
+                    <div class="win-card">
+                        <div class="win-card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
-                        <div class="compare-row">
-                            <div class="c-cell c-feature">Free tier available</div>
-                            <div class="c-cell c-val permly val-good">✓ Yes</div>
-                            <div class="c-cell c-val val-good">✓ Yes</div>
-                            <div class="c-cell c-val val-bad">✗ Paid</div>
-                            <div class="c-cell c-val val-good">✓ Yes</div>
+                        <h3>Your messages stay private</h3>
+                        <p>Permly only knows which app sent a notification — never what it says. No content is ever read, stored, or sent anywhere.</p>
+                        <div class="win-card-footer">AppBlock, BuzzKill &amp; FilterBox all read your notification content</div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
                         </div>
-                        <div class="compare-row">
-                            <div class="c-cell c-feature">Contains ads</div>
-                            <div class="c-cell c-val permly val-good">✗ Never</div>
-                            <div class="c-cell c-val val-bad">✓ Yes</div>
-                            <div class="c-cell c-val val-good">✗ No</div>
-                            <div class="c-cell c-val val-bad">✓ Yes</div>
+                        <h3>Free to start. Never an ad.</h3>
+                        <p>Core features are free with no advertisements, ever — not even on the free tier. No bait-and-switch.</p>
+                        <div class="win-card-footer">AppBlock &amp; FilterBox show ads. BuzzKill has no free tier.</div>
+                    </div>
+                    <div class="win-card">
+                        <div class="win-card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="10" cy="18" r="2" fill="currentColor" stroke="none"/></svg>
                         </div>
-                        <div class="compare-row">
-                            <div class="c-cell c-feature">May share data with third parties</div>
-                            <div class="c-cell c-val permly val-good">✗ No</div>
-                            <div class="c-cell c-val val-bad">✓ Yes<sup>*</sup></div>
-                            <div class="c-cell c-val val-good">✗ No<sup>*</sup></div>
-                            <div class="c-cell c-val val-good">✗ No<sup>*</sup></div>
-                        </div>
-                        <div class="compare-row">
-                            <div class="c-cell c-feature">Selective app muting</div>
-                            <div class="c-cell c-val permly val-good">✓ Yes</div>
-                            <div class="c-cell c-val val-good">✓ Yes</div>
-                            <div class="c-cell c-val val-good">✓ Yes</div>
-                            <div class="c-cell c-val val-good">✓ Yes</div>
-                        </div>
-                        <div class="compare-row">
-                            <div class="c-cell c-feature">Custom profiles</div>
-                            <div class="c-cell c-val permly val-good">✓ Yes</div>
-                            <div class="c-cell c-val val-mid">⚠ Limited</div>
-                            <div class="c-cell c-val val-mid">⚠ Limited</div>
-                            <div class="c-cell c-val val-mid">⚠ Limited</div>
-                        </div>
-                        <div class="compare-row">
-                            <div class="c-cell c-feature">Privacy-first design</div>
-                            <div class="c-cell c-val permly val-good">✓ Yes</div>
-                            <div class="c-cell c-val val-bad">✗ No</div>
-                            <div class="c-cell c-val val-mid">⚠ Partial</div>
-                            <div class="c-cell c-val val-bad">✗ No</div>
-                        </div>
+                        <h3>Profiles that actually work</h3>
+                        <p>Multiple fully customizable profiles — not one fixed mode or limited presets. Work, Sleep, Focus: each silences exactly the apps you pick.</p>
+                        <div class="win-card-footer">AppBlock, BuzzKill &amp; FilterBox all offer limited profile control</div>
                     </div>
                 </div>
                 <p class="table-disclaimer"><sup>*</sup> Per their publicly available privacy policies as of April 2026. Features and policies may change. <a href="/privacy-policy">Read Permly's Privacy Policy.</a></p>
