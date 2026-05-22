@@ -83,7 +83,7 @@
     el.querySelector('button[data-customize]').addEventListener('click', showCustomize);
     el.style.maxHeight = '200px';
     el.removeAttribute('hidden');
-    el.querySelector('button[data-accept]').focus();
+    requestAnimationFrame(function () { el.querySelector('button[data-accept]').focus(); });
   }
 
   function onAccept() {
@@ -129,7 +129,7 @@
 
     banner.querySelector('button[data-confirm]').addEventListener('click', onConfirmCustomize);
     banner.style.maxHeight = '420px';
-    toggle.focus();
+    requestAnimationFrame(function () { toggle.focus(); });
   }
 
   function onConfirmCustomize() {
