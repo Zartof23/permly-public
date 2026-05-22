@@ -688,31 +688,60 @@
         .table-disclaimer a { color: var(--indigo); }
 
         /* ─── DND COMPARISON ─── */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.92rem;
-            border-radius: 10px;
-            overflow: hidden;
+        .dnd-compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .dnd-card {
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .dnd-card-problem {
+            background: #F9FAFB;
             border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        .comparison-table th {
-            background: var(--indigo);
+        .dnd-card-hero {
+            background: #EEF2FF;
+            border: 2px solid #C7D2FE;
+            box-shadow: 0 4px 20px rgba(79,70,229,0.1);
+        }
+        .dnd-card-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            padding: 4px 12px;
+            margin-bottom: 20px;
+        }
+        .dnd-card-problem .dnd-card-badge {
+            background: #E5E7EB;
+            color: #6B7280;
+        }
+        .dnd-card-hero .dnd-card-badge {
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
             color: white;
-            padding: 14px 18px;
-            text-align: left;
-            font-weight: 600;
         }
-        .comparison-table td {
-            padding: 12px 18px;
-            border-bottom: 1px solid #F3F4F6;
+        .dnd-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.9rem;
             color: var(--text-secondary);
+            line-height: 1.4;
         }
-        .comparison-table tbody tr:hover td { background: #FAFBFF; }
-        .comparison-table tr:last-child td { border-bottom: none; }
-        .yes { color: #16A34A; font-weight: 600; }
-        .no  { color: #DC2626; font-weight: 600; }
-        .partial { color: #D97706; font-weight: 600; }
+        .dnd-row:last-child { border-bottom: none; }
+        .dnd-icon { font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+        .dnd-icon-yes { color: #16A34A; }
+        .dnd-icon-no  { color: #DC2626; }
+        @media (max-width: 600px) {
+            .dnd-compare-grid { grid-template-columns: 1fr; }
+        }
 
         /* ─── USE CASES ─── */
         .use-cases-grid {
@@ -1785,26 +1814,24 @@
 
             <!-- vs Do Not Disturb -->
             <section class="open-section" id="comparison" aria-labelledby="comparison-heading">
-                <h2 id="comparison-heading">Do Not Disturb vs Permly: What's the Difference?</h2>
-                <p class="section-subtitle">Android's built-in DND silences everything — or nothing. Permly gives you the middle ground.</p>
-                <table class="comparison-table" role="table" aria-label="Permly vs Do Not Disturb comparison">
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Permly</th>
-                            <th>Android DND</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Mute specific apps only</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
-                        <tr><td>Multiple saved profiles</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
-                        <tr><td>Per-profile app selection</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
-                        <tr><td>Automatic scheduling</td><td class="yes">✓ Pro</td><td class="partial">⚠ Limited</td></tr>
-                        <tr><td>Distraction statistics</td><td class="yes">✓ Yes</td><td class="no">✗ No</td></tr>
-                        <tr><td>Quick Settings tile</td><td class="yes">✓ Yes</td><td class="yes">✓ Yes</td></tr>
-                        <tr><td>No ads</td><td class="yes">✓ Always</td><td class="yes">✓ N/A</td></tr>
-                    </tbody>
-                </table>
+                <h2 id="comparison-heading">DND is a sledgehammer. <span class="accent">Permly is a scalpel.</span></h2>
+                <p class="section-subtitle">Android's built-in silence is all-or-nothing. Permly lets you choose exactly which apps get through.</p>
+                <div class="dnd-compare-grid">
+                    <div class="dnd-card dnd-card-problem">
+                        <span class="dnd-card-badge">Android DND</span>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-no">✗</span> Silences everything — or nothing</div>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-no">✗</span> No per-app selection</div>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-no">✗</span> No saved profiles</div>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-no">✗</span> No distraction stats</div>
+                    </div>
+                    <div class="dnd-card dnd-card-hero">
+                        <span class="dnd-card-badge">Permly</span>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-yes">✓</span> Silence only the apps you choose</div>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-yes">✓</span> Full per-app control per profile</div>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-yes">✓</span> Multiple saved profiles</div>
+                        <div class="dnd-row"><span class="dnd-icon dnd-icon-yes">✓</span> 7-day distraction stats (free) · full history (Pro)</div>
+                    </div>
+                </div>
             </section>
 
             <!-- Competitor Comparison -->
