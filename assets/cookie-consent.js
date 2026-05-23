@@ -69,19 +69,6 @@
   function showBanner() {
     var el = document.getElementById('cookie-banner');
     if (!el) return;
-    el.innerHTML =
-      '<p class="cb-title">🍪 Cookie time (sorry)</p>' +
-      '<p class="cb-body">' +
-        'The necessary ones keep the lights on. The optional ones (Google Analytics) help us ' +
-        'understand if anyone\'s actually reading this. Your choice — no pressure, no guilt trip.' +
-      '</p>' +
-      '<div class="cb-actions">' +
-        '<button class="cb-btn cb-btn-primary" data-accept>Sure, why not</button>' +
-        '<button class="cb-btn cb-btn-secondary" data-customize>Picky mode</button>' +
-      '</div>';
-    el.querySelector('button[data-accept]').addEventListener('click', onAccept);
-    el.querySelector('button[data-customize]').addEventListener('click', showCustomize);
-    el.style.maxHeight = '200px';
     el.removeAttribute('hidden');
     requestAnimationFrame(function () { el.querySelector('button[data-accept]').focus(); });
   }
