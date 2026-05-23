@@ -284,9 +284,9 @@ This website fulfills Play Store requirements:
 - `sitemap.xml` with all four indexable URLs (home, support, privacy-policy, terms-of-service)
 - `--text-muted` is `#6B7280` — do not use `#9CA3AF` or lighter (fails WCAG AA contrast)
 - All asset image URLs include `?v=1` version query string for cache busting — increment when images change
-- Carousel screenshots use `<picture>` with WebP `srcset` (400w/800w) + PNG fallback; `sizes="(max-width: 600px) 175px, 270px"`
+- Carousel screenshots use `<picture>` with WebP `srcset` (200w/400w/800w) + PNG fallback; `sizes="(max-width: 600px) 175px, 270px"`
 - Navbar icon uses `<picture>` with `icon-64.webp` WebP source + `icon.png` fallback on all pages
-- When adding new screenshots: generate `-400w.webp` and `-800w.webp` variants, add to `assets/screenshots/phone/`, use `<picture>` pattern
+- When adding new screenshots: generate `-200w.webp`, `-400w.webp`, and `-800w.webp` variants, add to `assets/screenshots/phone/`, use `<picture>` pattern
 
 ### Accessibility
 - All hamburger buttons have `aria-expanded` toggled by JS
