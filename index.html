@@ -2027,7 +2027,31 @@
             document.getElementById('pro-cta').href = yearly
                 ? '/upgrade?plan=yearly'
                 : '/upgrade?plan=monthly';
+            if (typeof gtag === 'function') {
+                gtag('event', 'pricing_toggle', { billing_period: period });
+            }
         }
+
+        // GA4 custom events
+        (function() {
+            function trackClick(selector, eventName, params) {
+                document.querySelectorAll(selector).forEach(function(el) {
+                    el.addEventListener('click', function() {
+                        if (typeof gtag === 'function') gtag('event', eventName, params || {});
+                    });
+                });
+            }
+
+            // Download CTAs
+            trackClick('a[href*="utm_medium=navbar"]', 'cta_click', { placement: 'navbar' });
+            trackClick('a[href*="utm_medium=hero"]', 'cta_click', { placement: 'hero' });
+            trackClick('a[href*="utm_medium=mobile_sticky"]', 'cta_click', { placement: 'mobile_sticky' });
+
+            // Pricing CTAs
+            trackClick('.pricing-cta-free', 'pricing_cta_click', { plan: 'free' });
+            trackClick('#pro-cta, .pricing-cta-featured', 'pricing_cta_click', { plan: 'pro' });
+            trackClick('.pricing-cta-pro', 'pricing_cta_click', { plan: 'lifetime' });
+        })();
 
         // Drag-to-scroll and keyboard navigation on screenshot carousel
         (function() {

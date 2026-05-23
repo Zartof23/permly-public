@@ -343,7 +343,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.faq-question').forEach(function(btn) {
                 btn.addEventListener('click', function() {
-                    this.closest('.faq-item').classList.toggle('open');
+                    var item = this.closest('.faq-item');
+                    item.classList.toggle('open');
+                    if (item.classList.contains('open') && typeof gtag === 'function') {
+                        var question = this.querySelector('.faq-question-text');
+                        gtag('event', 'faq_open', { question: question ? question.textContent.trim() : '' });
+                    }
                 });
             });
         });
